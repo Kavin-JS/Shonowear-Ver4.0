@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Create your Shonowear account and start discovering anime streetwear.">
+  <meta property="og:title" content="Sign Up — Shonowear">
+  <meta property="og:description" content="Create your Shonowear account and start discovering anime streetwear.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#e8153a">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up — Shonowear</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080810'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial Black,sans-serif' font-size='13' font-weight='900' fill='%23e8153a'%3ESW%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .auth-page {
+      min-height: 100vh; display: flex; align-items: center;
+      justify-content: center; padding: 80px 20px 40px;
+      background: var(--ink);
+      background-image: url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=1400&auto=format&fit=crop&q=40');
+      background-size: cover; background-position: center;
+    }
+    .auth-page::before { content: ''; position: fixed; inset: 0; background: rgba(8,8,15,.88); z-index: 0; }
+    .auth-card { position: relative; z-index: 1; background: var(--ink2); border: 1px solid var(--border); padding: 48px 40px; width: 100%; max-width: 400px; }
+    .auth-card h2 { font-family: var(--font-d); font-size: 2rem; letter-spacing: 3px; text-align: center; color: var(--white); margin-bottom: 8px; }
+    .auth-card .auth-sub { text-align: center; font-size: 13px; color: var(--muted); font-weight: 300; margin-bottom: 32px; }
+    .auth-field { margin-bottom: 20px; }
+    .auth-field label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .auth-field input { width: 100%; padding: 13px 16px; background: var(--ink3); border: 1px solid var(--border); color: var(--white); font-family: var(--font-b); font-size: 14px; outline: none; transition: border-color .3s; }
+    .auth-field input:focus { border-color: var(--border-r); }
+    .auth-field input::placeholder { color: var(--muted); }
+    .auth-btn { width: 100%; padding: 14px; background: var(--red); color: #fff; font-family: var(--font-b); font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; border: none; margin-top: 8px; transition: background .2s, transform .2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .auth-btn:hover { background: var(--red2); transform: translateY(-1px); }
+    .auth-footer { text-align: center; margin-top: 24px; font-size: 13px; color: var(--muted); font-weight: 300; }
+    .auth-footer a { color: var(--gold); transition: color .2s; }
+    .auth-footer a:hover { color: var(--white); }
+    .auth-divider { display: flex; align-items: center; gap: 12px; margin: 24px 0; color: var(--muted); font-size: 11px; }
+    .auth-divider::before, .auth-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  </style>
+  <meta property="og:image" content="https://shonowear.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://shonowear.com/signup.html">
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  </head>
+<body>
+
+  <script src="nav.js" data-page="signup"></script>
+
+  <div class="auth-page">
+    <div class="auth-card">
+      <a href="index.html" class="auth-logo nav-logo" style="display:block;text-align:center;margin-bottom:32px;-webkit-text-fill-color:unset;background:unset;color:var(--white);">
+        SHONO<span style="color:var(--red)">WEAR</span>
+      </a>
+      <h2>JOIN US</h2>
+      <p class="auth-sub">Create your account and start discovering.</p>
+
+      <div class="auth-field">
+        <label>Full Name</label>
+        <input type="text" id="signup-name" placeholder="Aryan Sharma"/>
+      </div>
+      <div class="auth-field">
+        <label>Email Address</label>
+        <input type="email" id="signup-email" placeholder="your@email.com"/>
+      </div>
+      <div class="auth-field">
+        <label>Password</label>
+        <input type="password" id="signup-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doSignup()"/>
+      </div>
+
+      <button class="auth-btn" onclick="doSignup()">
+        <i class="fas fa-user-plus"></i> Create Account
+      </button>
+
+      <div class="auth-divider">OR</div>
+
+      <div class="auth-footer">
+        Already have an account? <a href="login.html">Sign in →</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Wishlist sidebar -->
+  <div class="wish-overlay" id="wish-overlay" onclick="closeWishlist()"></div>
+  <div class="wish-sidebar" id="wish-sidebar">
+    <div class="wish-head">
+      <h3>Saved Items</h3>
+      <button onclick="closeWishlist()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="wish-items" id="wish-items"></div>
+    <div class="wish-empty" id="wish-empty">
+      <i class="far fa-heart"></i>
+      <p>No saved items yet.</p>
+      <a href="collection.html">Browse Collection</a>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <button class="popup-close" onclick="closePop()"><i class="fas fa-times"></i></button>
+      <div style="text-align:center;padding:40px;">
+        <div id="pop-ico" style="font-size:3rem;margin-bottom:20px;"></div>
+        <h2 id="pop-title" style="font-family:var(--font-d);font-size:1.8rem;margin-bottom:14px;"></h2>
+        <p id="pop-msg" style="color:var(--muted);"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="wishlist.js"></script>
+  <script src="main.js"></script>
+  <script>
+    function doSignup() {
+      const name  = document.getElementById('signup-name').value.trim();
+      const email = document.getElementById('signup-email').value.trim();
+      const pass  = document.getElementById('signup-pass').value;
+      if (!name || !email || !pass) { toast('Please fill in all fields.', 'error'); return; }
+      const rx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!rx.test(email)) { toast('Please enter a valid email.', 'error'); return; }
+      if (pass.length < 6) { toast('Password must be at least 6 characters.', 'error'); return; }
+      localStorage.setItem('sw_user', email);
+      localStorage.setItem('sw_username', name);
+      updateNav();
+      toast('Account created! Welcome to Shonowear 🎉', 'success');
+      setTimeout(() => window.location.href = 'index.html', 1200);
+    }
+  </script>
+
+  <button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top"><i class="fas fa-chevron-up"></i></button>
+  <!-- Cookie Consent -->
+  <div class="cookie-banner" id="cookie-banner">
+    <p>We use cookies to improve your experience. By continuing, you agree to our <a href="privacy.html">Privacy Policy</a>.</p>
+    <div class="cookie-btns">
+      <button onclick="acceptCookies()">Accept All</button>
+      <button onclick="acceptCookies()" class="cookie-ghost">Necessary Only</button>
+    </div>
+  </div>
+  <script>
+    function acceptCookies(){document.getElementById('cookie-banner').style.display='none';localStorage.setItem('sw_cookies_accepted','1')}
+    if(localStorage.getItem('sw_cookies_accepted'))document.getElementById('cookie-banner').style.display='none';
+  </script>
+  <!-- WhatsApp Widget -->
+  <a href="https://wa.me/91YOUR_NUMBER?text=Hi%20Shonowear!%20I%20have%20a%20question." target="_blank" rel="noopener" class="wa-float" title="Chat on WhatsApp" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</body>
+</html>

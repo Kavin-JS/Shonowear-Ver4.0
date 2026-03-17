@@ -1,0 +1,56 @@
+<!-- components/footer.html
+     Reusable footer component for Shonowear.
+     Loaded dynamically via componentLoader.js.
+-->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">SHONO<span>WEAR</span></a>
+        <p>Where anime meets street fashion. Curated drops. Premium fabric. Culture first.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/shonowear" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="contact.html" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Discover</h5>
+        <a href="collection.html">All Products</a>
+        <a href="recommendations.html">Outfit Finder</a>
+        <a href="new-arrivals.html">New Arrivals</a>
+        <a href="body-profile.html">Find My Style</a>
+        <a href="index.html#outfit-builder">Outfit Builder</a>
+      </div>
+      <div class="footer-col">
+        <h5>Help</h5>
+        <a href="contact.html">Contact Us</a>
+        <a href="cart.html">Your Cart</a>
+        <a href="returns.html">Returns</a>
+        <a href="shipping.html">Shipping</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="about.html">About</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+        <a href="shipping.html">Shipping Policy</a>
+      </div>
+    </div>
+    <div class="footer-base">
+      <p>© <span class="footer-year"></span> Shonowear. All rights reserved. Built for the culture, by the culture.</p>
+      <p style="margin-top:4px;font-size:11px;color:var(--muted);">Designed &amp; developed by Kavin J.S</p>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" class="toast"></div>
+<button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">
+  <i class="fas fa-chevron-up"></i>
+</button>
+<div class="cookie-banner" id="cookie-banner">
+  <p>We use cookies to improve your experience. By continuing, you agree to our <a href="privacy.html">Privacy Policy</a>.</p>
+  <div class="cookie-btns">
+    <button onclick="acceptCookies()">Accept All</button>
+    <button onclick="acceptCookies()" class="cookie-ghost">Necessary Only</button>
+  </div>
+</div>

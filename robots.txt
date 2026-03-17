@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /login.html
+Disallow: /signup.html
+
+Sitemap: https://shonowear.com/sitemap.xml

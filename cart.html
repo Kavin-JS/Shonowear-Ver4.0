@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Your Shonowear cart. Review your items and proceed to checkout.">
+  <meta property="og:title" content="Cart — Shonowear">
+  <meta property="og:description" content="Your Shonowear cart. Review your items and proceed to checkout.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#e8153a">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart — Shonowear</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080810'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial Black,sans-serif' font-size='13' font-weight='900' fill='%23e8153a'%3ESW%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .cart-section { max-width: 860px; margin: 0 auto; }
+    .ci {
+      display: grid; grid-template-columns: 100px 1fr auto;
+      gap: 20px; align-items: center;
+      background: var(--ink2); border: 1px solid var(--border);
+      padding: 20px; margin-bottom: 3px;
+      transition: border-color .2s;
+    }
+    .ci:hover { border-color: var(--border-r); }
+    .ci-thumb {
+      width: 100px; height: 100px;
+      background-size: cover; background-position: center;
+      background-color: var(--surface); flex-shrink: 0;
+    }
+    .ci-info { min-width: 0; }
+    .ci-name { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+    .ci-price { font-family: var(--font-d); font-size: 1.1rem; color: var(--gold); margin-bottom: 12px; }
+    .qty-row { display: flex; align-items: center; gap: 8px; }
+    .qb {
+      width: 28px; height: 28px; background: var(--ink3);
+      border: 1px solid var(--border); color: var(--white);
+      font-size: 16px; display: flex; align-items: center; justify-content: center;
+      transition: background .2s, border-color .2s;
+    }
+    .qb:hover { background: var(--surface); border-color: var(--border-r); }
+    .qn { font-size: 14px; font-weight: 600; color: var(--white); min-width: 20px; text-align: center; }
+    .rm-btn {
+      margin-left: 8px; padding: 5px 12px;
+      background: transparent; border: 1px solid var(--border-r);
+      color: var(--red); font-size: 10px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      transition: all .2s;
+    }
+    .rm-btn:hover { background: var(--red); color: #fff; }
+    .ci-total { font-family: var(--font-d); font-size: 1.2rem; color: var(--white); text-align: right; }
+    .cart-empty {
+      text-align: center; padding: 80px 20px;
+      color: var(--muted);
+    }
+    .cart-empty i { font-size: 3rem; display: block; margin-bottom: 16px; opacity: .3; }
+    .cart-empty p { font-size: 16px; margin-bottom: 24px; }
+    .cart-summary {
+      background: var(--ink2); border: 1px solid var(--border);
+      padding: 28px; margin-top: 24px;
+    }
+    .summary-row {
+      display: flex; justify-content: space-between;
+      font-size: 14px; font-weight: 500; padding: 10px 0;
+      border-bottom: 1px solid var(--border); color: var(--off);
+    }
+    .summary-row.total {
+      border-bottom: none; margin-top: 8px;
+      font-family: var(--font-d); font-size: 1.4rem;
+      color: var(--white);
+    }
+    .summary-row.total span:last-child { color: var(--gold); }
+    .checkout-btn {
+      width: 100%; padding: 16px; background: var(--red); color: #fff;
+      font-family: var(--font-b); font-size: 13px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; border: none;
+      margin-top: 20px; transition: background .2s, transform .2s;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .checkout-btn:hover { background: var(--red2); transform: translateY(-2px); }
+
+    .promo-row { display: flex; gap: 8px; margin-bottom: 16px; }
+    .promo-input {
+      flex: 1; padding: 10px 14px;
+      background: var(--ink3); border: 1px solid var(--border);
+      color: var(--white); font-family: var(--font-b); font-size: 13px;
+      outline: none; transition: border-color .2s;
+    }
+    .promo-input:focus { border-color: var(--border-r); }
+    .promo-input::placeholder { color: var(--muted); }
+    .promo-btn {
+      padding: 10px 18px; background: transparent;
+      border: 1px solid var(--border-r); color: var(--red);
+      font-family: var(--font-b); font-size: 11px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
+      transition: all .2s;
+    }
+    .promo-btn:hover { background: var(--red); color: #fff; }
+    .promo-note { font-size: 12px; margin-bottom: 12px; min-height: 16px; }
+    .promo-note.success { color: #10b981; }
+    .promo-note.error { color: var(--red); }
+
+  </style>
+  <meta property="og:image" content="https://shonowear.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://shonowear.com/cart.html">
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  </head>
+<body>
+
+  <script src="nav.js" data-page="cart"></script>
+
+  <div class="pw">
+    <section class="prd-sec">
+      <div class="sh">
+        <span class="sh-tag">— CHECKOUT</span>
+        <h2 class="sh-title">YOUR CART</h2>
+        <div class="sh-line"></div>
+      </div>
+      <div class="cart-section">
+        <div id="cart-items"></div>
+        <div class="cart-empty" id="empty-cart" style="display:none;">
+          <i class="fas fa-shopping-bag"></i>
+          <p>Your cart is empty.</p>
+          <a href="collection.html" class="btn-r">CONTINUE SHOPPING</a>
+        </div>
+        <div class="cart-summary" id="cart-summary" style="display:none;">
+          <div class="summary-row"><span>Subtotal</span><span id="subtotal">₹0</span></div>
+          <div class="summary-row"><span>Shipping</span><span style="color:var(--gold)">FREE</span></div>
+          <div class="summary-row total"><span>Total</span><span id="total">₹0</span></div>
+          
+          <div class="promo-row" id="promo-row">
+            <input type="text" id="promo-input" class="promo-input" placeholder="Promo code" />
+            <button class="promo-btn" onclick="applyPromo()">Apply</button>
+          </div>
+          <p class="promo-note" id="promo-note"></p>
+
+          <button class="checkout-btn" onclick="checkout()"><i class="fas fa-lock"></i> Proceed to Checkout</button>
+          <div class="trust-badges">
+            <div class="trust-badge"><i class="fas fa-shield-alt"></i> Secure Checkout</div>
+            <div class="trust-badge"><i class="fas fa-credit-card"></i> UPI / Cards</div>
+            <div class="trust-badge"><i class="fas fa-shipping-fast"></i> Free Shipping 999+</div>
+            <div class="trust-badge"><i class="fas fa-undo"></i> Easy Returns</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">SHONO<span>WEAR</span></a>
+          <p>Anime-inspired streetwear for the modern generation.</p>
+          <div class="footer-socials">
+                      <a href="https://www.instagram.com/kavin.j.s" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="contact.html" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+        <div class="footer-col"><h5>Shop</h5><a href="collection.html">All Products</a><a href="new-arrivals.html">New Arrivals</a></div>
+        <div class="footer-col"><h5>Help</h5><a href="contact.html">Contact Us</a><a href="login.html">Login</a></div>
+        <div class="footer-col"><h5>Company</h5><a href="about.html">About</a><a href="privacy.html">Privacy Policy</a></div>
+      </div>
+      <div class="footer-base"><p>© <script>document.write(new Date().getFullYear())</script> Shonowear. All rights reserved.</p><p>Made for the community, by the community.</p></div>
+    </div>
+  </footer>
+
+
+  <!-- Wishlist sidebar -->
+  <div class="wish-overlay" id="wish-overlay" onclick="closeWishlist()"></div>
+  <div class="wish-sidebar" id="wish-sidebar">
+    <div class="wish-head">
+      <h3>Saved Items</h3>
+      <button onclick="closeWishlist()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="wish-items" id="wish-items"></div>
+    <div class="wish-empty" id="wish-empty">
+      <i class="far fa-heart"></i>
+      <p>No saved items yet.</p>
+      <a href="collection.html">Browse Collection</a>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <button class="popup-close" onclick="closePop()"><i class="fas fa-times"></i></button>
+      <div style="text-align:center;padding:40px;">
+        <div id="pop-ico" style="font-size:3rem;margin-bottom:20px;"></div>
+        <h2 id="pop-title" style="font-family:var(--font-d);font-size:1.8rem;margin-bottom:14px;"></h2>
+        <p id="pop-msg" style="color:var(--muted);"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="wishlist.js"></script>
+  <script src="main.js"></script>
+  <script src="cart.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const nb = document.getElementById('navbar');
+      const pr = document.getElementById('nav-progress');
+      window.addEventListener('scroll', () => {
+        nb?.classList.toggle('scrolled', window.scrollY > 60);
+        if (pr) pr.style.width = Math.min((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100, 100) + '%';
+      }, { passive: true });
+    });
+  </script>
+
+  <button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+  <script>
+    const VALID_CODES = { 'ANIME10': 10, 'CULTURE15': 15, 'SW25': 25 };
+    let appliedDiscount = 0;
+    function applyPromo() {
+      const code = document.getElementById('promo-input').value.trim().toUpperCase();
+      const note = document.getElementById('promo-note');
+      if (VALID_CODES[code]) {
+        appliedDiscount = VALID_CODES[code];
+        note.textContent = `✓ Code "${code}" applied — ${appliedDiscount}% off!`;
+        note.className = 'promo-note success';
+        applyDiscountToCart();
+      } else {
+        appliedDiscount = 0;
+        note.textContent = 'Invalid promo code. Try ANIME10 or CULTURE15.';
+        note.className = 'promo-note error';
+      }
+    }
+    function applyDiscountToCart() {
+      const cart  = JSON.parse(localStorage.getItem('sw_cart') || '[]');
+      const sub   = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      const disc  = Math.round(sub * appliedDiscount / 100);
+      const total = sub - disc;
+      const tEl   = document.getElementById('total');
+      const sEl   = document.getElementById('subtotal');
+      if (tEl) tEl.textContent = '₹' + total.toLocaleString();
+      if (sEl) sEl.textContent = '₹' + sub.toLocaleString();
+    }
+  </script>
+
+  <!-- Cookie Consent -->
+  <div class="cookie-banner" id="cookie-banner">
+    <p>We use cookies to improve your experience. By continuing, you agree to our <a href="privacy.html">Privacy Policy</a>.</p>
+    <div class="cookie-btns">
+      <button onclick="acceptCookies()">Accept All</button>
+      <button onclick="acceptCookies()" class="cookie-ghost">Necessary Only</button>
+    </div>
+  </div>
+  <script>
+    function acceptCookies(){document.getElementById('cookie-banner').style.display='none';localStorage.setItem('sw_cookies_accepted','1')}
+    if(localStorage.getItem('sw_cookies_accepted'))document.getElementById('cookie-banner').style.display='none';
+  </script>
+  <!-- WhatsApp Widget -->
+  <a href="https://wa.me/91YOUR_NUMBER?text=Hi%20Shonowear!%20I%20have%20a%20question." target="_blank" rel="noopener" class="wa-float" title="Chat on WhatsApp" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</body>
+</html>

@@ -1,0 +1,127 @@
+SHONOWEAR — STARTUP NOTES
+=========================
+Version 4.0 — March 2026
+A personalised anime streetwear discovery platform.
+
+────────────────────────────────────────────────────────
+PRODUCT CONCEPT
+────────────────────────────────────────────────────────
+
+Shonowear is NOT a generic clothing store.
+It is a fashion DISCOVERY PLATFORM for anime-inspired streetwear.
+
+Core differentiation:
+- Outfit recommendations based on body type
+- Products tagged with body type suitability (Slim / Athletic / Average / Broad)
+- Outfits are curated bundles with trendScore ranking
+- Every drop has cultural context (anime universe, aesthetic)
+
+Primary user journey:
+  Visit → Profile → Body Type → Outfits → Product → Cart
+
+────────────────────────────────────────────────────────
+ARCHITECTURE
+────────────────────────────────────────────────────────
+
+DATA LAYER
+  data/products.json     — structured product data (bodyTypes, style, popularity)
+  data/outfits.json      — curated outfit bundles (trendScore, bodyTypes, items)
+  data/styles.json       — style aesthetic definitions
+  data.js                — inline product array (used by legacy pages)
+
+LOGIC LAYER
+  js/utils.js                 — shared helpers: BMI, localStorage, DOM, fetch
+  js/bodyProfile.js           — body type estimation, form handling, profile save
+  js/recommendationEngine.js  — filter + rank outfits by body type
+  js/outfitRenderer.js        — render outfit cards and detail views
+
+UI LAYER (pages)
+  index.html             — homepage: personalised hero + RFY + style collections
+  body-profile.html      — profile setup form with live BMI preview
+  recommendations.html   — personalised outfit grid with style filters
+  outfit.html            — single outfit detail with item list + add-all-to-cart
+  product.html           — product detail with body type suitability tab
+  collection.html        — full product browsing with style/body-type filters
+
+SHARED SCRIPTS
+  main.js      — nav, cart, toast, renderProductCard
+  cart.js      — cart management
+  wishlist.js  — wishlist sidebar
+  shared-ui.js — size guide modal, sticky ATC, link loader
+  app.js       — homepage: outfit builder, countdown, analytics
+
+CSS MODULES
+  style.css              — production CSS (single source of truth)
+  css/layout.css         — layout primitives and outfit card styles
+  css/components.css     — reusable UI components
+  css/responsive.css     — breakpoints reference
+  css/main.css           — module entry point reference
+
+COMPONENTS
+  components/navbar.html — reusable navbar HTML
+  components/footer.html — reusable footer HTML
+
+────────────────────────────────────────────────────────
+BODY TYPE SYSTEM
+────────────────────────────────────────────────────────
+
+BMI Classification:
+  < 19    → Slim     (lean, structured fits)
+  19–23   → Average  (versatile, most cuts work)
+  23–27   → Athletic (defined, boxy/structured suits best)
+  > 27    → Broad    (relaxed/oversized creates clean lines)
+
+localStorage keys:
+  bodyType          'Slim' | 'Average' | 'Athletic' | 'Broad'
+  sw_bmi            BMI value (float string)
+  sw_height         height in cm
+  sw_weight         weight in kg
+  sw_gender         'male' | 'female' | 'nonbinary' | ''
+  sw_stylePrefs     JSON array of style strings
+  sw_profileDone    '1' when complete
+
+────────────────────────────────────────────────────────
+STYLE SYSTEM
+────────────────────────────────────────────────────────
+
+Four aesthetic universes:
+  Tokyo Street    Bold graphics, dark silhouettes, oversized
+  Cyberpunk       Neon accents, futuristic, high-contrast
+  Minimal Anime   Clean lines, subtle references, everyday
+  Shibuya Casual  Relaxed, effortless, street cool
+
+URL filtering: collection.html?style=Tokyo+Street
+               recommendations.html (tab filter)
+
+────────────────────────────────────────────────────────
+FEATURE CHECKLIST
+────────────────────────────────────────────────────────
+
+[x] body-profile.html       Body profile setup form
+[x] js/bodyProfile.js       BMI + body type estimation
+[x] recommendations.html    Personalised outfit recommendations
+[x] outfit.html             Full outfit detail page
+[x] js/recommendationEngine.js  Filter + rank outfits
+[x] js/outfitRenderer.js    Outfit card + detail rendering
+[x] js/utils.js             Shared utilities module
+[x] data/outfits.json       12 curated outfit bundles
+[x] data/styles.json        4 style aesthetic definitions
+[x] data/products.json      Structured product data
+[x] index.html              Personalised hero + RFY section
+[x] Homepage style collections grid (4 aesthetics)
+[x] How It Works steps (profile → match → explore → buy)
+[x] Product page body type suitability tab
+[x] Onboarding banner for new visitors
+[x] css/ module files (layout, components, responsive, main)
+[x] components/ (navbar.html, footer.html)
+[x] assets/ folder structure
+[x] docs/startup-notes.txt
+
+────────────────────────────────────────────────────────
+CONTACTS
+────────────────────────────────────────────────────────
+
+Founder:   Kavin J.S
+Email:     kavin.js@outlook.com
+Instagram: @kavin.j.s
+Website:   https://shonowear.com

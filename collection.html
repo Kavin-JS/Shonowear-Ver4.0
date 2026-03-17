@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shop 120+ anime streetwear products. Filter by type, anime, price. Hoodies, tees, jackets & accessories. Free shipping above ₹999.">
+  <title>Shop All — Shonowear | Anime Streetwear</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080810'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial Black,sans-serif' font-size='13' font-weight='900' fill='%23e8153a'%3ESW%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── Collection page layout ─────────────────────────── */
+    .coll-page {
+      padding-top: 64px;
+      min-height: 100vh;
+      background: var(--ink);
+    }
+
+    /* Breadcrumb */
+    .coll-breadcrumb {
+      padding: 14px 40px;
+      font-size: 11px; letter-spacing: 1px;
+      color: var(--muted); text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .coll-breadcrumb a { color: var(--muted); transition: color .2s; }
+    .coll-breadcrumb a:hover { color: var(--white); }
+    .coll-breadcrumb span { color: var(--border); }
+
+    /* Page header */
+    .coll-header {
+      padding: 24px 40px 0;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .coll-header-left h1 {
+      font-family: var(--font-d);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      letter-spacing: 3px; color: var(--white);
+      line-height: 1;
+    }
+    .coll-header-left p {
+      font-size: 12px; color: var(--muted);
+      margin-top: 4px; font-weight: 300;
+    }
+    .coll-header-right {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .coll-sort-wrap {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .coll-sort-label {
+      font-size: 11px; color: var(--muted);
+      font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .coll-sort-select {
+      background: var(--ink2); border: 1px solid var(--border);
+      color: var(--white); padding: 8px 14px;
+      font-family: var(--font-b); font-size: 12px;
+      cursor: pointer; outline: none;
+      transition: border-color .2s;
+    }
+    .coll-sort-select:focus { border-color: var(--border-r); }
+    .coll-grid-toggle {
+      display: flex; gap: 2px;
+    }
+    .coll-grid-btn {
+      padding: 8px 10px; background: var(--ink2);
+      border: 1px solid var(--border); color: var(--muted);
+      font-size: 12px; cursor: pointer; transition: all .2s;
+    }
+    .coll-grid-btn.active { background: var(--red); border-color: var(--red); color: #fff; }
+    .coll-filter-toggle {
+      display: none;
+      align-items: center; gap: 7px;
+      padding: 9px 16px; background: var(--ink2);
+      border: 1px solid var(--border); color: var(--white);
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; cursor: pointer;
+      transition: border-color .2s;
+    }
+    .coll-filter-toggle:hover { border-color: var(--border-r); }
+
+    /* Active filter chips */
+    .coll-active-filters {
+      padding: 12px 40px 0;
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    }
+    .coll-active-filters:empty { padding: 0; }
+    .coll-filter-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 12px;
+      background: var(--red-lo); border: 1px solid var(--border-r);
+      color: var(--white); font-size: 11px; font-weight: 600;
+      letter-spacing: .5px;
+    }
+    .coll-filter-chip button {
+      background: none; color: var(--muted); font-size: 10px;
+      padding: 0; line-height: 1; cursor: pointer;
+      transition: color .2s;
+    }
+    .coll-filter-chip button:hover { color: var(--red); }
+    .coll-clear-all {
+      font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--red);
+      background: none; border: none; cursor: pointer; padding: 5px 0;
+      transition: opacity .2s;
+    }
+    .coll-clear-all:hover { opacity: .7; }
+
+    /* Main layout: sidebar + grid */
+    .coll-body {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 0;
+      padding: 24px 40px 60px;
+      align-items: start;
+    }
+
+    /* ── LEFT SIDEBAR FILTERS ─────────────────────────── */
+    .coll-sidebar {
+      position: sticky;
+      top: 110px;
+      padding-right: 32px;
+    }
+    .coll-sidebar-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 24px; padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .coll-sidebar-header h3 {
+      font-size: 10px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--white);
+    }
+    .coll-sidebar-reset {
+      font-size: 10px; color: var(--red); font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase;
+      background: none; border: none; cursor: pointer;
+    }
+
+    /* Search in sidebar */
+    .coll-sb-search {
+      display: flex; margin-bottom: 24px;
+      border: 1px solid var(--border);
+      transition: border-color .2s;
+    }
+    .coll-sb-search:focus-within { border-color: var(--border-r); }
+    .coll-sb-search input {
+      flex: 1; padding: 10px 12px;
+      background: var(--ink2); border: none;
+      color: var(--white); font-family: var(--font-b);
+      font-size: 12px; outline: none;
+    }
+    .coll-sb-search input::placeholder { color: var(--muted); }
+    .coll-sb-search button {
+      padding: 10px 12px; background: none;
+      color: var(--muted); font-size: 12px;
+      transition: color .2s;
+    }
+    .coll-sb-search button:hover { color: var(--red); }
+
+    /* Filter group */
+    .coll-filter-group {
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+    }
+    .coll-filter-group:last-child { border-bottom: none; }
+    .coll-fg-head {
+      display: flex; align-items: center; justify-content: space-between;
+      cursor: pointer; margin-bottom: 14px;
+      user-select: none;
+    }
+    .coll-fg-head h4 {
+      font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--white);
+    }
+    .coll-fg-head i {
+      font-size: 10px; color: var(--muted);
+      transition: transform .2s;
+    }
+    .coll-fg-head.open i { transform: rotate(180deg); }
+
+    /* Filter options: pill style */
+    .coll-fg-pills {
+      display: flex; flex-wrap: wrap; gap: 6px;
+    }
+    .coll-fg-pill {
+      padding: 6px 12px;
+      background: var(--ink2); border: 1px solid var(--border);
+      color: var(--muted); font-size: 11px; font-weight: 500;
+      cursor: pointer; transition: all .2s; white-space: nowrap;
+    }
+    .coll-fg-pill:hover { border-color: var(--border-r); color: var(--white); }
+    .coll-fg-pill.active {
+      background: var(--red); border-color: var(--red);
+      color: #fff; font-weight: 600;
+    }
+
+    /* Price range */
+    .coll-price-range {
+      padding: 4px 0;
+    }
+    .coll-price-display {
+      display: flex; justify-content: space-between;
+      font-size: 12px; color: var(--off); margin-bottom: 10px;
+      font-weight: 500;
+    }
+    .coll-price-slider {
+      -webkit-appearance: none; appearance: none;
+      width: 100%; height: 2px;
+      background: linear-gradient(to right, var(--red) 0%, var(--red) var(--pct, 100%), var(--border) var(--pct, 100%), var(--border) 100%);
+      outline: none; cursor: pointer;
+    }
+    .coll-price-slider::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none;
+      width: 14px; height: 14px;
+      background: var(--red); border-radius: 50%;
+      cursor: pointer;
+    }
+
+    /* ── PRODUCT GRID SIDE ──────────────────────────────── */
+    .coll-grid-side {}
+    .coll-result-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 20px; padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .coll-result-count {
+      font-size: 12px; color: var(--muted); font-weight: 400;
+    }
+    .coll-result-count strong { color: var(--white); font-weight: 600; }
+
+    /* No results */
+    .coll-no-res {
+      display: none; text-align: center; padding: 80px 20px;
+      color: var(--muted);
+    }
+    .coll-no-res i { font-size: 3rem; display: block; margin-bottom: 16px; opacity: .2; }
+    .coll-no-res h3 { font-family: var(--font-d); font-size: 1.6rem; letter-spacing: 2px; margin-bottom: 10px; }
+    .coll-no-res p { font-size: 13px; font-weight: 300; }
+
+    /* 2-col grid variant */
+    .coll-grid-side.grid-2 .prd-grid { grid-template-columns: repeat(2, 1fr); }
+
+    /* Load more */
+    .coll-load-more {
+      text-align: center; margin-top: 40px;
+    }
+    .coll-load-btn {
+      padding: 14px 40px;
+      background: transparent; color: var(--white);
+      border: 1px solid var(--border);
+      font-family: var(--font-b); font-size: 11px;
+      font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      cursor: pointer; transition: all .2s;
+    }
+    .coll-load-btn:hover { border-color: var(--white); }
+
+    /* Mobile filter panel */
+    .coll-mob-filter-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,.7); z-index: 500;
+    }
+    .coll-mob-filter-overlay.open { display: block; }
+    .coll-mob-filter-panel {
+      position: fixed; left: 0; top: 0; bottom: 0;
+      width: 300px; background: var(--ink2);
+      border-right: 1px solid var(--border);
+      z-index: 501; overflow-y: auto;
+      transform: translateX(-100%); transition: transform .35s ease;
+    }
+    .coll-mob-filter-panel.open { transform: translateX(0); }
+    .coll-mob-filter-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px; border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; background: var(--ink2); z-index: 1;
+    }
+    .coll-mob-filter-head h3 { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; }
+    .coll-mob-filter-head button { font-size: 16px; color: var(--muted); }
+    .coll-mob-filter-body { padding: 20px; }
+    .coll-mob-apply {
+      position: sticky; bottom: 0;
+      padding: 16px 20px; background: var(--ink2);
+      border-top: 1px solid var(--border);
+    }
+    .coll-mob-apply button {
+      width: 100%; padding: 14px;
+      background: var(--red); color: #fff;
+      font-family: var(--font-b); font-size: 12px;
+      font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      border: none; cursor: pointer;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .coll-breadcrumb { padding: 12px 20px; }
+      .coll-header { padding: 20px 20px 0; }
+      .coll-active-filters { padding: 12px 20px 0; }
+      .coll-body { grid-template-columns: 1fr; padding: 20px 20px 40px; }
+      .coll-sidebar { display: none; }
+      .coll-filter-toggle { display: flex; }
+    }
+    @media (max-width: 600px) {
+      .coll-breadcrumb { display: none; }
+      .coll-header { padding: 16px 16px 0; }
+      .coll-active-filters { padding: 10px 16px 0; }
+      .coll-body { padding: 16px 16px 40px; }
+      .coll-header-left h1 { font-size: 1.6rem; }
+      .coll-grid-toggle { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <script src="nav.js" data-page="collection"></script>
+
+  <div class="coll-page">
+
+    <!-- Breadcrumb -->
+    <div class="coll-breadcrumb">
+      <a href="index.html">Home</a>
+      <span>/</span>
+      <span id="coll-bc-label">All Products</span>
+    </div>
+
+    <!-- Page header -->
+    <div class="coll-header">
+      <div class="coll-header-left">
+        <h1 id="coll-page-title">ALL PRODUCTS</h1>
+        <p id="coll-page-sub">Anime streetwear — hoodies, tees, jackets & more</p>
+      </div>
+      <div class="coll-header-right">
+        <button class="coll-filter-toggle" id="mob-filter-btn" onclick="openMobFilter()">
+          <i class="fas fa-sliders-h"></i> Filters
+          <span class="coll-filter-badge" id="filter-badge" style="display:none;background:var(--red);color:#fff;font-size:9px;padding:1px 6px;border-radius:10px;">0</span>
+        </button>
+        <div class="coll-sort-wrap">
+          <span class="coll-sort-label">Sort:</span>
+          <select class="coll-sort-select" id="sort-filter" onchange="filterProducts()">
+            <option value="newest">Newest First</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="popular">Most Popular</option>
+            <option value="name-a">Name A–Z</option>
+          </select>
+        </div>
+        <div class="coll-grid-toggle">
+          <button class="coll-grid-btn active" id="grid-4-btn" onclick="setGridCols(4)" title="4 columns"><i class="fas fa-th"></i></button>
+          <button class="coll-grid-btn" id="grid-2-btn" onclick="setGridCols(2)" title="2 columns"><i class="fas fa-th-large"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active filter chips -->
+    <div class="coll-active-filters" id="active-filters-bar"></div>
+
+    <!-- Body: sidebar + grid -->
+    <div class="coll-body">
+
+      <!-- ── LEFT SIDEBAR ─────────────────────────────── -->
+      <aside class="coll-sidebar" id="coll-sidebar">
+        <div class="coll-sidebar-header">
+          <h3>Filters</h3>
+          <button class="coll-sidebar-reset" onclick="resetFilters()">Clear all</button>
+        </div>
+
+        <!-- Search -->
+        <div class="coll-sb-search">
+          <input type="text" id="search-input" placeholder="Search products…" oninput="searchProducts()">
+          <button><i class="fas fa-search"></i></button>
+        </div>
+
+        <!-- Category filter -->
+        <div class="coll-filter-group">
+          <div class="coll-fg-head open" onclick="toggleFilterGroup(this)">
+            <h4>Category</h4><i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="coll-fg-pills" id="cat-pills">
+            <button class="coll-fg-pill active" data-val="" onclick="setFilter('category','',this)">All</button>
+            <button class="coll-fg-pill" data-val="Apparel" onclick="setFilter('category','Apparel',this)">Apparel</button>
+            <button class="coll-fg-pill" data-val="Figurines" onclick="setFilter('category','Figurines',this)">Figurines</button>
+            <button class="coll-fg-pill" data-val="Accessories" onclick="setFilter('category','Accessories',this)">Accessories</button>
+          </div>
+        </div>
+
+        <!-- Type filter -->
+        <div class="coll-filter-group">
+          <div class="coll-fg-head open" onclick="toggleFilterGroup(this)">
+            <h4>Type</h4><i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="coll-fg-pills" id="type-pills">
+            <button class="coll-fg-pill active" data-val="" onclick="setFilter('type','',this)">All</button>
+            <button class="coll-fg-pill" data-val="hoodie" onclick="setFilter('type','hoodie',this)">Hoodie</button>
+            <button class="coll-fg-pill" data-val="tee" onclick="setFilter('type','tee',this)">T-Shirt</button>
+            <button class="coll-fg-pill" data-val="oversized" onclick="setFilter('type','oversized',this)">Oversized</button>
+            <button class="coll-fg-pill" data-val="jacket" onclick="setFilter('type','jacket',this)">Jacket</button>
+            <button class="coll-fg-pill" data-val="phone" onclick="setFilter('type','phone',this)">Phone Case</button>
+            <button class="coll-fg-pill" data-val="figurine" onclick="setFilter('type','figurine',this)">Figurine</button>
+          </div>
+        </div>
+
+        <!-- Style filter -->
+        <div class="coll-filter-group">
+          <div class="coll-fg-head open" onclick="toggleFilterGroup(this)">
+            <h4>Style</h4><i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="coll-fg-pills" id="style-pills">
+            <button class="coll-fg-pill active" data-val="" onclick="setFilter('style','',this)">All</button>
+            <button class="coll-fg-pill" data-val="Tokyo Street" onclick="setFilter('style','Tokyo Street',this)">Tokyo Street</button>
+            <button class="coll-fg-pill" data-val="Cyberpunk" onclick="setFilter('style','Cyberpunk',this)">Cyberpunk</button>
+            <button class="coll-fg-pill" data-val="Minimal Anime" onclick="setFilter('style','Minimal Anime',this)">Minimal Anime</button>
+            <button class="coll-fg-pill" data-val="Shibuya Casual" onclick="setFilter('style','Shibuya Casual',this)">Shibuya Casual</button>
+          </div>
+        </div>
+
+        <!-- Anime filter -->
+        <div class="coll-filter-group">
+          <div class="coll-fg-head open" onclick="toggleFilterGroup(this)">
+            <h4>Anime Universe</h4><i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="coll-fg-pills" id="anime-pills">
+            <button class="coll-fg-pill active" data-val="" onclick="setFilter('anime','',this)">All</button>
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Price filter -->
+        <div class="coll-filter-group">
+          <div class="coll-fg-head open" onclick="toggleFilterGroup(this)">
+            <h4>Max Price</h4><i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="coll-price-range">
+            <div class="coll-price-display">
+              <span>₹0</span>
+              <span id="price-display-val">₹5,000</span>
+            </div>
+            <input type="range" class="coll-price-slider" id="price-filter"
+              min="299" max="5000" value="5000"
+              oninput="updatePriceSlider(this);filterProducts()">
+          </div>
+        </div>
+
+        <!-- Body type filter -->
+        <div class="coll-filter-group">
+          <div class="coll-fg-head open" onclick="toggleFilterGroup(this)">
+            <h4>Body Type Fit</h4><i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="coll-fg-pills" id="bt-pills">
+            <button class="coll-fg-pill active" data-val="" onclick="setFilter('bodyType','',this)">All</button>
+            <button class="coll-fg-pill" data-val="Slim" onclick="setFilter('bodyType','Slim',this)">Slim</button>
+            <button class="coll-fg-pill" data-val="Average" onclick="setFilter('bodyType','Average',this)">Average</button>
+            <button class="coll-fg-pill" data-val="Athletic" onclick="setFilter('bodyType','Athletic',this)">Athletic</button>
+            <button class="coll-fg-pill" data-val="Broad" onclick="setFilter('bodyType','Broad',this)">Broad</button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ── PRODUCT GRID ──────────────────────────────── -->
+      <div class="coll-grid-side" id="coll-grid-side">
+        <div class="coll-result-bar">
+          <span class="coll-result-count" id="result-count">Loading products…</span>
+        </div>
+        <div class="coll-no-res" id="no-res">
+          <i class="fas fa-search"></i>
+          <h3>No Products Found</h3>
+          <p>Try adjusting your filters or search term.</p>
+        </div>
+        <div class="prd-grid" id="products-grid"></div>
+        <div class="coll-load-more" id="load-more" style="display:none;">
+          <button class="coll-load-btn" onclick="loadMore()">Load More Products <i class="fas fa-arrow-down"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile filter panel -->
+  <div class="coll-mob-filter-overlay" id="mob-filter-overlay" onclick="closeMobFilter()"></div>
+  <div class="coll-mob-filter-panel" id="mob-filter-panel">
+    <div class="coll-mob-filter-head">
+      <h3>Filters</h3>
+      <button onclick="closeMobFilter()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="coll-mob-filter-body">
+      <!-- Mirrors desktop sidebar, populated by JS -->
+      <div id="mob-filter-content"></div>
+    </div>
+    <div class="coll-mob-apply">
+      <button onclick="closeMobFilter()">Apply Filters</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">SHONO<span>WEAR</span></a>
+          <p>Anime-inspired streetwear. Premium fabric. Curated drops.</p>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/kavin.j.s" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="contact.html" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Shop</h5>
+          <a href="collection.html">All Products</a>
+          <a href="new-arrivals.html">New Arrivals</a>
+          <a href="collection.html?type=hoodie">Hoodies</a>
+          <a href="collection.html?type=tee">T-Shirts</a>
+          <a href="collection.html?category=Accessories">Accessories</a>
+        </div>
+        <div class="footer-col">
+          <h5>Help</h5>
+          <a href="contact.html">Contact Us</a>
+          <a href="shipping.html">Shipping Policy</a>
+          <a href="returns.html">Returns Policy</a>
+          <a href="cart.html">Your Cart</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html">About</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="body-profile.html">Find My Style</a>
+          <a href="recommendations.html">Outfit Finder</a>
+        </div>
+      </div>
+      <div class="footer-base">
+        <p>© <script>document.write(new Date().getFullYear())</script> Shonowear. All rights reserved.</p>
+        <p style="margin-top:4px;font-size:11px;color:var(--muted);">Site created by Kavin J.S</p>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast"></div>
+  <button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top"><i class="fas fa-chevron-up"></i></button>
+  <div class="cookie-banner" id="cookie-banner">
+    <p>We use cookies to improve your experience. <a href="privacy.html">Privacy Policy</a>.</p>
+    <div class="cookie-btns">
+      <button onclick="acceptCookies()">Accept All</button>
+      <button onclick="acceptCookies()" class="cookie-ghost">Necessary Only</button>
+    </div>
+  </div>
+  <a href="https://wa.me/91YOUR_NUMBER?text=Hi%20Shonowear!" target="_blank" rel="noopener" class="wa-float"><i class="fab fa-whatsapp"></i></a>
+
+  <script src="data.js"></script>
+  <script src="wishlist.js"></script>
+  <script src="main.js"></script>
+  <script>
+  function acceptCookies(){document.getElementById('cookie-banner').style.display='none';localStorage.setItem('sw_cookies_accepted','1');}
+  if(localStorage.getItem('sw_cookies_accepted'))document.getElementById('cookie-banner').style.display='none';
+
+  /* ── State ──────────────────────────────────────────── */
+  let allProducts = [];
+  let displayedCount = 0;
+  const PAGE_SIZE = 12;
+
+  const activeFilters = {
+    category: '', type: '', style: '', anime: '',
+    bodyType: '', maxPrice: 5000, search: ''
+  };
+
+  /* ── Init ───────────────────────────────────────────── */
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof products !== 'undefined') {
+      allProducts = [...products];
+    }
+
+    buildAnimePills();
+    readURLParams();
+    applyFilters();
+    updatePriceSlider(document.getElementById('price-filter'));
+
+    // Scroll-to-top
+    window.addEventListener('scroll', () => {
+      document.getElementById('scroll-top')?.classList.toggle('visible', window.scrollY > 400);
+    }, {passive:true});
+  });
+
+  /* ── Read URL params ────────────────────────────────── */
+  function readURLParams() {
+    const params = new URLSearchParams(window.location.search);
+    const q      = params.get('q');
+    const type   = params.get('type');
+    const style  = params.get('style');
+    const anime  = params.get('anime');
+    const cat    = params.get('category');
+    const bt     = params.get('bodyType');
+
+    if (q)     { activeFilters.search = q.toLowerCase(); document.getElementById('search-input').value = q; }
+    if (type)  { activeFilters.type = type;   activePill('type-pills', type); }
+    if (style) { activeFilters.style = decodeURIComponent(style); activePill('style-pills', decodeURIComponent(style)); }
+    if (anime) { activeFilters.anime = anime; activePill('anime-pills', anime); }
+    if (cat)   { activeFilters.category = cat; activePill('cat-pills', cat); }
+    if (bt)    { activeFilters.bodyType = bt; activePill('bt-pills', bt); }
+
+    // Update page title for style/type pages
+    if (style) {
+      const s = decodeURIComponent(style);
+      document.getElementById('coll-page-title').textContent = s.toUpperCase();
+      document.getElementById('coll-bc-label').textContent = s;
+    } else if (type) {
+      const labels = {hoodie:'Hoodies', tee:'T-Shirts', oversized:'Oversized', jacket:'Jackets', phone:'Phone Cases', figurine:'Figurines'};
+      const label = labels[type] || type;
+      document.getElementById('coll-page-title').textContent = label.toUpperCase();
+      document.getElementById('coll-bc-label').textContent = label;
+    } else if (cat) {
+      document.getElementById('coll-page-title').textContent = cat.toUpperCase();
+      document.getElementById('coll-bc-label').textContent = cat;
+    }
+  }
+
+  function activePill(groupId, val) {
+    const group = document.getElementById(groupId);
+    if (!group) return;
+    group.querySelectorAll('.coll-fg-pill').forEach(p => {
+      p.classList.toggle('active', p.dataset.val === val);
+    });
+  }
+
+  /* ── Build anime pills dynamically ─────────────────── */
+  function buildAnimePills() {
+    if (!allProducts.length) return;
+    const animes = [...new Set(allProducts.map(p => p.anime).filter(a => a && a !== 'Mixed'))].sort();
+    const container = document.getElementById('anime-pills');
+    if (!container) return;
+    animes.forEach(a => {
+      const btn = document.createElement('button');
+      btn.className = 'coll-fg-pill';
+      btn.dataset.val = a;
+      btn.textContent = a;
+      btn.onclick = () => setFilter('anime', a, btn);
+      container.appendChild(btn);
+    });
+  }
+
+  /* ── Filter ─────────────────────────────────────────── */
+  function setFilter(key, val, btn) {
+    activeFilters[key] = val;
+    // Update pills in that group
+    const groupMap = { category:'cat-pills', type:'type-pills', style:'style-pills', anime:'anime-pills', bodyType:'bt-pills' };
+    const groupId = groupMap[key];
+    if (groupId) activePill(groupId, val);
+    applyFilters();
+    updateActiveChips();
+    updateFilterBadge();
+  }
+
+  function filterProducts() {
+    activeFilters.maxPrice = parseInt(document.getElementById('price-filter').value);
+    const sortEl = document.getElementById('sort-filter');
+    if (sortEl) activeFilters.sort = sortEl.value;
+    applyFilters();
+    updateActiveChips();
+  }
+
+  function searchProducts() {
+    activeFilters.search = document.getElementById('search-input')?.value?.toLowerCase().trim() || '';
+    applyFilters();
+  }
+
+  function applyFilters() {
+    let list = [...allProducts];
+
+    if (activeFilters.category) list = list.filter(p => p.category === activeFilters.category);
+    if (activeFilters.type)     list = list.filter(p => p.type === activeFilters.type);
+    if (activeFilters.style)    list = list.filter(p => p.style === activeFilters.style);
+    if (activeFilters.anime)    list = list.filter(p => p.anime === activeFilters.anime);
+    if (activeFilters.bodyType) list = list.filter(p => p.bodyTypes && p.bodyTypes.includes(activeFilters.bodyType));
+    if (activeFilters.maxPrice < 5000) list = list.filter(p => p.price <= activeFilters.maxPrice);
+    if (activeFilters.search)   list = list.filter(p =>
+      p.name.toLowerCase().includes(activeFilters.search) ||
+      (p.anime||'').toLowerCase().includes(activeFilters.search) ||
+      (p.type||'').toLowerCase().includes(activeFilters.search) ||
+      (p.style||'').toLowerCase().includes(activeFilters.search)
+    );
+
+    // Sort
+    const sort = document.getElementById('sort-filter')?.value || 'newest';
+    if (sort === 'price-low')  list.sort((a,b) => a.price - b.price);
+    else if (sort === 'price-high') list.sort((a,b) => b.price - a.price);
+    else if (sort === 'popular') list.sort((a,b) => (b.popularity||0) - (a.popularity||0));
+    else if (sort === 'name-a') list.sort((a,b) => a.name.localeCompare(b.name));
+    else list.sort((a,b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0)); // newest
+
+    // Result count
+    const rc = document.getElementById('result-count');
+    if (rc) rc.innerHTML = `<strong>${list.length}</strong> product${list.length !== 1 ? 's' : ''} found`;
+
+    // No results
+    const noRes = document.getElementById('no-res');
+    const grid  = document.getElementById('products-grid');
+    if (!list.length) {
+      if (noRes) noRes.style.display = 'block';
+      if (grid)  grid.innerHTML = '';
+      document.getElementById('load-more').style.display = 'none';
+      return;
+    }
+    if (noRes) noRes.style.display = 'none';
+
+    // Render first page
+    displayedCount = Math.min(PAGE_SIZE, list.length);
+    window._filteredProducts = list;
+    if (grid && typeof renderProductCard === 'function') {
+      grid.innerHTML = list.slice(0, displayedCount).map(p => renderProductCard(p)).join('');
+    }
+
+    // Load more
+    const lm = document.getElementById('load-more');
+    lm.style.display = list.length > PAGE_SIZE ? 'block' : 'none';
+  }
+
+  function loadMore() {
+    const list = window._filteredProducts || [];
+    const grid = document.getElementById('products-grid');
+    if (!grid || !list.length) return;
+    const nextEnd = Math.min(displayedCount + PAGE_SIZE, list.length);
+    const extra = list.slice(displayedCount, nextEnd).map(p => renderProductCard(p)).join('');
+    grid.insertAdjacentHTML('beforeend', extra);
+    displayedCount = nextEnd;
+    if (displayedCount >= list.length) {
+      document.getElementById('load-more').style.display = 'none';
+    }
+  }
+
+  /* ── Active filter chips ────────────────────────────── */
+  function updateActiveChips() {
+    const bar = document.getElementById('active-filters-bar');
+    if (!bar) return;
+    const chips = [];
+    const labels = { category:'Category', type:'Type', style:'Style', anime:'Anime', bodyType:'Body Type' };
+    Object.entries(labels).forEach(([key, label]) => {
+      if (activeFilters[key]) {
+        chips.push(`<span class="coll-filter-chip">${label}: ${activeFilters[key]} <button onclick="clearChip('${key}')"><i class="fas fa-times"></i></button></span>`);
+      }
+    });
+    if (activeFilters.search) {
+      chips.push(`<span class="coll-filter-chip">Search: "${activeFilters.search}" <button onclick="clearChip('search')"><i class="fas fa-times"></i></button></span>`);
+    }
+    if (activeFilters.maxPrice < 5000) {
+      chips.push(`<span class="coll-filter-chip">Max: ₹${activeFilters.maxPrice.toLocaleString()} <button onclick="clearChip('maxPrice')"><i class="fas fa-times"></i></button></span>`);
+    }
+    bar.innerHTML = chips.length ? chips.join('') + `<button class="coll-clear-all" onclick="resetFilters()">Clear all</button>` : '';
+  }
+
+  function clearChip(key) {
+    if (key === 'maxPrice') {
+      activeFilters.maxPrice = 5000;
+      const slider = document.getElementById('price-filter');
+      if (slider) { slider.value = 5000; updatePriceSlider(slider); }
+    } else {
+      activeFilters[key] = '';
+      const groupMap = { category:'cat-pills', type:'type-pills', style:'style-pills', anime:'anime-pills', bodyType:'bt-pills' };
+      if (groupMap[key]) activePill(groupMap[key], '');
+    }
+    applyFilters();
+    updateActiveChips();
+    updateFilterBadge();
+  }
+
+  function resetFilters() {
+    Object.keys(activeFilters).forEach(k => { activeFilters[k] = k === 'maxPrice' ? 5000 : ''; });
+    ['cat-pills','type-pills','style-pills','anime-pills','bt-pills'].forEach(id => activePill(id, ''));
+    const slider = document.getElementById('price-filter');
+    if (slider) { slider.value = 5000; updatePriceSlider(slider); }
+    const si = document.getElementById('search-input');
+    if (si) si.value = '';
+    const sortEl = document.getElementById('sort-filter');
+    if (sortEl) sortEl.value = 'newest';
+    applyFilters();
+    updateActiveChips();
+    updateFilterBadge();
+  }
+
+  function updateFilterBadge() {
+    const count = Object.entries(activeFilters).filter(([k,v]) => {
+      if (k === 'maxPrice') return v < 5000;
+      return !!v;
+    }).length;
+    const badge = document.getElementById('filter-badge');
+    if (badge) { badge.textContent = count; badge.style.display = count > 0 ? 'inline' : 'none'; }
+  }
+
+  /* ── Price slider visual ────────────────────────────── */
+  function updatePriceSlider(el) {
+    const pct = ((el.value - el.min) / (el.max - el.min)) * 100;
+    el.style.setProperty('--pct', pct + '%');
+    const display = document.getElementById('price-display-val');
+    if (display) display.textContent = '₹' + parseInt(el.value).toLocaleString();
+  }
+
+  /* ── Filter group collapse ──────────────────────────── */
+  function toggleFilterGroup(head) {
+    head.classList.toggle('open');
+    const pills = head.nextElementSibling;
+    if (pills) pills.style.display = head.classList.contains('open') ? 'flex' : 'none';
+  }
+
+  /* ── Grid column toggle ─────────────────────────────── */
+  function setGridCols(n) {
+    const side = document.getElementById('coll-grid-side');
+    side.classList.toggle('grid-2', n === 2);
+    document.getElementById('grid-4-btn').classList.toggle('active', n === 4);
+    document.getElementById('grid-2-btn').classList.toggle('active', n === 2);
+  }
+
+  /* ── Mobile filter ──────────────────────────────────── */
+  function openMobFilter() {
+    document.getElementById('mob-filter-overlay').classList.add('open');
+    document.getElementById('mob-filter-panel').classList.add('open');
+    // Mirror sidebar into mobile panel
+    const content = document.getElementById('mob-filter-content');
+    const sidebar  = document.getElementById('coll-sidebar');
+    if (content && sidebar) content.innerHTML = sidebar.innerHTML;
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMobFilter() {
+    document.getElementById('mob-filter-overlay').classList.remove('open');
+    document.getElementById('mob-filter-panel').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  </script>
+</body>
+</html>

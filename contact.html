@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Get in touch with Shonowear. Phone: +91 98765 43210. Email: support@shonowear.com">
+  <meta property="og:title" content="Contact — Shonowear">
+  <meta property="og:description" content="Get in touch with Shonowear. Phone: +91 98765 43210. Email: support@shonowear.com">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#e8153a">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Shonowear</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080810'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial Black,sans-serif' font-size='13' font-weight='900' fill='%23e8153a'%3ESW%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── Contact page styles ── */
+    .contact-wrap {
+      padding-top: 64px;
+      min-height: 100vh;
+      background: var(--ink);
+    }
+
+    /* Page header */
+    .contact-hero {
+      background: var(--ink2);
+      border-bottom: 1px solid var(--border);
+      padding: 60px 40px 48px;
+      text-align: center;
+    }
+    .contact-hero .sec-eyebrow { justify-content: center; margin-bottom: 12px; }
+    .contact-hero h1 {
+      font-family: var(--font-d);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      letter-spacing: 3px;
+      background: linear-gradient(135deg, var(--white), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+    .contact-hero p { font-size: 15px; color: var(--muted); font-weight: 300; }
+
+    /* Main grid */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 3px;
+      max-width: 1100px;
+      margin: 48px auto;
+      padding: 0 40px;
+    }
+
+    /* Info panel */
+    .contact-info {
+      background: var(--ink2);
+      border: 1px solid var(--border);
+      padding: 40px 32px;
+    }
+    .contact-info h3 {
+      font-family: var(--font-d);
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+    .ci-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .ci-item:last-of-type { border-bottom: none; }
+    .ci-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      background: var(--red-lo); border: 1px solid var(--border-r);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--red); font-size: 14px;
+    }
+    .ci-body { flex: 1; min-width: 0; }
+    .ci-label {
+      font-size: 9px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--muted);
+      display: block; margin-bottom: 6px;
+    }
+    .ci-value {
+      font-size: 14px; font-weight: 500; color: var(--white);
+      display: block; line-height: 1.5;
+    }
+    .ci-value a {
+      color: var(--white);
+      transition: color 0.2s;
+      word-break: break-all;
+    }
+    .ci-value a:hover { color: var(--red); }
+    .ci-sub {
+      font-size: 12px; color: var(--muted); display: block;
+      margin-top: 2px; font-weight: 300;
+    }
+
+    /* Hours */
+    .ci-hours { margin-top: 28px; }
+    .ci-hours-title {
+      font-size: 9px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 12px;
+    }
+    .ci-hour-row {
+      display: flex; justify-content: space-between;
+      font-size: 12px; padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .ci-hour-row span:last-child { color: var(--white); font-weight: 500; }
+
+    /* Form panel */
+    .contact-form {
+      background: var(--ink2);
+      border: 1px solid var(--border);
+      padding: 40px 36px;
+    }
+    .contact-form h3 {
+      font-family: var(--font-d);
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block;
+      font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: 13px 16px;
+      background: var(--ink3); border: 1px solid var(--border);
+      color: var(--white); font-family: var(--font-b); font-size: 13px;
+      outline: none; transition: border-color 0.3s;
+      resize: none;
+      appearance: none;
+    }
+    .form-group select { cursor: pointer; }
+    .form-group select option { background: var(--ink2); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--border-r); }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--muted); }
+    .form-group textarea { height: 130px; }
+
+    .form-submit {
+      width: 100%; padding: 15px;
+      background: var(--red); color: #fff;
+      font-family: var(--font-b); font-size: 13px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      transition: background 0.25s, transform 0.2s;
+      position: relative; overflow: hidden;
+      margin-top: 4px;
+    }
+    .form-submit::before {
+      content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+      transform: skewX(-15deg); transition: left 0.5s;
+    }
+    .form-submit:hover { background: var(--red2); transform: translateY(-2px); }
+    .form-submit:hover::before { left: 160%; }
+
+    @media (max-width: 860px) {
+      .contact-grid { grid-template-columns: 1fr; padding: 0 20px; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-hero { padding: 48px 20px 36px; }
+    }
+    @media (max-width: 480px) {
+      .contact-info, .contact-form { padding: 28px 20px; }
+    }
+  </style>
+  <meta property="og:image" content="https://shonowear.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://shonowear.com/contact.html">
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  </head>
+<body>
+
+  <script src="nav.js" data-page="contact"></script>
+
+  <div class="contact-wrap">
+
+    <!-- Page Header -->
+    <div class="contact-hero">
+      <p class="sec-eyebrow">Get in Touch</p>
+      <h1>CONTACT US</h1>
+      <p>Questions about your order, sizing, or collabs? We're here.</p>
+    </div>
+
+    <!-- Grid -->
+    <div class="contact-grid">
+
+      <!-- Info Panel -->
+      <div class="contact-info">
+        <h3>REACH US DIRECTLY</h3>
+
+        <div class="ci-item">
+          <div class="ci-icon"><i class="fas fa-phone"></i></div>
+          <div class="ci-body">
+            <span class="ci-label">Phone</span>
+            <span class="ci-value">
+              <a href="tel:+91YOUR_NUMBER">+91 98765 43210</a>
+            </span>
+            <span class="ci-sub">Mon – Sat, 10am – 7pm IST</span>
+          </div>
+        </div>
+
+        <div class="ci-item">
+          <div class="ci-icon"><i class="fas fa-headset"></i></div>
+          <div class="ci-body">
+            <span class="ci-label">Support Email</span>
+            <span class="ci-value">
+              <a href="mailto:support@shonowear.com">support@shonowear.com</a>
+            </span>
+            <span class="ci-sub">Orders, tracking, returns</span>
+          </div>
+        </div>
+
+        <div class="ci-item">
+          <div class="ci-icon"><i class="fas fa-user-circle"></i></div>
+          <div class="ci-body">
+            <span class="ci-label">Creator / Collabs</span>
+            <span class="ci-value">
+              <a href="mailto:kavin.js@outlook.com">kavin.js@outlook.com</a>
+            </span>
+            <span class="ci-sub">Business inquiries &amp; partnerships</span>
+          </div>
+        </div>
+
+        <div class="ci-item">
+          <div class="ci-icon"><i class="fab fa-instagram"></i></div>
+          <div class="ci-body">
+            <span class="ci-label">Instagram</span>
+            <span class="ci-value">
+              <a href="https://instagram.com/shonowear" target="_blank" rel="noopener">@shonowear</a>
+            </span>
+            <span class="ci-sub">DMs open for quick questions</span>
+          </div>
+        </div>
+
+        <div class="ci-hours">
+          <p class="ci-hours-title">Support Hours</p>
+          <div class="ci-hour-row"><span>Monday – Friday</span><span>10:00 AM – 7:00 PM</span></div>
+          <div class="ci-hour-row"><span>Saturday</span><span>11:00 AM – 5:00 PM</span></div>
+          <div class="ci-hour-row"><span>Sunday</span><span>Closed</span></div>
+        </div>
+      </div>
+
+      <!-- Form Panel -->
+      <div class="contact-form">
+        <h3>SEND A MESSAGE</h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" id="c-name" placeholder="Aryan Sharma"/>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="c-email" placeholder="your@email.com"/>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Subject</label>
+          <select id="c-subject">
+            <option value="">Select a topic…</option>
+            <option value="order">Order / Tracking</option>
+            <option value="return">Returns / Exchange</option>
+            <option value="product">Product Question</option>
+            <option value="collab">Collaboration / Business</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Message</label>
+          <textarea id="c-message" placeholder="Tell us what's on your mind…"></textarea>
+        </div>
+
+        <button class="form-submit" onclick="sendMessage()">
+          Send Message <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+  <!-- FAQ Section -->
+  <div style="border-top:1px solid var(--border);background:var(--ink);">
+    <div style="max-width:800px;margin:0 auto;padding:64px 40px;">
+      <p class="sec-eyebrow" style="margin-bottom:12px;">FAQ</p>
+      <h2 style="font-family:var(--font-d);font-size:2rem;letter-spacing:2px;color:var(--white);margin-bottom:36px;">Common Questions</h2>
+      <div class="faq-list" id="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">How long does shipping take? <i class="fas fa-plus faq-icon"></i></button>
+          <div class="faq-a">Metro cities (Mumbai, Delhi, Bangalore): 2–4 business days. Tier 2/3 cities: 4–7 days. All orders dispatched within 24 hours. Free shipping above ₹999.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What's your return policy? <i class="fas fa-plus faq-icon"></i></button>
+          <div class="faq-a">Easy 7-day returns on all apparel. Item must be unworn, unwashed, with tags attached. Email support@shonowear.com with your order details to start a return.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">How does sizing work? <i class="fas fa-plus faq-icon"></i></button>
+          <div class="faq-a">Our hoodies and tees run true to size, but we recommend sizing up if you want the oversized fit. Full size guide available on every product page.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Are the products officially licensed? <i class="fas fa-plus faq-icon"></i></button>
+          <div class="faq-a">Our designs are original fan-art inspired streetwear — not official merchandise. All designs are created in-house by our design team.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Do you ship internationally? <i class="fas fa-plus faq-icon"></i></button>
+          <div class="faq-a">Currently India-only. International shipping is planned for Phase 4 of our roadmap. Join the drop list to be notified when it launches.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Can I collaborate or submit a design? <i class="fas fa-plus faq-icon"></i></button>
+          <div class="faq-a">Yes! We're actively looking for creators. Email kavin.js@outlook.com with your portfolio and what you'd like to create.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <style>
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q { width: 100%; text-align: left; padding: 18px 0; font-size: 14px; font-weight: 600; color: var(--white); background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; transition: color .2s; font-family: var(--font-b); }
+    .faq-q:hover { color: var(--red); }
+    .faq-q.open { color: var(--red); }
+    .faq-q.open .faq-icon { transform: rotate(45deg); color: var(--red); }
+    .faq-icon { transition: transform .3s; flex-shrink: 0; font-size: 12px; color: var(--muted); }
+    .faq-a { font-size: 14px; color: var(--muted); line-height: 1.8; font-weight: 300; max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; padding: 0; }
+    .faq-a.open { max-height: 200px; padding-bottom: 16px; }
+  </style>
+  <script>
+    function toggleFaq(btn) {
+      const answer = btn.nextElementSibling;
+      const isOpen = answer.classList.contains('open');
+      document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+      document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('open'));
+      if (!isOpen) { answer.classList.add('open'); btn.classList.add('open'); }
+    }
+  </script>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">SHONO<span>WEAR</span></a>
+          <p>Anime-inspired streetwear for the modern generation.</p>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/kavin.j.s" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="contact.html" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+        <div class="footer-col"><h5>Shop</h5><a href="collection.html">All Products</a><a href="new-arrivals.html">New Arrivals</a></div>
+        <div class="footer-col"><h5>Help</h5><a href="contact.html">Contact Us</a><a href="cart.html">Your Cart</a><a href="login.html">Login</a></div>
+        <div class="footer-col"><h5>Company</h5><a href="about.html">About</a><a href="privacy.html">Privacy Policy</a></div>
+      </div>
+      <div class="footer-base"><p>© <script>document.write(new Date().getFullYear())</script> Shonowear. All rights reserved.</p><p>Made for the community, by the community.</p></div>
+    </div>
+  </footer>
+
+
+  <!-- Wishlist sidebar -->
+  <div class="wish-overlay" id="wish-overlay" onclick="closeWishlist()"></div>
+  <div class="wish-sidebar" id="wish-sidebar">
+    <div class="wish-head">
+      <h3>Saved Items</h3>
+      <button onclick="closeWishlist()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="wish-items" id="wish-items"></div>
+    <div class="wish-empty" id="wish-empty">
+      <i class="far fa-heart"></i>
+      <p>No saved items yet.</p>
+      <a href="collection.html">Browse Collection</a>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="data.js"></script>
+  <script src="wishlist.js"></script>
+  <script src="main.js"></script>
+  <script>
+    // Navbar scroll state
+    document.addEventListener('DOMContentLoaded', () => {
+      const nb = document.getElementById('navbar');
+      const pr = document.getElementById('nav-progress');
+      window.addEventListener('scroll', () => {
+        nb?.classList.toggle('scrolled', window.scrollY > 60);
+        if (pr) {
+          const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+          pr.style.width = Math.min(pct, 100) + '%';
+        }
+      }, { passive: true });
+    });
+
+    function sendMessage() {
+      const name    = document.getElementById('c-name').value.trim();
+      const email   = document.getElementById('c-email').value.trim();
+      const subject = document.getElementById('c-subject').value;
+      const message = document.getElementById('c-message').value.trim();
+
+      if (!name || !email || !subject || !message) {
+        toast('Please fill in all fields.', 'error');
+        return;
+      }
+      const rx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!rx.test(email)) {
+        toast('Please enter a valid email address.', 'error');
+        return;
+      }
+
+      // Build mailto link and open it
+      const sub  = encodeURIComponent('[Shonowear] ' + subject + ' — from ' + name);
+      const body = encodeURIComponent(
+        'Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message
+      );
+      window.location.href = `mailto:support@shonowear.com?subject=${sub}&body=${body}`;
+
+      // Clear form
+      document.getElementById('c-name').value = '';
+      document.getElementById('c-email').value = '';
+      document.getElementById('c-subject').value = '';
+      document.getElementById('c-message').value = '';
+
+      toast('Opening your email client… 📬', 'success');
+    }
+  </script>
+
+  <button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top"><i class="fas fa-chevron-up"></i></button>
+  <!-- Cookie Consent -->
+  <div class="cookie-banner" id="cookie-banner">
+    <p>We use cookies to improve your experience. By continuing, you agree to our <a href="privacy.html">Privacy Policy</a>.</p>
+    <div class="cookie-btns">
+      <button onclick="acceptCookies()">Accept All</button>
+      <button onclick="acceptCookies()" class="cookie-ghost">Necessary Only</button>
+    </div>
+  </div>
+  <script>
+    function acceptCookies(){document.getElementById('cookie-banner').style.display='none';localStorage.setItem('sw_cookies_accepted','1')}
+    if(localStorage.getItem('sw_cookies_accepted'))document.getElementById('cookie-banner').style.display='none';
+  </script>
+  <!-- WhatsApp Widget -->
+  <a href="https://wa.me/91YOUR_NUMBER?text=Hi%20Shonowear!%20I%20have%20a%20question." target="_blank" rel="noopener" class="wa-float" title="Chat on WhatsApp" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</body>
+</html>

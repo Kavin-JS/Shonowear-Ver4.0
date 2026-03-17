@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tell us about yourself and we'll find anime streetwear that actually fits your body type.">
+  <title>Find My Style — Shonowear</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080810'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial Black,sans-serif' font-size='13' font-weight='900' fill='%23e8153a'%3ESW%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .bp-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 20px 60px;
+      background: var(--ink);
+      position: relative;
+      overflow: hidden;
+    }
+    .bp-page::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 20% 50%, rgba(232,21,58,.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 80% 30%, rgba(240,180,41,.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .bp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      max-width: 1000px;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+    .bp-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .bp-eyebrow {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--red);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .bp-eyebrow::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--red);
+    }
+    .bp-headline {
+      font-family: var(--font-d);
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      letter-spacing: 3px;
+      line-height: 1;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--white), var(--gold));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .bp-desc {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.85;
+      margin-bottom: 32px;
+    }
+    .bp-how {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .bp-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .bp-step-num {
+      width: 28px;
+      height: 28px;
+      background: var(--red-lo);
+      border: 1px solid var(--border-r);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-d);
+      font-size: .85rem;
+      color: var(--red);
+      flex-shrink: 0;
+      letter-spacing: 1px;
+    }
+    .bp-step-text {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.6;
+      padding-top: 4px;
+    }
+    .bp-step-text strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    /* FORM */
+    .bp-card {
+      background: var(--ink2);
+      border: 1px solid var(--border);
+      padding: 40px;
+    }
+    .bp-card-title {
+      font-family: var(--font-d);
+      font-size: 1.4rem;
+      letter-spacing: 2px;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .bp-card-sub {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: 32px;
+    }
+    .bp-field {
+      margin-bottom: 20px;
+    }
+    .bp-label {
+      display: block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .bp-label span {
+      color: var(--border);
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+      font-size: 10px;
+      margin-left: 6px;
+    }
+    .bp-input {
+      width: 100%;
+      padding: 13px 16px;
+      background: var(--ink3);
+      border: 1px solid var(--border);
+      color: var(--white);
+      font-family: var(--font-b);
+      font-size: 14px;
+      outline: none;
+      transition: border-color .2s;
+      -moz-appearance: textfield;
+    }
+    .bp-input::-webkit-inner-spin-button,
+    .bp-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+    .bp-input:focus { border-color: var(--border-r); }
+    .bp-input.error { border-color: var(--red); animation: inputShake .35s ease; }
+    .bp-input::placeholder { color: var(--muted); font-weight: 300; }
+    .bp-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .bp-select {
+      width: 100%;
+      padding: 13px 16px;
+      background: var(--ink3);
+      border: 1px solid var(--border);
+      color: var(--white);
+      font-family: var(--font-b);
+      font-size: 14px;
+      outline: none;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236a6a88'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+      transition: border-color .2s;
+    }
+    .bp-select:focus { border-color: var(--border-r); }
+    .bp-select option { background: var(--ink2); color: var(--white); }
+
+    /* Style pills */
+    .bp-style-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .bp-style-pill {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      background: var(--ink3);
+      color: var(--muted);
+      font-family: var(--font-b);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all .2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-align: left;
+    }
+    .bp-style-pill i { color: var(--red); font-size: 12px; flex-shrink: 0; }
+    .bp-style-pill:hover { border-color: var(--muted); color: var(--white); }
+    .bp-style-pill.selected {
+      background: var(--red-lo);
+      border-color: var(--border-r);
+      color: var(--white);
+    }
+    .bp-style-pill.selected i { color: var(--gold); }
+
+    .bp-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 24px 0;
+    }
+
+    .bp-submit {
+      width: 100%;
+      padding: 16px;
+      background: var(--red);
+      color: #fff;
+      font-family: var(--font-b);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: background .2s, transform .15s;
+      position: relative;
+      overflow: hidden;
+    }
+    .bp-submit::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%; width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+      transform: skewX(-15deg);
+      transition: left .5s;
+    }
+    .bp-submit:hover { background: var(--red2); transform: translateY(-1px); }
+    .bp-submit:hover::before { left: 160%; }
+
+    /* BMI preview bar */
+    .bp-bmi-preview {
+      margin-top: 16px;
+      display: none;
+    }
+    .bmi-bar-wrap {
+      height: 6px;
+      background: var(--border);
+      position: relative;
+      margin-bottom: 8px;
+    }
+    .bmi-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--red), var(--gold));
+      transition: width .4s ease;
+      max-width: 100%;
+    }
+    .bmi-result {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .bmi-type {
+      font-family: var(--font-d);
+      font-size: 1.1rem;
+      letter-spacing: 1.5px;
+      color: var(--white);
+    }
+    .bmi-val {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    /* Skip link */
+    .bp-skip {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .bp-skip a {
+      color: var(--muted);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color .2s;
+    }
+    .bp-skip a:hover { color: var(--white); }
+
+    @media (max-width: 760px) {
+      .bp-grid { grid-template-columns: 1fr; gap: 40px; }
+      .bp-left { order: 2; }
+      .bp-card { order: 1; padding: 28px 20px; }
+      .bp-page { padding: 90px 16px 40px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Announce bar -->
+  
+  <script src="nav.js" data-page="profile"></script>
+
+
+  <main class="bp-page">
+    <div class="bp-grid">
+
+      <!-- LEFT: explanation -->
+      <div class="bp-left fade-in-section">
+        <p class="bp-eyebrow">Personalized Discovery</p>
+        <h1 class="bp-headline">FIND FITS MADE FOR YOUR BODY.</h1>
+        <p class="bp-desc">Stop guessing your size. Tell us your body details and we'll show you anime streetwear that's actually designed to look good on you — not on a mannequin.</p>
+        <div class="bp-how">
+          <div class="bp-step">
+            <div class="bp-step-num">01</div>
+            <p class="bp-step-text"><strong>Enter your measurements.</strong> Height and weight is all we need. Everything else is optional.</p>
+          </div>
+          <div class="bp-step">
+            <div class="bp-step-num">02</div>
+            <p class="bp-step-text"><strong>We estimate your body type.</strong> Slim, Athletic, Average, or Broad — based on your BMI.</p>
+          </div>
+          <div class="bp-step">
+            <div class="bp-step-num">03</div>
+            <p class="bp-step-text"><strong>We show your matches.</strong> Only outfits designed for your silhouette. No more buying blindly.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: form -->
+      <div class="bp-card fade-in-section">
+        <p class="bp-card-title">YOUR STYLE PROFILE</p>
+        <p class="bp-card-sub">Takes under 30 seconds. No account needed.</p>
+
+        <form id="bp-form" onsubmit="submitProfile(event)" novalidate>
+
+          <div class="bp-row">
+            <div class="bp-field">
+              <label class="bp-label" for="bp-height">Height <span>(cm)</span></label>
+              <input class="bp-input" type="number" id="bp-height" placeholder="e.g. 175" min="130" max="220" inputmode="numeric">
+            </div>
+            <div class="bp-field">
+              <label class="bp-label" for="bp-weight">Weight <span>(kg)</span></label>
+              <input class="bp-input" type="number" id="bp-weight" placeholder="e.g. 70" min="30" max="200" inputmode="numeric">
+            </div>
+          </div>
+
+          <!-- Live BMI preview -->
+          <div class="bp-bmi-preview" id="bmi-preview">
+            <div class="bmi-bar-wrap">
+              <div class="bmi-bar-fill" id="bmi-bar" style="width:0%"></div>
+            </div>
+            <div class="bmi-result">
+              <span class="bmi-type" id="bmi-type-label">—</span>
+              <span class="bmi-val" id="bmi-val-label">BMI: —</span>
+            </div>
+          </div>
+
+          <div class="bp-field" style="margin-top:20px;">
+            <label class="bp-label" for="bp-gender">Gender <span>(optional)</span></label>
+            <select class="bp-select" id="bp-gender">
+              <option value="">Prefer not to say</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="nonbinary">Non-binary / Other</option>
+            </select>
+          </div>
+
+          <div class="bp-divider"></div>
+
+          <div class="bp-field">
+            <label class="bp-label">Style Preference <span>(optional — pick any)</span></label>
+            <div class="bp-style-grid">
+              <button type="button" class="bp-style-pill" data-style="Tokyo Street" onclick="toggleStyle(this)">
+                <i class="fas fa-city"></i> Tokyo Street
+              </button>
+              <button type="button" class="bp-style-pill" data-style="Cyberpunk" onclick="toggleStyle(this)">
+                <i class="fas fa-bolt"></i> Cyberpunk
+              </button>
+              <button type="button" class="bp-style-pill" data-style="Minimal Anime" onclick="toggleStyle(this)">
+                <i class="fas fa-wind"></i> Minimal Anime
+              </button>
+              <button type="button" class="bp-style-pill" data-style="Shibuya Casual" onclick="toggleStyle(this)">
+                <i class="fas fa-walking"></i> Shibuya Casual
+              </button>
+            </div>
+          </div>
+
+          <div class="bp-divider"></div>
+
+          <button type="submit" class="bp-submit">
+            <i class="fas fa-magic"></i> Find My Style
+          </button>
+
+          <p class="bp-skip">
+            Already have a profile? <a href="recommendations.html">See my recommendations</a> &nbsp;·&nbsp;
+            <a href="collection.html">Browse all</a>
+          </p>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <!-- JS modules — utils first, then bodyProfile module -->
+  <script src="js/utils.js"></script>
+  <script src="main.js"></script>
+  <script src="js/bodyProfile.js"></script>
+  <script>
+    // ── Navbar scroll ─────────────────────────────────
+    const nb = document.getElementById('navbar');
+    const pr = document.getElementById('nav-progress');
+    window.addEventListener('scroll', () => {
+      nb?.classList.toggle('scrolled', window.scrollY > 60);
+      if (pr) pr.style.width = Math.min((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100, 100) + '%';
+    }, { passive: true });
+
+    // ── Fade-in ───────────────────────────────────────
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.05 });
+    document.querySelectorAll('.fade-in-section').forEach(e => io.observe(e));
+
+    // ── BMI Engine ────────────────────────────────────
+    const BODY_TYPES = [
+      { type: 'Slim',     min: 0,    max: 18.9, pct: 20,  desc: 'Lean and long — structured fits look sharp on you.' },
+      { type: 'Average',  min: 19,   max: 22.9, pct: 45,  desc: 'Versatile build — most cuts work well for you.' },
+      { type: 'Athletic', min: 23,   max: 27.4, pct: 65,  desc: 'Defined build — boxy and structured fits are your match.' },
+      { type: 'Broad',    min: 27.5, max: 999,  pct: 88,  desc: 'Powerful build — relaxed and oversized silhouettes are your zone.' },
+    ];
+
+    function calcBMI(h, w) {
+      const hm = h / 100;
+      return w / (hm * hm);
+    }
+
+    function getBMIType(bmi) {
+      return BODY_TYPES.find(b => bmi >= b.min && bmi <= b.max) || BODY_TYPES[3];
+    }
+
+    function updateBMIPreview() {
+      const h = parseFloat(document.getElementById('bp-height').value);
+      const w = parseFloat(document.getElementById('bp-weight').value);
+      const preview = document.getElementById('bmi-preview');
+      if (!h || !w || h < 100 || w < 20) { preview.style.display = 'none'; return; }
+      const bmi = calcBMI(h, w);
+      const bt  = getBMIType(bmi);
+      preview.style.display = 'block';
+      document.getElementById('bmi-bar').style.width = bt.pct + '%';
+      document.getElementById('bmi-type-label').textContent = bt.type;
+      document.getElementById('bmi-val-label').textContent = 'BMI: ' + bmi.toFixed(1);
+    }
+
+    document.getElementById('bp-height').addEventListener('input', updateBMIPreview);
+    document.getElementById('bp-weight').addEventListener('input', updateBMIPreview);
+
+    // ── Style pills ───────────────────────────────────
+    function toggleStyle(btn) {
+      btn.classList.toggle('selected');
+    }
+
+    // ── Form submit ───────────────────────────────────
+    function submitProfile(e) {
+      e.preventDefault();
+      const h = parseFloat(document.getElementById('bp-height').value);
+      const w = parseFloat(document.getElementById('bp-weight').value);
+
+      // Validate
+      let valid = true;
+      if (!h || h < 100 || h > 250) {
+        document.getElementById('bp-height').classList.add('error');
+        valid = false;
+        setTimeout(() => document.getElementById('bp-height').classList.remove('error'), 1500);
+      }
+      if (!w || w < 20 || w > 250) {
+        document.getElementById('bp-weight').classList.add('error');
+        valid = false;
+        setTimeout(() => document.getElementById('bp-weight').classList.remove('error'), 1500);
+      }
+      if (!valid) {
+        if (typeof toast === 'function') toast('Please enter valid height and weight.', 'error');
+        return;
+      }
+
+      const bmi      = calcBMI(h, w);
+      const bt       = getBMIType(bmi);
+      const gender   = document.getElementById('bp-gender').value;
+      const styles   = [...document.querySelectorAll('.bp-style-pill.selected')].map(b => b.dataset.style);
+
+      // Save to localStorage (both keys for compatibility)
+      localStorage.setItem('bodyType',       bt.type);   // primary key for recommendation engine
+      localStorage.setItem('sw_bodyType',    bt.type);   // alias
+      localStorage.setItem('sw_bmi',         bmi.toFixed(1));
+      localStorage.setItem('sw_height',      h);
+      localStorage.setItem('sw_weight',      w);
+      localStorage.setItem('sw_gender',      gender);
+      localStorage.setItem('sw_stylePrefs',  JSON.stringify(styles));
+      localStorage.setItem('sw_profileDone', '1');
+
+      // Animate submit
+      const btn = document.querySelector('.bp-submit');
+      btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Analysing…';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        window.location.href = 'recommendations.html';
+      }, 900);
+    }
+
+    // ── Pre-fill if profile exists ────────────────────
+    (function prefill() {
+      const h = localStorage.getItem('sw_height');
+      const w = localStorage.getItem('sw_weight');
+      const g = localStorage.getItem('sw_gender');
+      const sp = JSON.parse(localStorage.getItem('sw_stylePrefs') || '[]');
+      if (h) document.getElementById('bp-height').value = h;
+      if (w) document.getElementById('bp-weight').value = w;
+      if (g) document.getElementById('bp-gender').value = g;
+      sp.forEach(s => {
+        const pill = document.querySelector(`.bp-style-pill[data-style="${s}"]`);
+        if (pill) pill.classList.add('selected');
+      });
+      updateBMIPreview();
+    })();
+
+    // ── Navbar mobile ─────────────────────────────────
+    document.getElementById('nav-toggle')?.addEventListener('click', () => {
+      // minimal — no mobile menu on this page
+    });
+
+    // ── Cart badge ────────────────────────────────────
+    if (typeof updateCartBadge === 'function') updateCartBadge();
+  </script>
+</body>
+</html>

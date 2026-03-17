@@ -1,0 +1,129 @@
+/**
+ * css/layout.css — Page layout, grid system, spacing
+ * Shonowear — imports tokens from main.css / style.css
+ *
+ * Note: This file documents layout primitives.
+ * The primary style.css is the single source of truth for production.
+ * This file is for developer reference and future modular builds.
+ */
+
+/* ── Container ──────────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ── Section spacing ─────────────────────────────────────── */
+.section        { padding: var(--section, 96px) 0; }
+.section--sm    { padding: 48px 0; }
+.section--lg    { padding: 120px 0; }
+
+/* ── Grid primitives ─────────────────────────────────────── */
+.grid-2  { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.grid-3  { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.grid-4  { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.grid-auto { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+
+/* ── Flex utilities ──────────────────────────────────────── */
+.flex         { display: flex; }
+.flex-center  { display: flex; align-items: center; justify-content: center; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.flex-col     { display: flex; flex-direction: column; }
+.flex-wrap    { flex-wrap: wrap; }
+.gap-sm       { gap: 8px; }
+.gap-md       { gap: 16px; }
+.gap-lg       { gap: 24px; }
+
+/* ── Outfit grid ─────────────────────────────────────────── */
+.outfit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* ── Outfit card ─────────────────────────────────────────── */
+.outfit-card {
+  background: var(--ink2);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: border-color .25s, transform .2s;
+  position: relative;
+  overflow: hidden;
+}
+.outfit-card:hover {
+  border-color: var(--border-r);
+  transform: translateY(-4px);
+}
+.oc-img-wrap { position: relative; aspect-ratio: 4/5; overflow: hidden; }
+.oc-img {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transition: transform .55s cubic-bezier(.4,0,.2,1);
+}
+.outfit-card:hover .oc-img { transform: scale(1.06); }
+.oc-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(8,8,15,.85) 0%, transparent 60%);
+}
+.oc-match-badge {
+  position: absolute; top: 12px; right: 12px; z-index: 2;
+  background: rgba(8,8,15,.9); border: 1px solid var(--gold);
+  color: var(--gold); font-size: 9px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase;
+  padding: 4px 10px; display: flex; align-items: center; gap: 5px;
+}
+.oc-trend {
+  position: absolute; bottom: 12px; left: 12px; z-index: 2;
+  font-size: 10px; color: var(--gold); letter-spacing: 2px;
+}
+.oc-body { padding: 16px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
+.oc-meta { display: flex; align-items: center; justify-content: space-between; }
+.oc-style {
+  font-size: 9px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--red);
+}
+.oc-anime { font-size: 9px; color: var(--muted); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+.oc-name { font-family: var(--font-d); font-size: 1.3rem; letter-spacing: 2px; color: var(--white); line-height: 1.1; }
+.oc-desc { font-size: 12px; color: var(--muted); font-weight: 300; line-height: 1.6; flex: 1; }
+.oc-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 12px; border-top: 1px solid var(--border); }
+.oc-info { display: flex; flex-direction: column; gap: 3px; }
+.oc-items { font-size: 10px; color: var(--muted); font-weight: 600; letter-spacing: .5px; }
+.oc-price { font-family: var(--font-d); font-size: 1.1rem; color: var(--gold); }
+.oc-btn {
+  padding: 8px 16px;
+  background: var(--red); color: #fff;
+  font-family: var(--font-b); font-size: 10px;
+  font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  border: none; cursor: pointer;
+  display: flex; align-items: center; gap: 6px;
+  transition: background .2s; white-space: nowrap; flex-shrink: 0;
+}
+.oc-btn:hover { background: var(--red2); }
+
+/* ── Outfit empty state ──────────────────────────────────── */
+.outfit-empty {
+  text-align: center; padding: 80px 40px;
+  grid-column: 1 / -1;
+}
+.outfit-empty i { font-size: 3rem; color: var(--border); display: block; margin-bottom: 16px; }
+.outfit-empty p { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .container { padding: 0 24px; }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .outfit-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+}
+
+@media (max-width: 600px) {
+  .container { padding: 0 16px; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .outfit-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .oc-name { font-size: 1.1rem; }
+  .oc-desc { display: none; }
+}

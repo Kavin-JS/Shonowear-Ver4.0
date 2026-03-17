@@ -1,0 +1,50 @@
+[
+  {
+    "id": "tokyo-street",
+    "name": "Tokyo Street",
+    "label": "東京",
+    "description": "Bold graphics. Dark silhouettes. Oversized energy. Inspired by the streets of Shibuya and Harajuku — where anime culture and streetwear collide.",
+    "bodyTypes": ["Slim", "Athletic", "Average", "Broad"],
+    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop&q=80",
+    "color": "#e8153a",
+    "outfitCount": 4,
+    "productCount": 42,
+    "tags": ["oversized", "graphic", "dark", "bold"]
+  },
+  {
+    "id": "cyberpunk",
+    "name": "Cyberpunk",
+    "label": "サイバー",
+    "description": "Neon accents. Futuristic silhouettes. High-contrast cuts for those living in the space between human and machine. Inspired by Akira, Ghost in the Shell, and the neon-soaked future.",
+    "bodyTypes": ["Slim", "Athletic"],
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&auto=format&fit=crop&q=80",
+    "color": "#00d4ff",
+    "outfitCount": 3,
+    "productCount": 28,
+    "tags": ["neon", "futuristic", "tech", "dark"]
+  },
+  {
+    "id": "minimal-anime",
+    "name": "Minimal Anime",
+    "label": "ミニマル",
+    "description": "Clean lines. Subtle references. Every-day wearability without sacrificing anime culture. These pieces are for the fan who doesn't need to announce themselves.",
+    "bodyTypes": ["Slim", "Average", "Athletic", "Broad"],
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&auto=format&fit=crop&q=80",
+    "color": "#f0b429",
+    "outfitCount": 3,
+    "productCount": 35,
+    "tags": ["clean", "minimal", "subtle", "versatile"]
+  },
+  {
+    "id": "shibuya-casual",
+    "name": "Shibuya Casual",
+    "label": "渋谷",
+    "description": "Relaxed fits. Street cool. The kind of outfit you throw on and somehow look intentional. Inspired by Shibuya crossing energy — effortlessly stylish in any universe.",
+    "bodyTypes": ["Slim", "Average", "Athletic", "Broad"],
+    "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&auto=format&fit=crop&q=80",
+    "color": "#10b981",
+    "outfitCount": 2,
+    "productCount": 30,
+    "tags": ["casual", "relaxed", "everyday", "shibuya"]
+  }
+]

@@ -1,0 +1,55 @@
+/**
+ * css/main.css — Master CSS entry point
+ * Shonowear
+ *
+ * Import order matters:
+ * 1. Tokens (design system variables)
+ * 2. Base / reset
+ * 3. Layout
+ * 4. Components
+ * 5. Page-specific overrides
+ * 6. Responsive (always last)
+ *
+ * NOTE: The monolithic style.css is the production file.
+ * This modular structure is for developer clarity and future build tooling.
+ * To use this structure, link this file instead of style.css and ensure
+ * each @import resolves correctly in your server environment.
+ */
+
+/* ── Design tokens ───────────────────────────────────────── */
+:root {
+  --ink:      #08080f;
+  --ink2:     #0e0e1a;
+  --ink3:     #141424;
+  --surface:  #1a1a2e;
+  --red:      #e8153a;
+  --red2:     #f52040;
+  --red-lo:   rgba(232,21,58,.12);
+  --red-glow: rgba(232,21,58,.4);
+  --gold:     #f0b429;
+  --gold-lo:  rgba(240,180,41,.12);
+  --white:    #f0ede6;
+  --off:      #c8c4bc;
+  --muted:    #6a6a88;
+  --border:   rgba(255,255,255,.07);
+  --border-r: rgba(232,21,58,.22);
+  --font-d:   'Bebas Neue', sans-serif;
+  --font-b:   'Poppins', sans-serif;
+  --font-s:   'DM Serif Display', serif;
+  --radius:   2px;
+  --section:  96px;
+}
+
+/* ── Module imports ──────────────────────────────────────── */
+@import url('layout.css');
+@import url('components.css');
+@import url('responsive.css');
+
+/*
+ * Page-specific styles are co-located in their HTML files via <style> blocks.
+ * Global overrides live in ../style.css (production build).
+ *
+ * To compile into a single production bundle:
+ *   npx lightningcss --bundle css/main.css -o style.css
+ *   or use any CSS bundler that resolves @import.
+ */

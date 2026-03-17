@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore a curated anime streetwear outfit — see every piece, body type fit, and add the whole look to cart.">
+  <title>Outfit — Shonowear</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080810'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial Black,sans-serif' font-size='13' font-weight='900' fill='%23e8153a'%3ESW%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── Outfit detail layout ────────────────────── */
+    .outfit-page { padding: 90px 0 80px; min-height: 100vh; background: var(--ink); }
+
+    .od-breadcrumb {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 36px;
+    }
+    .od-breadcrumb a { color: var(--muted); transition: color .2s; }
+    .od-breadcrumb a:hover { color: var(--white); }
+    .od-breadcrumb .bc-sep { color: var(--border); }
+
+    .outfit-detail {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    /* Visual column */
+    .od-visual {}
+    .od-main-img {
+      aspect-ratio: 4/5;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .od-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 50%, rgba(8,8,15,.7) 100%);
+    }
+    .od-tags {
+      position: absolute; bottom: 16px; left: 16px;
+      display: flex; gap: 6px; flex-wrap: wrap; z-index: 1;
+    }
+    .od-tag {
+      padding: 4px 10px;
+      background: rgba(8,8,15,.8);
+      border: 1px solid var(--border);
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .od-score-card {
+      background: var(--ink2);
+      border: 1px solid var(--border);
+      border-top: none;
+      padding: 0;
+    }
+    .od-score-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+    }
+    .od-score-row:last-child { border-bottom: none; }
+    .od-score-label { color: var(--muted); font-weight: 500; letter-spacing: .5px; }
+    .od-score-val { color: var(--white); font-weight: 600; }
+    .od-total-price { font-family: var(--font-d); font-size: 1.2rem; color: var(--gold); }
+
+    /* Info column */
+    .od-eyebrow {
+      font-size: 9px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--red);
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 12px;
+    }
+    .od-title {
+      font-family: var(--font-d);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      letter-spacing: 3px; color: var(--white);
+      line-height: 1; margin-bottom: 16px;
+    }
+    .od-desc {
+      font-size: 14px; color: var(--muted);
+      font-weight: 300; line-height: 1.85;
+      margin-bottom: 28px;
+    }
+
+    /* Suitability */
+    .od-suitability {
+      background: var(--ink2);
+      border: 1px solid var(--border);
+      padding: 20px;
+      margin-bottom: 28px;
+    }
+    .od-suit-label {
+      font-size: 9px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 12px; display: block;
+    }
+    .od-bt-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+    .od-bt-pill {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 5px 12px; font-size: 10px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase; border: 1px solid;
+    }
+    .od-bt-pill.active { background: rgba(240,180,41,.08); border-color: rgba(240,180,41,.3); color: var(--gold); }
+    .od-bt-pill.inactive { border-color: var(--border); color: var(--muted); opacity: .4; }
+    .od-bt-pill i { font-size: 9px; }
+
+    .od-match-banner {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px; font-size: 12px; border: 1px solid;
+    }
+    .od-match-banner.match { background: rgba(16,185,129,.08); border-color: rgba(16,185,129,.25); color: #6ee7b7; }
+    .od-match-banner.match i { color: #10b981; }
+    .od-match-banner.no-match { background: rgba(240,180,41,.06); border-color: rgba(240,180,41,.2); color: var(--off); }
+    .od-match-banner.no-match i { color: var(--gold); }
+    .od-match-banner.no-match a { color: var(--gold); text-decoration: underline; }
+    .od-match-banner.setup { background: var(--ink3); border-color: var(--border); color: var(--muted); }
+    .od-match-banner.setup i { color: var(--red); }
+    .od-match-banner.setup a { color: var(--red); }
+
+    /* Items list */
+    .od-items-section { margin-bottom: 28px; }
+    .od-items-head {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .od-items-label { font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); }
+    .od-items-count { font-size: 11px; color: var(--muted); font-weight: 300; }
+
+    .od-item {
+      display: grid; grid-template-columns: 64px 1fr auto;
+      gap: 14px; align-items: center;
+      padding: 14px; background: var(--ink2);
+      border: 1px solid var(--border);
+      margin-bottom: 3px; cursor: pointer;
+      transition: border-color .2s;
+    }
+    .od-item:hover { border-color: var(--border-r); }
+    .od-item-img {
+      height: 80px; background-size: cover;
+      background-position: center; background-color: var(--surface);
+    }
+    .od-item-type { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 4px; }
+    .od-item-name { font-size: 13px; font-weight: 600; color: var(--white); margin-bottom: 4px; line-height: 1.3; }
+    .od-item-price { font-family: var(--font-d); font-size: 1.1rem; color: var(--gold); }
+    .od-item-price span { font-family: var(--font-b); font-size: 11px; color: var(--muted); text-decoration: line-through; margin-left: 6px; }
+    .od-item-add {
+      width: 36px; height: 36px;
+      background: var(--red-lo); border: 1px solid var(--border-r);
+      color: var(--red); font-size: 13px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s; flex-shrink: 0;
+    }
+    .od-item-add:hover { background: var(--red); color: #fff; }
+
+    /* CTAs */
+    .od-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* Related outfits */
+    .od-related { margin-top: 64px; }
+
+    /* Skeleton state */
+    .od-loading {
+      display: flex; align-items: center; justify-content: center;
+      min-height: 60vh; color: var(--muted);
+    }
+    .od-loading i { font-size: 2.5rem; }
+    .od-error { text-align: center; padding: 60px; }
+    .od-error i { font-size: 3rem; color: var(--border); display: block; margin-bottom: 16px; }
+    .od-error h2 { font-family: var(--font-d); font-size: 2rem; letter-spacing: 2px; margin-bottom: 12px; }
+    .od-error p { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
+
+    @media (max-width: 860px) {
+      .outfit-detail { grid-template-columns: 1fr; gap: 36px; }
+      .od-main-img { aspect-ratio: 16/9; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Announce bar -->
+  
+  <script src="nav.js" data-page="outfits"></script>
+
+
+  <!-- Main content -->
+  <main class="outfit-page">
+    <div class="container">
+
+      <!-- Breadcrumb -->
+      <nav class="od-breadcrumb" aria-label="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="bc-sep">›</span>
+        <a href="recommendations.html">Outfits</a>
+        <span class="bc-sep">›</span>
+        <span id="od-breadcrumb-name">Loading…</span>
+      </nav>
+
+      <!-- Outfit content — injected by JS -->
+      <div id="outfit-content">
+        <div class="od-loading fade-in-section">
+          <i class="fas fa-circle-notch fa-spin"></i>
+        </div>
+      </div>
+
+      <!-- Related outfits -->
+      <div class="od-related fade-in-section" id="od-related" style="display:none;">
+        <div class="sec-head">
+          <div>
+            <p class="sec-eyebrow">More Outfits</p>
+            <h2 class="sec-title">You Might Also Like</h2>
+          </div>
+          <a href="recommendations.html" class="sec-link">View all <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="outfit-grid" id="od-related-grid"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <button class="popup-close" onclick="closePop()"><i class="fas fa-times"></i></button>
+      <div style="text-align:center;padding:40px;">
+        <div id="pop-ico" style="font-size:3rem;margin-bottom:20px;"></div>
+        <h2 id="pop-title" style="font-family:var(--font-d);font-size:1.8rem;margin-bottom:14px;"></h2>
+        <p id="pop-msg" style="color:var(--muted);"></p>
+      </div>
+    </div>
+  </div>
+  <button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-chevron-up"></i></button>
+
+  <!-- Scripts: utils first, then modules, then page logic -->
+  <script src="js/utils.js"></script>
+  <script src="data.js"></script>
+  <script src="main.js"></script>
+  <script src="wishlist.js"></script>
+  <script src="js/outfitRenderer.js"></script>
+  <script src="js/recommendationEngine.js"></script>
+
+  <script>
+  (async function initOutfitPage() {
+
+    // ── Navbar scroll ────────────────────────────────────
+    const nb = document.getElementById('navbar');
+    const pr = document.getElementById('nav-progress');
+    window.addEventListener('scroll', () => {
+      nb?.classList.toggle('scrolled', window.scrollY > 60);
+      if (pr) pr.style.width = Math.min(
+        (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100, 100
+      ) + '%';
+      document.getElementById('scroll-top')?.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    document.getElementById('nav-toggle')?.addEventListener('click', () => {
+      document.getElementById('mob-ov')?.classList.add('on');
+      document.getElementById('mob-menu')?.classList.add('on');
+    });
+
+    // ── Add "Find My Style" nav link ────────────────────
+
+    // ── Auth ─────────────────────────────────────────────
+    if (typeof updateNav === 'function') updateNav();
+    if (typeof updateWishBadge === 'function') updateWishBadge();
+
+    // ── Get outfit ID from URL ───────────────────────────
+    const outfitId = getParam('id');
+    const content  = document.getElementById('outfit-content');
+
+    if (!outfitId) {
+      content.innerHTML = `
+        <div class="od-error">
+          <i class="fas fa-exclamation-triangle"></i>
+          <h2>NO OUTFIT SELECTED</h2>
+          <p>Go back and choose an outfit to view.</p>
+          <a href="recommendations.html" class="cta-primary">Browse Outfits <i class="fas fa-arrow-right"></i></a>
+        </div>`;
+      return;
+    }
+
+    // ── Load outfit data ─────────────────────────────────
+    const outfit = await RecommendationEngine.getOutfitById(outfitId);
+
+    if (!outfit) {
+      content.innerHTML = `
+        <div class="od-error">
+          <i class="fas fa-box-open"></i>
+          <h2>OUTFIT NOT FOUND</h2>
+          <p>This outfit may have been removed or the link is incorrect.</p>
+          <a href="recommendations.html" class="cta-primary">Browse Outfits <i class="fas fa-arrow-right"></i></a>
+        </div>`;
+      return;
+    }
+
+    // ── Update breadcrumb + page title ───────────────────
+    document.getElementById('od-breadcrumb-name').textContent = outfit.name;
+    document.title = `${outfit.name} — Shonowear`;
+
+    // ── Render outfit detail ─────────────────────────────
+    const userBodyType = localStorage.getItem('bodyType');
+    renderOutfitDetail(outfit, window.products, content, userBodyType);
+
+    // ── Related outfits ──────────────────────────────────
+    const allOutfits = await RecommendationEngine.load();
+    const related    = (allOutfits || [])
+      .filter(o => o.id !== outfitId && o.style === outfit.style)
+      .slice(0, 4);
+
+    if (related.length) {
+      const relatedSection = document.getElementById('od-related');
+      const relatedGrid    = document.getElementById('od-related-grid');
+      relatedSection.style.display = 'block';
+      renderOutfitGrid(related, relatedGrid, userBodyType);
+    }
+
+    // ── Fade-in observer ─────────────────────────────────
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.05 });
+    document.querySelectorAll('.fade-in-section').forEach(e => io.observe(e));
+
+  })();
+  </script>
+</body>
+</html>

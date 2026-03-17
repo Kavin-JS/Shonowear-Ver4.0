@@ -1,0 +1,3629 @@
+{
+  "products": [
+    {
+      "id": "p1",
+      "name": "Naruto Uzumaki Hoodie",
+      "category": "hoodie",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Premium 350 GSM heavyweight cotton hoodie. Soft fleece interior, ribbed cuffs and hem. Unisex oversized fit \u2014 size down for a regular fit.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average"
+      ],
+      "anime": "Naruto",
+      "tags": [
+        "naruto",
+        "hoodie",
+        "tokyo-street"
+      ],
+      "popularity": 9,
+      "isNew": true
+    },
+    {
+      "id": "p2",
+      "name": "Naruto Streetwear Tee",
+      "category": "tee",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Naruto",
+      "tags": [
+        "naruto",
+        "tee",
+        "tokyo-street"
+      ],
+      "popularity": 8,
+      "isNew": false
+    },
+    {
+      "id": "p3",
+      "name": "Naruto Phone Cover",
+      "category": "phone",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 299,
+      "image": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "iPhone",
+        "Samsung",
+        "OnePlus",
+        "Pixel"
+      ],
+      "description": "Durable TPU case with raised edge protection. Precision cutouts for all ports. Glossy finish with UV-resistant print.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Naruto",
+      "tags": [
+        "naruto",
+        "phone",
+        "tokyo-street"
+      ],
+      "popularity": 7,
+      "isNew": false
+    },
+    {
+      "id": "p4",
+      "name": "Naruto Figurine",
+      "category": "figurine",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 1899,
+      "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "Standard"
+      ],
+      "description": "Hand-painted PVC collectible figure. Approx 18\u201320cm tall. Includes display stand and collector packaging.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Naruto",
+      "tags": [
+        "naruto",
+        "figurine",
+        "tokyo-street"
+      ],
+      "popularity": 6,
+      "isNew": false
+    },
+    {
+      "id": "p5",
+      "name": "One Piece Luffy Hoodie",
+      "category": "hoodie",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 2099,
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Premium 350 GSM heavyweight cotton hoodie. Soft fleece interior, ribbed cuffs and hem. Unisex oversized fit \u2014 size down for a regular fit.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average"
+      ],
+      "anime": "One Piece",
+      "tags": [
+        "one-piece",
+        "hoodie",
+        "tokyo-street"
+      ],
+      "popularity": 10,
+      "isNew": true
+    },
+    {
+      "id": "p6",
+      "name": "One Piece Pirate Tee",
+      "category": "tee",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "One Piece",
+      "tags": [
+        "one-piece",
+        "tee",
+        "tokyo-street"
+      ],
+      "popularity": 9,
+      "isNew": false
+    },
+    {
+      "id": "p7",
+      "name": "One Piece Phone Cover",
+      "category": "phone",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 299,
+      "image": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "iPhone",
+        "Samsung",
+        "OnePlus",
+        "Pixel"
+      ],
+      "description": "Durable TPU case with raised edge protection. Precision cutouts for all ports. Glossy finish with UV-resistant print.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "One Piece",
+      "tags": [
+        "one-piece",
+        "phone",
+        "tokyo-street"
+      ],
+      "popularity": 8,
+      "isNew": false
+    },
+    {
+      "id": "p8",
+      "name": "One Piece Figurine",
+      "category": "figurine",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "Standard"
+      ],
+      "description": "Hand-painted PVC collectible figure. Approx 18\u201320cm tall. Includes display stand and collector packaging.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "One Piece",
+      "tags": [
+        "one-piece",
+        "figurine",
+        "tokyo-street"
+      ],
+      "popularity": 7,
+      "isNew": false
+    },
+    {
+      "id": "p9",
+      "name": "Jujutsu Kaisen Gojo Hoodie",
+      "category": "hoodie",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 2199,
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Premium 350 GSM heavyweight cotton hoodie. Soft fleece interior, ribbed cuffs and hem. Unisex oversized fit \u2014 size down for a regular fit.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average"
+      ],
+      "anime": "Jujutsu Kaisen",
+      "tags": [
+        "jujutsu-kaisen",
+        "hoodie",
+        "tokyo-street"
+      ],
+      "popularity": 6,
+      "isNew": true
+    },
+    {
+      "id": "p10",
+      "name": "Jujutsu Kaisen Tee",
+      "category": "tee",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Jujutsu Kaisen",
+      "tags": [
+        "jujutsu-kaisen",
+        "tee",
+        "tokyo-street"
+      ],
+      "popularity": 10,
+      "isNew": false
+    },
+    {
+      "id": "p11",
+      "name": "Jujutsu Kaisen Phone",
+      "category": "phone",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 299,
+      "image": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "iPhone",
+        "Samsung",
+        "OnePlus",
+        "Pixel"
+      ],
+      "description": "Durable TPU case with raised edge protection. Precision cutouts for all ports. Glossy finish with UV-resistant print.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Jujutsu Kaisen",
+      "tags": [
+        "jujutsu-kaisen",
+        "phone",
+        "tokyo-street"
+      ],
+      "popularity": 9,
+      "isNew": false
+    },
+    {
+      "id": "p12",
+      "name": "Jujutsu Kaisen Figurine",
+      "category": "figurine",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "Standard"
+      ],
+      "description": "Hand-painted PVC collectible figure. Approx 18\u201320cm tall. Includes display stand and collector packaging.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Jujutsu Kaisen",
+      "tags": [
+        "jujutsu-kaisen",
+        "figurine",
+        "tokyo-street"
+      ],
+      "popularity": 8,
+      "isNew": false
+    },
+    {
+      "id": "p13",
+      "name": "AoT Scout Hoodie",
+      "category": "hoodie",
+      "style": "Minimal Anime",
+      "styleSlug": "minimal-anime",
+      "price": 2099,
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Premium 350 GSM heavyweight cotton hoodie. Soft fleece interior, ribbed cuffs and hem. Unisex oversized fit \u2014 size down for a regular fit.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average"
+      ],
+      "anime": "Attack on Titan",
+      "tags": [
+        "attack-on-titan",
+        "hoodie",
+        "minimal-anime"
+      ],
+      "popularity": 7,
+      "isNew": true
+    },
+    {
+      "id": "p14",
+      "name": "AoT Wings Tee",
+      "category": "tee",
+      "style": "Minimal Anime",
+      "styleSlug": "minimal-anime",
+      "price": 749,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Attack on Titan",
+      "tags": [
+        "attack-on-titan",
+        "tee",
+        "minimal-anime"
+      ],
+      "popularity": 6,
+      "isNew": false
+    },
+    {
+      "id": "p15",
+      "name": "AoT Phone Cover",
+      "category": "phone",
+      "style": "Minimal Anime",
+      "styleSlug": "minimal-anime",
+      "price": 299,
+      "image": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "iPhone",
+        "Samsung",
+        "OnePlus",
+        "Pixel"
+      ],
+      "description": "Durable TPU case with raised edge protection. Precision cutouts for all ports. Glossy finish with UV-resistant print.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Attack on Titan",
+      "tags": [
+        "attack-on-titan",
+        "phone",
+        "minimal-anime"
+      ],
+      "popularity": 10,
+      "isNew": false
+    },
+    {
+      "id": "p16",
+      "name": "AoT Figurine",
+      "category": "figurine",
+      "style": "Minimal Anime",
+      "styleSlug": "minimal-anime",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "Standard"
+      ],
+      "description": "Hand-painted PVC collectible figure. Approx 18\u201320cm tall. Includes display stand and collector packaging.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Attack on Titan",
+      "tags": [
+        "attack-on-titan",
+        "figurine",
+        "minimal-anime"
+      ],
+      "popularity": 9,
+      "isNew": false
+    },
+    {
+      "id": "p17",
+      "name": "Demon Slayer Hoodie",
+      "category": "hoodie",
+      "style": "Minimal Anime",
+      "styleSlug": "minimal-anime",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Premium 350 GSM heavyweight cotton hoodie. Soft fleece interior, ribbed cuffs and hem. Unisex oversized fit \u2014 size down for a regular fit.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average"
+      ],
+      "anime": "Demon Slayer",
+      "tags": [
+        "demon-slayer",
+        "hoodie",
+        "minimal-anime"
+      ],
+      "popularity": 8,
+      "isNew": true
+    },
+    {
+      "id": "p18",
+      "name": "Demon Slayer Tee",
+      "category": "tee",
+      "style": "Minimal Anime",
+      "styleSlug": "minimal-anime",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Demon Slayer",
+      "tags": [
+        "demon-slayer",
+        "tee",
+        "minimal-anime"
+      ],
+      "popularity": 7,
+      "isNew": false
+    },
+    {
+      "id": "p19",
+      "name": "Demon Slayer Phone",
+      "category": "phone",
+      "style": "Minimal Anime",
+      "styleSlug": "minimal-anime",
+      "price": 299,
+      "image": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "iPhone",
+        "Samsung",
+        "OnePlus",
+        "Pixel"
+      ],
+      "description": "Durable TPU case with raised edge protection. Precision cutouts for all ports. Glossy finish with UV-resistant print.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Demon Slayer",
+      "tags": [
+        "demon-slayer",
+        "phone",
+        "minimal-anime"
+      ],
+      "popularity": 6,
+      "isNew": false
+    },
+    {
+      "id": "p20",
+      "name": "Demon Slayer Figurine",
+      "category": "figurine",
+      "style": "Minimal Anime",
+      "styleSlug": "minimal-anime",
+      "price": 2199,
+      "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "Standard"
+      ],
+      "description": "Hand-painted PVC collectible figure. Approx 18\u201320cm tall. Includes display stand and collector packaging.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Demon Slayer",
+      "tags": [
+        "demon-slayer",
+        "figurine",
+        "minimal-anime"
+      ],
+      "popularity": 10,
+      "isNew": true
+    },
+    {
+      "id": "p21",
+      "name": "Dragon Ball Hoodie",
+      "category": "hoodie",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Premium 350 GSM heavyweight cotton hoodie. Soft fleece interior, ribbed cuffs and hem. Unisex oversized fit \u2014 size down for a regular fit.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average"
+      ],
+      "anime": "Dragon Ball",
+      "tags": [
+        "dragon-ball",
+        "hoodie",
+        "tokyo-street"
+      ],
+      "popularity": 9,
+      "isNew": false
+    },
+    {
+      "id": "p22",
+      "name": "Dragon Ball Tee",
+      "category": "tee",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Dragon Ball",
+      "tags": [
+        "dragon-ball",
+        "tee",
+        "tokyo-street"
+      ],
+      "popularity": 8,
+      "isNew": false
+    },
+    {
+      "id": "p23",
+      "name": "Dragon Ball Phone",
+      "category": "phone",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 299,
+      "image": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "iPhone",
+        "Samsung",
+        "OnePlus",
+        "Pixel"
+      ],
+      "description": "Durable TPU case with raised edge protection. Precision cutouts for all ports. Glossy finish with UV-resistant print.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Dragon Ball",
+      "tags": [
+        "dragon-ball",
+        "phone",
+        "tokyo-street"
+      ],
+      "popularity": 7,
+      "isNew": false
+    },
+    {
+      "id": "p24",
+      "name": "Dragon Ball Figurine",
+      "category": "figurine",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 1899,
+      "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "Standard"
+      ],
+      "description": "Hand-painted PVC collectible figure. Approx 18\u201320cm tall. Includes display stand and collector packaging.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Dragon Ball",
+      "tags": [
+        "dragon-ball",
+        "figurine",
+        "tokyo-street"
+      ],
+      "popularity": 6,
+      "isNew": false
+    },
+    {
+      "id": "p25",
+      "name": "Tokyo Revengers Hoodie",
+      "category": "hoodie",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 2099,
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Premium 350 GSM heavyweight cotton hoodie. Soft fleece interior, ribbed cuffs and hem. Unisex oversized fit \u2014 size down for a regular fit.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average"
+      ],
+      "anime": "Tokyo Revengers",
+      "tags": [
+        "tokyo-revengers",
+        "hoodie",
+        "tokyo-street"
+      ],
+      "popularity": 10,
+      "isNew": true
+    },
+    {
+      "id": "p26",
+      "name": "Tokyo Revengers Tee",
+      "category": "tee",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Tokyo Revengers",
+      "tags": [
+        "tokyo-revengers",
+        "tee",
+        "tokyo-street"
+      ],
+      "popularity": 9,
+      "isNew": false
+    },
+    {
+      "id": "p27",
+      "name": "Tokyo Revengers Phone",
+      "category": "phone",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 299,
+      "image": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "iPhone",
+        "Samsung",
+        "OnePlus",
+        "Pixel"
+      ],
+      "description": "Durable TPU case with raised edge protection. Precision cutouts for all ports. Glossy finish with UV-resistant print.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Tokyo Revengers",
+      "tags": [
+        "tokyo-revengers",
+        "phone",
+        "tokyo-street"
+      ],
+      "popularity": 8,
+      "isNew": false
+    },
+    {
+      "id": "p28",
+      "name": "Tokyo Revengers Figurine",
+      "category": "figurine",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 1899,
+      "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "Standard"
+      ],
+      "description": "Hand-painted PVC collectible figure. Approx 18\u201320cm tall. Includes display stand and collector packaging.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Tokyo Revengers",
+      "tags": [
+        "tokyo-revengers",
+        "figurine",
+        "tokyo-street"
+      ],
+      "popularity": 7,
+      "isNew": false
+    },
+    {
+      "id": "p29",
+      "name": "Chainsaw Man Hoodie",
+      "category": "hoodie",
+      "style": "Cyberpunk",
+      "styleSlug": "cyberpunk",
+      "price": 2099,
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Premium 350 GSM heavyweight cotton hoodie. Soft fleece interior, ribbed cuffs and hem. Unisex oversized fit \u2014 size down for a regular fit.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average"
+      ],
+      "anime": "Chainsaw Man",
+      "tags": [
+        "chainsaw-man",
+        "hoodie",
+        "cyberpunk"
+      ],
+      "popularity": 6,
+      "isNew": true
+    },
+    {
+      "id": "p30",
+      "name": "Chainsaw Man Tee",
+      "category": "tee",
+      "style": "Cyberpunk",
+      "styleSlug": "cyberpunk",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Chainsaw Man",
+      "tags": [
+        "chainsaw-man",
+        "tee",
+        "cyberpunk"
+      ],
+      "popularity": 10,
+      "isNew": false
+    },
+    {
+      "id": "p31",
+      "name": "Chainsaw Man Phone",
+      "category": "phone",
+      "style": "Cyberpunk",
+      "styleSlug": "cyberpunk",
+      "price": 299,
+      "image": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "iPhone",
+        "Samsung",
+        "OnePlus",
+        "Pixel"
+      ],
+      "description": "Durable TPU case with raised edge protection. Precision cutouts for all ports. Glossy finish with UV-resistant print.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Chainsaw Man",
+      "tags": [
+        "chainsaw-man",
+        "phone",
+        "cyberpunk"
+      ],
+      "popularity": 9,
+      "isNew": false
+    },
+    {
+      "id": "p32",
+      "name": "Chainsaw Man Figurine",
+      "category": "figurine",
+      "style": "Cyberpunk",
+      "styleSlug": "cyberpunk",
+      "price": 1899,
+      "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "Standard"
+      ],
+      "description": "Hand-painted PVC collectible figure. Approx 18\u201320cm tall. Includes display stand and collector packaging.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Chainsaw Man",
+      "tags": [
+        "chainsaw-man",
+        "figurine",
+        "cyberpunk"
+      ],
+      "popularity": 8,
+      "isNew": false
+    },
+    {
+      "id": "p33",
+      "name": "Bleach Hoodie",
+      "category": "hoodie",
+      "style": "Minimal Anime",
+      "styleSlug": "minimal-anime",
+      "price": 2099,
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Premium 350 GSM heavyweight cotton hoodie. Soft fleece interior, ribbed cuffs and hem. Unisex oversized fit \u2014 size down for a regular fit.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average"
+      ],
+      "anime": "Bleach",
+      "tags": [
+        "bleach",
+        "hoodie",
+        "minimal-anime"
+      ],
+      "popularity": 7,
+      "isNew": true
+    },
+    {
+      "id": "p34",
+      "name": "Bleach Tee",
+      "category": "tee",
+      "style": "Minimal Anime",
+      "styleSlug": "minimal-anime",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Bleach",
+      "tags": [
+        "bleach",
+        "tee",
+        "minimal-anime"
+      ],
+      "popularity": 6,
+      "isNew": false
+    },
+    {
+      "id": "p35",
+      "name": "Bleach Phone",
+      "category": "phone",
+      "style": "Minimal Anime",
+      "styleSlug": "minimal-anime",
+      "price": 299,
+      "image": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "iPhone",
+        "Samsung",
+        "OnePlus",
+        "Pixel"
+      ],
+      "description": "Durable TPU case with raised edge protection. Precision cutouts for all ports. Glossy finish with UV-resistant print.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Bleach",
+      "tags": [
+        "bleach",
+        "phone",
+        "minimal-anime"
+      ],
+      "popularity": 10,
+      "isNew": false
+    },
+    {
+      "id": "p36",
+      "name": "Bleach Figurine",
+      "category": "figurine",
+      "style": "Minimal Anime",
+      "styleSlug": "minimal-anime",
+      "price": 1899,
+      "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "Standard"
+      ],
+      "description": "Hand-painted PVC collectible figure. Approx 18\u201320cm tall. Includes display stand and collector packaging.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Bleach",
+      "tags": [
+        "bleach",
+        "figurine",
+        "minimal-anime"
+      ],
+      "popularity": 9,
+      "isNew": false
+    },
+    {
+      "id": "p37",
+      "name": "Berserk Hoodie",
+      "category": "oversized",
+      "style": "Cyberpunk",
+      "styleSlug": "cyberpunk",
+      "price": 2199,
+      "image": "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "350 GSM heavyweight cotton in a relaxed oversized silhouette. Boxy fit, dropped shoulders \u2014 designed to be worn loose.",
+      "bodyTypes": [
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Berserk",
+      "tags": [
+        "berserk",
+        "oversized",
+        "cyberpunk"
+      ],
+      "popularity": 8,
+      "isNew": true
+    },
+    {
+      "id": "p38",
+      "name": "Berserk Tee",
+      "category": "tee",
+      "style": "Cyberpunk",
+      "styleSlug": "cyberpunk",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Berserk",
+      "tags": [
+        "berserk",
+        "tee",
+        "cyberpunk"
+      ],
+      "popularity": 7,
+      "isNew": false
+    },
+    {
+      "id": "p39",
+      "name": "Berserk Phone",
+      "category": "phone",
+      "style": "Cyberpunk",
+      "styleSlug": "cyberpunk",
+      "price": 299,
+      "image": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "iPhone",
+        "Samsung",
+        "OnePlus",
+        "Pixel"
+      ],
+      "description": "Durable TPU case with raised edge protection. Precision cutouts for all ports. Glossy finish with UV-resistant print.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Berserk",
+      "tags": [
+        "berserk",
+        "phone",
+        "cyberpunk"
+      ],
+      "popularity": 6,
+      "isNew": false
+    },
+    {
+      "id": "p40",
+      "name": "Berserk Figurine",
+      "category": "figurine",
+      "style": "Cyberpunk",
+      "styleSlug": "cyberpunk",
+      "price": 1899,
+      "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "Standard"
+      ],
+      "description": "Hand-painted PVC collectible figure. Approx 18\u201320cm tall. Includes display stand and collector packaging.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Berserk",
+      "tags": [
+        "berserk",
+        "figurine",
+        "cyberpunk"
+      ],
+      "popularity": 10,
+      "isNew": false
+    },
+    {
+      "id": "p41",
+      "name": "MHA Hoodie",
+      "category": "hoodie",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Premium 350 GSM heavyweight cotton hoodie. Soft fleece interior, ribbed cuffs and hem. Unisex oversized fit \u2014 size down for a regular fit.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average"
+      ],
+      "anime": "My Hero Academia",
+      "tags": [
+        "my-hero-academia",
+        "hoodie",
+        "tokyo-street"
+      ],
+      "popularity": 9,
+      "isNew": true
+    },
+    {
+      "id": "p42",
+      "name": "MHA Tee",
+      "category": "tee",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "My Hero Academia",
+      "tags": [
+        "my-hero-academia",
+        "tee",
+        "tokyo-street"
+      ],
+      "popularity": 8,
+      "isNew": false
+    },
+    {
+      "id": "p43",
+      "name": "MHA Phone",
+      "category": "phone",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 299,
+      "image": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "iPhone",
+        "Samsung",
+        "OnePlus",
+        "Pixel"
+      ],
+      "description": "Durable TPU case with raised edge protection. Precision cutouts for all ports. Glossy finish with UV-resistant print.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "My Hero Academia",
+      "tags": [
+        "my-hero-academia",
+        "phone",
+        "tokyo-street"
+      ],
+      "popularity": 7,
+      "isNew": false
+    },
+    {
+      "id": "p44",
+      "name": "MHA Figurine",
+      "category": "figurine",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 1899,
+      "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "Standard"
+      ],
+      "description": "Hand-painted PVC collectible figure. Approx 18\u201320cm tall. Includes display stand and collector packaging.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "My Hero Academia",
+      "tags": [
+        "my-hero-academia",
+        "figurine",
+        "tokyo-street"
+      ],
+      "popularity": 6,
+      "isNew": false
+    },
+    {
+      "id": "p45",
+      "name": "Solo Leveling Hoodie",
+      "category": "oversized",
+      "style": "Cyberpunk",
+      "styleSlug": "cyberpunk",
+      "price": 2099,
+      "image": "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "350 GSM heavyweight cotton in a relaxed oversized silhouette. Boxy fit, dropped shoulders \u2014 designed to be worn loose.",
+      "bodyTypes": [
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Solo Leveling",
+      "tags": [
+        "solo-leveling",
+        "oversized",
+        "cyberpunk"
+      ],
+      "popularity": 10,
+      "isNew": true
+    },
+    {
+      "id": "p46",
+      "name": "Solo Leveling Tee",
+      "category": "tee",
+      "style": "Cyberpunk",
+      "styleSlug": "cyberpunk",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Solo Leveling",
+      "tags": [
+        "solo-leveling",
+        "tee",
+        "cyberpunk"
+      ],
+      "popularity": 9,
+      "isNew": false
+    },
+    {
+      "id": "p47",
+      "name": "Solo Leveling Phone",
+      "category": "phone",
+      "style": "Cyberpunk",
+      "styleSlug": "cyberpunk",
+      "price": 299,
+      "image": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "iPhone",
+        "Samsung",
+        "OnePlus",
+        "Pixel"
+      ],
+      "description": "Durable TPU case with raised edge protection. Precision cutouts for all ports. Glossy finish with UV-resistant print.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Solo Leveling",
+      "tags": [
+        "solo-leveling",
+        "phone",
+        "cyberpunk"
+      ],
+      "popularity": 8,
+      "isNew": false
+    },
+    {
+      "id": "p48",
+      "name": "Solo Leveling Figurine",
+      "category": "figurine",
+      "style": "Cyberpunk",
+      "styleSlug": "cyberpunk",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "Standard"
+      ],
+      "description": "Hand-painted PVC collectible figure. Approx 18\u201320cm tall. Includes display stand and collector packaging.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Solo Leveling",
+      "tags": [
+        "solo-leveling",
+        "figurine",
+        "cyberpunk"
+      ],
+      "popularity": 7,
+      "isNew": false
+    },
+    {
+      "id": "p49",
+      "name": "Bushido Oversized Hoodie",
+      "category": "hoodie",
+      "style": "Shibuya Casual",
+      "styleSlug": "shibuya-casual",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Premium 350 GSM heavyweight cotton hoodie. Soft fleece interior, ribbed cuffs and hem. Unisex oversized fit \u2014 size down for a regular fit.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "hoodie",
+        "shibuya-casual"
+      ],
+      "popularity": 6,
+      "isNew": false
+    },
+    {
+      "id": "p50",
+      "name": "Ronin Graphic Tee",
+      "category": "tee",
+      "style": "Shibuya Casual",
+      "styleSlug": "shibuya-casual",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "tee",
+        "shibuya-casual"
+      ],
+      "popularity": 10,
+      "isNew": false
+    },
+    {
+      "id": "p51",
+      "name": "Neo Tokyo Vol.1 Oversized",
+      "category": "oversized",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 2199,
+      "image": "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "350 GSM heavyweight cotton in a relaxed oversized silhouette. Boxy fit, dropped shoulders \u2014 designed to be worn loose.",
+      "bodyTypes": [
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "oversized",
+        "tokyo-street"
+      ],
+      "popularity": 9,
+      "isNew": true
+    },
+    {
+      "id": "p52",
+      "name": "Cyber Shinobi Oversized",
+      "category": "oversized",
+      "style": "Cyberpunk",
+      "styleSlug": "cyberpunk",
+      "price": 2199,
+      "image": "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "350 GSM heavyweight cotton in a relaxed oversized silhouette. Boxy fit, dropped shoulders \u2014 designed to be worn loose.",
+      "bodyTypes": [
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "oversized",
+        "cyberpunk"
+      ],
+      "popularity": 8,
+      "isNew": true
+    },
+    {
+      "id": "p53",
+      "name": "Varsity Anime Bomber",
+      "category": "jacket",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 3999,
+      "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Lightweight varsity-style jacket with embroidered back graphic. Wind-resistant shell, soft lining. True to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "jacket",
+        "tokyo-street"
+      ],
+      "popularity": 7,
+      "isNew": true
+    },
+    {
+      "id": "p54",
+      "name": "Dark Arc Bomber Jacket",
+      "category": "jacket",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 3999,
+      "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Lightweight varsity-style jacket with embroidered back graphic. Wind-resistant shell, soft lining. True to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "jacket",
+        "tokyo-street"
+      ],
+      "popularity": 6,
+      "isNew": true
+    },
+    {
+      "id": "p55",
+      "name": "Void Realm Hoodie",
+      "category": "hoodie",
+      "style": "Cyberpunk",
+      "styleSlug": "cyberpunk",
+      "price": 2099,
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Premium 350 GSM heavyweight cotton hoodie. Soft fleece interior, ribbed cuffs and hem. Unisex oversized fit \u2014 size down for a regular fit.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "hoodie",
+        "cyberpunk"
+      ],
+      "popularity": 10,
+      "isNew": false
+    },
+    {
+      "id": "p56",
+      "name": "Silent Thunder Tee",
+      "category": "tee",
+      "style": "Minimal Anime",
+      "styleSlug": "minimal-anime",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "tee",
+        "minimal-anime"
+      ],
+      "popularity": 9,
+      "isNew": false
+    },
+    {
+      "id": "p57",
+      "name": "Shadow Realm Phone Cover",
+      "category": "phone",
+      "style": "Minimal Anime",
+      "styleSlug": "minimal-anime",
+      "price": 299,
+      "image": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "iPhone",
+        "Samsung",
+        "OnePlus",
+        "Pixel"
+      ],
+      "description": "Durable TPU case with raised edge protection. Precision cutouts for all ports. Glossy finish with UV-resistant print.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "phone",
+        "minimal-anime"
+      ],
+      "popularity": 8,
+      "isNew": false
+    },
+    {
+      "id": "p58",
+      "name": "Limited Edition Figure",
+      "category": "figurine",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "Standard"
+      ],
+      "description": "Hand-painted PVC collectible figure. Approx 18\u201320cm tall. Includes display stand and collector packaging.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "figurine",
+        "tokyo-street"
+      ],
+      "popularity": 7,
+      "isNew": false
+    },
+    {
+      "id": "p59",
+      "name": "The Reaper Hoodie",
+      "category": "hoodie",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Premium 350 GSM heavyweight cotton hoodie. Soft fleece interior, ribbed cuffs and hem. Unisex oversized fit \u2014 size down for a regular fit.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "hoodie",
+        "tokyo-street"
+      ],
+      "popularity": 6,
+      "isNew": false
+    },
+    {
+      "id": "p60",
+      "name": "Hollow World Graphic Tee",
+      "category": "tee",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "tee",
+        "tokyo-street"
+      ],
+      "popularity": 10,
+      "isNew": false
+    },
+    {
+      "id": "p61",
+      "name": "Spiral Abyss Cover",
+      "category": "phone",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 299,
+      "image": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "iPhone",
+        "Samsung",
+        "OnePlus",
+        "Pixel"
+      ],
+      "description": "Durable TPU case with raised edge protection. Precision cutouts for all ports. Glossy finish with UV-resistant print.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "phone",
+        "tokyo-street"
+      ],
+      "popularity": 9,
+      "isNew": false
+    },
+    {
+      "id": "p62",
+      "name": "Cursed Spirit Figure",
+      "category": "figurine",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 1899,
+      "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "Standard"
+      ],
+      "description": "Hand-painted PVC collectible figure. Approx 18\u201320cm tall. Includes display stand and collector packaging.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "figurine",
+        "tokyo-street"
+      ],
+      "popularity": 8,
+      "isNew": false
+    },
+    {
+      "id": "p63",
+      "name": "Ancient Battle Hoodie",
+      "category": "hoodie",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 2099,
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Premium 350 GSM heavyweight cotton hoodie. Soft fleece interior, ribbed cuffs and hem. Unisex oversized fit \u2014 size down for a regular fit.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "hoodie",
+        "tokyo-street"
+      ],
+      "popularity": 7,
+      "isNew": false
+    },
+    {
+      "id": "p64",
+      "name": "Awakened Form Tee",
+      "category": "tee",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "tee",
+        "tokyo-street"
+      ],
+      "popularity": 6,
+      "isNew": false
+    },
+    {
+      "id": "p65",
+      "name": "Eternal Loop Cover",
+      "category": "phone",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 299,
+      "image": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "iPhone",
+        "Samsung",
+        "OnePlus",
+        "Pixel"
+      ],
+      "description": "Durable TPU case with raised edge protection. Precision cutouts for all ports. Glossy finish with UV-resistant print.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "phone",
+        "tokyo-street"
+      ],
+      "popularity": 10,
+      "isNew": false
+    },
+    {
+      "id": "p66",
+      "name": "God Tier Figurine",
+      "category": "figurine",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "Standard"
+      ],
+      "description": "Hand-painted PVC collectible figure. Approx 18\u201320cm tall. Includes display stand and collector packaging.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "figurine",
+        "tokyo-street"
+      ],
+      "popularity": 9,
+      "isNew": false
+    },
+    {
+      "id": "p67",
+      "name": "Street Samurai Hoodie",
+      "category": "hoodie",
+      "style": "Shibuya Casual",
+      "styleSlug": "shibuya-casual",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Premium 350 GSM heavyweight cotton hoodie. Soft fleece interior, ribbed cuffs and hem. Unisex oversized fit \u2014 size down for a regular fit.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "hoodie",
+        "shibuya-casual"
+      ],
+      "popularity": 8,
+      "isNew": false
+    },
+    {
+      "id": "p68",
+      "name": "Fallen Kingdom Tee",
+      "category": "tee",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "tee",
+        "tokyo-street"
+      ],
+      "popularity": 7,
+      "isNew": false
+    },
+    {
+      "id": "p69",
+      "name": "Blade Edge Cover",
+      "category": "phone",
+      "style": "Shibuya Casual",
+      "styleSlug": "shibuya-casual",
+      "price": 299,
+      "image": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "iPhone",
+        "Samsung",
+        "OnePlus",
+        "Pixel"
+      ],
+      "description": "Durable TPU case with raised edge protection. Precision cutouts for all ports. Glossy finish with UV-resistant print.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "phone",
+        "shibuya-casual"
+      ],
+      "popularity": 6,
+      "isNew": false
+    },
+    {
+      "id": "p70",
+      "name": "Rogue Saint Figure",
+      "category": "figurine",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 1899,
+      "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "Standard"
+      ],
+      "description": "Hand-painted PVC collectible figure. Approx 18\u201320cm tall. Includes display stand and collector packaging.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "figurine",
+        "tokyo-street"
+      ],
+      "popularity": 10,
+      "isNew": false
+    },
+    {
+      "id": "p71",
+      "name": "Titan Silhouette Hoodie",
+      "category": "hoodie",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Premium 350 GSM heavyweight cotton hoodie. Soft fleece interior, ribbed cuffs and hem. Unisex oversized fit \u2014 size down for a regular fit.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "hoodie",
+        "tokyo-street"
+      ],
+      "popularity": 9,
+      "isNew": false
+    },
+    {
+      "id": "p72",
+      "name": "Last Arc Tee",
+      "category": "tee",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "tee",
+        "tokyo-street"
+      ],
+      "popularity": 8,
+      "isNew": false
+    },
+    {
+      "id": "p73",
+      "name": "Final Form Cover",
+      "category": "phone",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 299,
+      "image": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "iPhone",
+        "Samsung",
+        "OnePlus",
+        "Pixel"
+      ],
+      "description": "Durable TPU case with raised edge protection. Precision cutouts for all ports. Glossy finish with UV-resistant print.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "phone",
+        "tokyo-street"
+      ],
+      "popularity": 7,
+      "isNew": false
+    },
+    {
+      "id": "p74",
+      "name": "Rebel Spirit Figure",
+      "category": "figurine",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 1899,
+      "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "Standard"
+      ],
+      "description": "Hand-painted PVC collectible figure. Approx 18\u201320cm tall. Includes display stand and collector packaging.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "figurine",
+        "tokyo-street"
+      ],
+      "popularity": 6,
+      "isNew": false
+    },
+    {
+      "id": "p75",
+      "name": "Celestial Season Oversized",
+      "category": "oversized",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 2099,
+      "image": "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "350 GSM heavyweight cotton in a relaxed oversized silhouette. Boxy fit, dropped shoulders \u2014 designed to be worn loose.",
+      "bodyTypes": [
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "oversized",
+        "tokyo-street"
+      ],
+      "popularity": 10,
+      "isNew": true
+    },
+    {
+      "id": "p76",
+      "name": "Parallel World Tee",
+      "category": "tee",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "tee",
+        "tokyo-street"
+      ],
+      "popularity": 9,
+      "isNew": false
+    },
+    {
+      "id": "p77",
+      "name": "Cosmic Chain Cover",
+      "category": "phone",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 299,
+      "image": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "iPhone",
+        "Samsung",
+        "OnePlus",
+        "Pixel"
+      ],
+      "description": "Durable TPU case with raised edge protection. Precision cutouts for all ports. Glossy finish with UV-resistant print.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "phone",
+        "tokyo-street"
+      ],
+      "popularity": 8,
+      "isNew": false
+    },
+    {
+      "id": "p78",
+      "name": "Legendary Drop Figure",
+      "category": "figurine",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "Standard"
+      ],
+      "description": "Hand-painted PVC collectible figure. Approx 18\u201320cm tall. Includes display stand and collector packaging.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "figurine",
+        "tokyo-street"
+      ],
+      "popularity": 7,
+      "isNew": false
+    },
+    {
+      "id": "p79",
+      "name": "Ghost Protocol Hoodie",
+      "category": "hoodie",
+      "style": "Minimal Anime",
+      "styleSlug": "minimal-anime",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Premium 350 GSM heavyweight cotton hoodie. Soft fleece interior, ribbed cuffs and hem. Unisex oversized fit \u2014 size down for a regular fit.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "hoodie",
+        "minimal-anime"
+      ],
+      "popularity": 6,
+      "isNew": false
+    },
+    {
+      "id": "p80",
+      "name": "Phantom Strike Tee",
+      "category": "tee",
+      "style": "Cyberpunk",
+      "styleSlug": "cyberpunk",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "tee",
+        "cyberpunk"
+      ],
+      "popularity": 10,
+      "isNew": false
+    },
+    {
+      "id": "p81",
+      "name": "Void Edge Cover",
+      "category": "phone",
+      "style": "Cyberpunk",
+      "styleSlug": "cyberpunk",
+      "price": 299,
+      "image": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "iPhone",
+        "Samsung",
+        "OnePlus",
+        "Pixel"
+      ],
+      "description": "Durable TPU case with raised edge protection. Precision cutouts for all ports. Glossy finish with UV-resistant print.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "phone",
+        "cyberpunk"
+      ],
+      "popularity": 9,
+      "isNew": false
+    },
+    {
+      "id": "p82",
+      "name": "Ethereal Form Figure",
+      "category": "figurine",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 1899,
+      "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "Standard"
+      ],
+      "description": "Hand-painted PVC collectible figure. Approx 18\u201320cm tall. Includes display stand and collector packaging.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "figurine",
+        "tokyo-street"
+      ],
+      "popularity": 8,
+      "isNew": false
+    },
+    {
+      "id": "p83",
+      "name": "Dominion Oversized Hoodie",
+      "category": "hoodie",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 2099,
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Premium 350 GSM heavyweight cotton hoodie. Soft fleece interior, ribbed cuffs and hem. Unisex oversized fit \u2014 size down for a regular fit.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "hoodie",
+        "tokyo-street"
+      ],
+      "popularity": 7,
+      "isNew": true
+    },
+    {
+      "id": "p84",
+      "name": "Force Awakened Tee",
+      "category": "tee",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "tee",
+        "tokyo-street"
+      ],
+      "popularity": 6,
+      "isNew": false
+    },
+    {
+      "id": "p85",
+      "name": "Surge Cover",
+      "category": "phone",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 299,
+      "image": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "iPhone",
+        "Samsung",
+        "OnePlus",
+        "Pixel"
+      ],
+      "description": "Durable TPU case with raised edge protection. Precision cutouts for all ports. Glossy finish with UV-resistant print.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "phone",
+        "tokyo-street"
+      ],
+      "popularity": 10,
+      "isNew": false
+    },
+    {
+      "id": "p86",
+      "name": "Apex Collector Figure",
+      "category": "figurine",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "Standard"
+      ],
+      "description": "Hand-painted PVC collectible figure. Approx 18\u201320cm tall. Includes display stand and collector packaging.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "figurine",
+        "tokyo-street"
+      ],
+      "popularity": 9,
+      "isNew": false
+    },
+    {
+      "id": "p87",
+      "name": "Ronin Heritage Hoodie",
+      "category": "hoodie",
+      "style": "Shibuya Casual",
+      "styleSlug": "shibuya-casual",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Premium 350 GSM heavyweight cotton hoodie. Soft fleece interior, ribbed cuffs and hem. Unisex oversized fit \u2014 size down for a regular fit.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "hoodie",
+        "shibuya-casual"
+      ],
+      "popularity": 8,
+      "isNew": false
+    },
+    {
+      "id": "p88",
+      "name": "Kenjutsu Graphic Tee",
+      "category": "tee",
+      "style": "Shibuya Casual",
+      "styleSlug": "shibuya-casual",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "tee",
+        "shibuya-casual"
+      ],
+      "popularity": 7,
+      "isNew": false
+    },
+    {
+      "id": "p89",
+      "name": "Steel Path Cover",
+      "category": "phone",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 299,
+      "image": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "iPhone",
+        "Samsung",
+        "OnePlus",
+        "Pixel"
+      ],
+      "description": "Durable TPU case with raised edge protection. Precision cutouts for all ports. Glossy finish with UV-resistant print.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "phone",
+        "tokyo-street"
+      ],
+      "popularity": 6,
+      "isNew": false
+    },
+    {
+      "id": "p90",
+      "name": "Apex Warrior Figure",
+      "category": "figurine",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 1899,
+      "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "Standard"
+      ],
+      "description": "Hand-painted PVC collectible figure. Approx 18\u201320cm tall. Includes display stand and collector packaging.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "figurine",
+        "tokyo-street"
+      ],
+      "popularity": 10,
+      "isNew": false
+    },
+    {
+      "id": "p91",
+      "name": "Veil Shadow Hoodie",
+      "category": "oversized",
+      "style": "Minimal Anime",
+      "styleSlug": "minimal-anime",
+      "price": 2099,
+      "image": "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "350 GSM heavyweight cotton in a relaxed oversized silhouette. Boxy fit, dropped shoulders \u2014 designed to be worn loose.",
+      "bodyTypes": [
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "oversized",
+        "minimal-anime"
+      ],
+      "popularity": 9,
+      "isNew": true
+    },
+    {
+      "id": "p92",
+      "name": "Nova Shadow Tee",
+      "category": "tee",
+      "style": "Minimal Anime",
+      "styleSlug": "minimal-anime",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "tee",
+        "minimal-anime"
+      ],
+      "popularity": 8,
+      "isNew": false
+    },
+    {
+      "id": "p93",
+      "name": "Nova Shadow Cover",
+      "category": "phone",
+      "style": "Minimal Anime",
+      "styleSlug": "minimal-anime",
+      "price": 299,
+      "image": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "iPhone",
+        "Samsung",
+        "OnePlus",
+        "Pixel"
+      ],
+      "description": "Durable TPU case with raised edge protection. Precision cutouts for all ports. Glossy finish with UV-resistant print.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "phone",
+        "minimal-anime"
+      ],
+      "popularity": 7,
+      "isNew": false
+    },
+    {
+      "id": "p94",
+      "name": "Storm Shadow Figure",
+      "category": "figurine",
+      "style": "Minimal Anime",
+      "styleSlug": "minimal-anime",
+      "price": 1899,
+      "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "Standard"
+      ],
+      "description": "Hand-painted PVC collectible figure. Approx 18\u201320cm tall. Includes display stand and collector packaging.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "figurine",
+        "minimal-anime"
+      ],
+      "popularity": 6,
+      "isNew": false
+    },
+    {
+      "id": "p95",
+      "name": "Storm Dragon Hoodie",
+      "category": "hoodie",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Premium 350 GSM heavyweight cotton hoodie. Soft fleece interior, ribbed cuffs and hem. Unisex oversized fit \u2014 size down for a regular fit.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "hoodie",
+        "tokyo-street"
+      ],
+      "popularity": 10,
+      "isNew": false
+    },
+    {
+      "id": "p96",
+      "name": "Eclipse Dragon Tee",
+      "category": "tee",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "tee",
+        "tokyo-street"
+      ],
+      "popularity": 9,
+      "isNew": false
+    },
+    {
+      "id": "p97",
+      "name": "Eclipse Dragon Cover",
+      "category": "phone",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 299,
+      "image": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "iPhone",
+        "Samsung",
+        "OnePlus",
+        "Pixel"
+      ],
+      "description": "Durable TPU case with raised edge protection. Precision cutouts for all ports. Glossy finish with UV-resistant print.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "phone",
+        "tokyo-street"
+      ],
+      "popularity": 8,
+      "isNew": false
+    },
+    {
+      "id": "p98",
+      "name": "Storm Dragon Figure",
+      "category": "figurine",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "Standard"
+      ],
+      "description": "Hand-painted PVC collectible figure. Approx 18\u201320cm tall. Includes display stand and collector packaging.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "figurine",
+        "tokyo-street"
+      ],
+      "popularity": 7,
+      "isNew": false
+    },
+    {
+      "id": "p99",
+      "name": "Storm Storm Hoodie",
+      "category": "oversized",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 2099,
+      "image": "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "350 GSM heavyweight cotton in a relaxed oversized silhouette. Boxy fit, dropped shoulders \u2014 designed to be worn loose.",
+      "bodyTypes": [
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "oversized",
+        "tokyo-street"
+      ],
+      "popularity": 6,
+      "isNew": true
+    },
+    {
+      "id": "p100",
+      "name": "Veil Storm Tee",
+      "category": "tee",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "tee",
+        "tokyo-street"
+      ],
+      "popularity": 10,
+      "isNew": false
+    },
+    {
+      "id": "p101",
+      "name": "Iron Blade Hoodie",
+      "category": "jacket",
+      "style": "Shibuya Casual",
+      "styleSlug": "shibuya-casual",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Lightweight varsity-style jacket with embroidered back graphic. Wind-resistant shell, soft lining. True to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "jacket",
+        "shibuya-casual"
+      ],
+      "popularity": 9,
+      "isNew": true
+    },
+    {
+      "id": "p102",
+      "name": "Nova Blade Tee",
+      "category": "tee",
+      "style": "Shibuya Casual",
+      "styleSlug": "shibuya-casual",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "tee",
+        "shibuya-casual"
+      ],
+      "popularity": 8,
+      "isNew": false
+    },
+    {
+      "id": "p103",
+      "name": "Veil Flame Hoodie",
+      "category": "hoodie",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 2099,
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Premium 350 GSM heavyweight cotton hoodie. Soft fleece interior, ribbed cuffs and hem. Unisex oversized fit \u2014 size down for a regular fit.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "hoodie",
+        "tokyo-street"
+      ],
+      "popularity": 7,
+      "isNew": true
+    },
+    {
+      "id": "p104",
+      "name": "Veil Flame Tee",
+      "category": "tee",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "tee",
+        "tokyo-street"
+      ],
+      "popularity": 6,
+      "isNew": false
+    },
+    {
+      "id": "p105",
+      "name": "Neon Eclipse Hoodie",
+      "category": "oversized",
+      "style": "Cyberpunk",
+      "styleSlug": "cyberpunk",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "350 GSM heavyweight cotton in a relaxed oversized silhouette. Boxy fit, dropped shoulders \u2014 designed to be worn loose.",
+      "bodyTypes": [
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "oversized",
+        "cyberpunk"
+      ],
+      "popularity": 10,
+      "isNew": false
+    },
+    {
+      "id": "p106",
+      "name": "Nova Eclipse Tee",
+      "category": "tee",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "tee",
+        "tokyo-street"
+      ],
+      "popularity": 9,
+      "isNew": false
+    },
+    {
+      "id": "p107",
+      "name": "Apex Phantom Hoodie",
+      "category": "hoodie",
+      "style": "Cyberpunk",
+      "styleSlug": "cyberpunk",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Premium 350 GSM heavyweight cotton hoodie. Soft fleece interior, ribbed cuffs and hem. Unisex oversized fit \u2014 size down for a regular fit.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "hoodie",
+        "cyberpunk"
+      ],
+      "popularity": 8,
+      "isNew": true
+    },
+    {
+      "id": "p108",
+      "name": "Forge Phantom Tee",
+      "category": "tee",
+      "style": "Cyberpunk",
+      "styleSlug": "cyberpunk",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "tee",
+        "cyberpunk"
+      ],
+      "popularity": 7,
+      "isNew": false
+    },
+    {
+      "id": "p109",
+      "name": "Veil Galaxy Hoodie",
+      "category": "oversized",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 2099,
+      "image": "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "350 GSM heavyweight cotton in a relaxed oversized silhouette. Boxy fit, dropped shoulders \u2014 designed to be worn loose.",
+      "bodyTypes": [
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "oversized",
+        "tokyo-street"
+      ],
+      "popularity": 6,
+      "isNew": true
+    },
+    {
+      "id": "p110",
+      "name": "Iron Galaxy Tee",
+      "category": "tee",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "tee",
+        "tokyo-street"
+      ],
+      "popularity": 10,
+      "isNew": false
+    },
+    {
+      "id": "p111",
+      "name": "Dusk Mystic Hoodie",
+      "category": "hoodie",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Premium 350 GSM heavyweight cotton hoodie. Soft fleece interior, ribbed cuffs and hem. Unisex oversized fit \u2014 size down for a regular fit.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "hoodie",
+        "tokyo-street"
+      ],
+      "popularity": 9,
+      "isNew": true
+    },
+    {
+      "id": "p112",
+      "name": "Dusk Mystic Tee",
+      "category": "tee",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "tee",
+        "tokyo-street"
+      ],
+      "popularity": 8,
+      "isNew": false
+    },
+    {
+      "id": "p113",
+      "name": "Eclipse Cosmic Hoodie",
+      "category": "jacket",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 2099,
+      "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Lightweight varsity-style jacket with embroidered back graphic. Wind-resistant shell, soft lining. True to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "jacket",
+        "tokyo-street"
+      ],
+      "popularity": 7,
+      "isNew": true
+    },
+    {
+      "id": "p114",
+      "name": "Neon Cosmic Tee",
+      "category": "tee",
+      "style": "Cyberpunk",
+      "styleSlug": "cyberpunk",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "tee",
+        "cyberpunk"
+      ],
+      "popularity": 6,
+      "isNew": false
+    },
+    {
+      "id": "p115",
+      "name": "Neon Eternal Hoodie",
+      "category": "oversized",
+      "style": "Cyberpunk",
+      "styleSlug": "cyberpunk",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "350 GSM heavyweight cotton in a relaxed oversized silhouette. Boxy fit, dropped shoulders \u2014 designed to be worn loose.",
+      "bodyTypes": [
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "oversized",
+        "cyberpunk"
+      ],
+      "popularity": 10,
+      "isNew": false
+    },
+    {
+      "id": "p116",
+      "name": "Storm Eternal Tee",
+      "category": "tee",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "tee",
+        "tokyo-street"
+      ],
+      "popularity": 9,
+      "isNew": false
+    },
+    {
+      "id": "p117",
+      "name": "Dusk Abyss Hoodie",
+      "category": "hoodie",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 2099,
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "Premium 350 GSM heavyweight cotton hoodie. Soft fleece interior, ribbed cuffs and hem. Unisex oversized fit \u2014 size down for a regular fit.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "hoodie",
+        "tokyo-street"
+      ],
+      "popularity": 8,
+      "isNew": true
+    },
+    {
+      "id": "p118",
+      "name": "Storm Abyss Tee",
+      "category": "tee",
+      "style": "Tokyo Street",
+      "styleSlug": "tokyo-street",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "tee",
+        "tokyo-street"
+      ],
+      "popularity": 7,
+      "isNew": false
+    },
+    {
+      "id": "p119",
+      "name": "Dusk Void Hoodie",
+      "category": "oversized",
+      "style": "Cyberpunk",
+      "styleSlug": "cyberpunk",
+      "price": 2199,
+      "image": "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "350 GSM heavyweight cotton in a relaxed oversized silhouette. Boxy fit, dropped shoulders \u2014 designed to be worn loose.",
+      "bodyTypes": [
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "oversized",
+        "cyberpunk"
+      ],
+      "popularity": 6,
+      "isNew": true
+    },
+    {
+      "id": "p120",
+      "name": "Eclipse Void Tee",
+      "category": "tee",
+      "style": "Cyberpunk",
+      "styleSlug": "cyberpunk",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "180 GSM 100% cotton streetwear tee. Pre-shrunk fabric, drop-shoulder silhouette. Wears true to size.",
+      "bodyTypes": [
+        "Slim",
+        "Athletic",
+        "Average",
+        "Broad"
+      ],
+      "anime": "Original",
+      "tags": [
+        "original",
+        "tee",
+        "cyberpunk"
+      ],
+      "popularity": 10,
+      "isNew": false
+    }
+  ]
+}

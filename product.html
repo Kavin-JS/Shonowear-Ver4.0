@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product — Shonowear</title>
+  <meta name="description" content="Shop anime-inspired streetwear on Shonowear. Premium fabric, curated drops, free shipping above ₹999.">
+  <meta property="og:type" content="product">
+  <meta name="theme-color" content="#e8153a">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080810'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial Black,sans-serif' font-size='13' font-weight='900' fill='%23e8153a'%3ESW%3C/text%3E%3C/svg%3E">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── Product Detail Page ── */
+    .pd-wrap { padding-top: 64px; min-height: 100vh; background: var(--ink); }
+
+    /* Breadcrumb */
+    .pd-breadcrumb {
+      padding: 20px 40px; max-width: 1280px; margin: 0 auto;
+      display: flex; align-items: center; gap: 8px;
+      font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase;
+    }
+    .pd-breadcrumb a { color: var(--muted); transition: color .2s; }
+    .pd-breadcrumb a:hover { color: var(--white); }
+    .pd-breadcrumb span { color: var(--border); }
+
+    /* Main layout */
+    .pd-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; max-width: 1280px; margin: 0 auto;
+      padding: 0 40px 80px;
+    }
+
+    /* Image gallery */
+    .pd-gallery { position: sticky; top: 80px; }
+    .pd-main-img {
+      aspect-ratio: 3/4; width: 100%;
+      background-size: cover; background-position: center top;
+      background-color: var(--ink2);
+      position: relative; overflow: hidden;
+      transition: background-image .3s ease;
+    }
+    /* Loading skeleton for product image */
+    .pd-img-loading {
+      background-image: none !important;
+      background: linear-gradient(
+        110deg,
+        var(--ink2) 30%,
+        var(--ink3) 50%,
+        var(--ink2) 70%
+      ) !important;
+      background-size: 200% 100% !important;
+      animation: shimmerImg 1.4s ease-in-out infinite;
+    }
+    .pd-img-loading::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @keyframes shimmerImg {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    .pd-main-img .pd-badge-new {
+      position: absolute; top: 16px; left: 16px;
+      background: var(--red); color: #fff;
+      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; padding: 5px 12px;
+    }
+    .pd-thumbs {
+      display: flex; gap: 8px; margin-top: 10px;
+    }
+    .pd-thumb {
+      width: 72px; height: 90px; flex-shrink: 0;
+      background-size: cover; background-position: center;
+      background-color: var(--ink3);
+      border: 2px solid transparent; cursor: pointer;
+      transition: border-color .2s, opacity .2s;
+      opacity: .65;
+    }
+    .pd-thumb.active { border-color: var(--red); opacity: 1; }
+    .pd-thumb:hover { opacity: .9; }
+
+    /* Product info */
+    .pd-info { display: flex; flex-direction: column; gap: 0; }
+    .pd-universe {
+      font-size: 10px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--red); margin-bottom: 10px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .pd-universe::before { content: ''; width: 20px; height: 1px; background: var(--red); }
+    .pd-name {
+      font-family: var(--font-d); font-size: clamp(1.8rem, 3vw, 2.8rem);
+      letter-spacing: 2px; color: var(--white); line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    /* Rating row */
+    .pd-rating {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 20px;
+    }
+    .pd-stars { color: var(--gold); font-size: 14px; letter-spacing: 2px; }
+    .pd-rating-count { font-size: 12px; color: var(--muted); }
+
+    /* Price */
+    .pd-price-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 24px; }
+    .pd-price { font-family: var(--font-d); font-size: 2.2rem; color: var(--gold); letter-spacing: 1px; }
+    .pd-price-orig { font-size: 14px; color: var(--muted); text-decoration: line-through; }
+    .pd-discount {
+      font-size: 11px; font-weight: 700; color: #10b981;
+      background: rgba(16,185,129,.1); border: 1px solid rgba(16,185,129,.2);
+      padding: 3px 8px; letter-spacing: 1px;
+    }
+
+    /* Divider */
+    .pd-div { height: 1px; background: var(--border); margin: 20px 0; }
+
+    /* Size selector */
+    .pd-section-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 12px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .pd-section-label a {
+      font-size: 10px; color: var(--red); letter-spacing: 1px;
+      text-decoration: underline; cursor: pointer;
+    }
+    .pd-sizes { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+    .pd-size {
+      min-width: 48px; height: 44px; padding: 0 12px;
+      background: var(--ink2); border: 1px solid var(--border);
+      color: var(--muted); font-family: var(--font-b);
+      font-size: 12px; font-weight: 600; letter-spacing: 1px;
+      cursor: pointer; transition: all .2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pd-size:hover { border-color: var(--white); color: var(--white); }
+    .pd-size.active { background: var(--white); border-color: var(--white); color: var(--ink); }
+    .pd-size.unavailable { opacity: .3; cursor: not-allowed; text-decoration: line-through; }
+
+    /* Quantity */
+    .pd-qty-row { display: flex; align-items: center; gap: 0; margin-bottom: 24px; }
+    .pd-qty-label { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--muted); margin-right: 16px; }
+    .pd-qty-btn {
+      width: 44px; height: 44px; background: var(--ink2);
+      border: 1px solid var(--border); color: var(--white);
+      font-size: 18px; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background .2s, border-color .2s;
+      user-select: none;
+    }
+    .pd-qty-btn:hover { background: var(--surface); border-color: var(--border-r); }
+    .pd-qty-num {
+      width: 52px; height: 44px; background: var(--ink2);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      color: var(--white); font-size: 14px; font-weight: 600;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Action buttons */
+    .pd-actions { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+    .pd-add-btn {
+      width: 100%; padding: 17px; background: var(--red); color: #fff;
+      font-family: var(--font-b); font-size: 13px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; border: none;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+      transition: background .25s, transform .2s;
+      position: relative; overflow: hidden;
+    }
+    .pd-add-btn::before {
+      content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+      transform: skewX(-15deg); transition: left .5s;
+    }
+    .pd-add-btn:hover { background: var(--red2); transform: translateY(-2px); }
+    .pd-add-btn:hover::before { left: 160%; }
+    .pd-wish-btn {
+      width: 100%; padding: 16px; background: transparent; color: var(--white);
+      font-family: var(--font-b); font-size: 13px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      border: 1px solid var(--border); cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      transition: all .25s;
+    }
+    .pd-wish-btn:hover { border-color: var(--red); color: var(--red); }
+    .pd-wish-btn.wished { border-color: var(--red); color: var(--red); background: var(--red-lo); }
+
+    /* Trust row */
+    .pd-trust { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .pd-trust-item {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 13px; color: var(--muted); font-weight: 300;
+    }
+    .pd-trust-item i { color: var(--gold); width: 16px; font-size: 14px; }
+
+    /* Description tabs */
+    .pd-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
+    .pd-tab {
+      padding: 12px 20px; font-size: 11px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted);
+      border-bottom: 2px solid transparent; cursor: pointer;
+      transition: color .2s, border-color .2s;
+      margin-bottom: -1px; background: none; border-top: none; border-left: none; border-right: none;
+    }
+    .pd-tab.active { color: var(--white); border-bottom-color: var(--red); }
+    .pd-tab-content { display: none; }
+    .pd-tab-content.active { display: block; }
+    .pd-desc-text {
+      font-size: 14px; color: var(--muted); line-height: 1.9; font-weight: 300;
+    }
+    .pd-features { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+    .pd-feature {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 13px; color: var(--muted);
+    }
+    .pd-feature i { color: var(--red); margin-top: 2px; flex-shrink: 0; }
+    .pd-size-guide { margin-top: 8px; }
+    .pd-size-table {
+      width: 100%; border-collapse: collapse;
+      font-size: 12px; color: var(--muted);
+    }
+    .pd-size-table th {
+      padding: 10px 12px; background: var(--ink2);
+      border: 1px solid var(--border); color: var(--white);
+      font-weight: 600; letter-spacing: 1px; text-transform: uppercase; font-size: 10px;
+      text-align: left;
+    }
+    .pd-size-table td {
+      padding: 10px 12px; border: 1px solid var(--border);
+    }
+    .pd-size-table tr:hover td { background: var(--ink2); }
+
+    /* Related products */
+    .pd-related { max-width: 1280px; margin: 0 auto; padding: 0 40px 80px; }
+    .pd-related-head {
+      display: flex; align-items: baseline; justify-content: space-between;
+      margin-bottom: 28px;
+    }
+    .pd-related-head h2 { font-family: var(--font-d); font-size: 1.8rem; letter-spacing: 2px; color: var(--white); }
+    .pd-related-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+    /* Share row */
+    .pd-share { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+    .pd-share-label { font-size: 10px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+    .pd-share-btn {
+      width: 32px; height: 32px; border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); font-size: 13px;
+      transition: color .2s, border-color .2s;
+    }
+    .pd-share-btn:hover { color: var(--white); border-color: var(--muted); }
+
+    /* Size guide modal */
+    .size-modal {
+      position: fixed; inset: 0; background: rgba(0,0,0,.85);
+      z-index: 10002; display: none; align-items: center; justify-content: center;
+      backdrop-filter: blur(6px);
+    }
+    .size-modal.open { display: flex; }
+    .size-modal-content {
+      background: var(--ink2); border: 1px solid var(--border);
+      padding: 40px; max-width: 560px; width: 90%; position: relative;
+    }
+    .size-modal-close {
+      position: absolute; top: 16px; right: 16px;
+      background: none; border: none; color: var(--muted); font-size: 20px; cursor: pointer;
+    }
+    .size-modal h3 { font-family: var(--font-d); font-size: 1.5rem; letter-spacing: 2px; color: var(--white); margin-bottom: 20px; }
+
+
+    /* image zoom lightbox */
+    .pd-main-img { cursor: zoom-in; }
+    .img-lightbox {
+      position: fixed; inset: 0; z-index: 10005;
+      background: rgba(0,0,0,.95); display: none;
+      align-items: center; justify-content: center;
+      backdrop-filter: blur(8px);
+    }
+    .img-lightbox.open { display: flex; }
+    .img-lightbox-img {
+      max-width: 90vw; max-height: 90vh;
+      background-size: contain; background-repeat: no-repeat;
+      background-position: center; width: 600px; height: 750px;
+    }
+    .img-lightbox-close {
+      position: absolute; top: 20px; right: 24px;
+      background: none; border: none; color: var(--white);
+      font-size: 28px; cursor: pointer; z-index: 1;
+    }
+    .img-lightbox-prev, .img-lightbox-next {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,.08); border: 1px solid var(--border);
+      color: var(--white); font-size: 18px;
+      width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background .2s;
+    }
+    .img-lightbox-prev { left: 20px; }
+    .img-lightbox-next { right: 20px; }
+    .img-lightbox-prev:hover, .img-lightbox-next:hover { background: var(--red-lo); border-color: var(--border-r); }
+    .pd-main-img:hover::after {
+      content: '\f00e'; font-family: "Font Awesome 6 Free"; font-weight: 900;
+      position: absolute; bottom: 12px; right: 12px;
+      background: rgba(0,0,0,.6); color: var(--white);
+      width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+    }
+
+    /* Complete the Look */
+    .ctl-section { max-width: 1280px; margin: 0 auto; padding: 0 40px 80px; }
+    .ctl-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 28px; }
+    .ctl-head h2 { font-family: var(--font-d); font-size: 1.8rem; letter-spacing: 2px; color: var(--white); }
+    .ctl-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+    .ctl-item {
+      background: var(--ink2); border: 1px solid var(--border);
+      padding: 16px; display: flex; flex-direction: column; gap: 10px;
+      cursor: pointer; transition: border-color .2s;
+    }
+    .ctl-item:hover { border-color: var(--border-r); }
+    .ctl-item-img { aspect-ratio: 1; background-size: cover; background-position: center; background-color: var(--surface); }
+    .ctl-item-name { font-size: 12px; font-weight: 600; color: var(--white); }
+    .ctl-item-price { font-family: var(--font-d); font-size: 1.1rem; color: var(--gold); }
+    .ctl-add { width: 100%; padding: 8px; background: transparent; border: 1px solid var(--border-r); color: var(--red); font-family: var(--font-b); font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: all .2s; }
+    .ctl-add:hover { background: var(--red); color: #fff; }
+    @media (max-width: 900px) { .ctl-grid { grid-template-columns: repeat(2,1fr); } .ctl-section { padding: 0 20px 60px; } }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .pd-grid { grid-template-columns: 1fr; gap: 32px; padding: 0 20px 60px; }
+      .pd-gallery { position: static; }
+      .pd-related { padding: 0 20px 60px; }
+      .pd-related-grid { grid-template-columns: repeat(2, 1fr); }
+      .pd-breadcrumb { padding: 16px 20px; }
+    }
+    @media (max-width: 480px) {
+      .pd-related-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    }
+  </style>
+  <meta property="og:image" content="https://shonowear.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://shonowear.com/product.html">
+  <meta property="og:title" content="Product — Shonowear">
+  <meta property="og:description" content="Shop anime-inspired streetwear on Shonowear. Premium fabric, curated drops, free shipping above ₹999.">
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Google Analytics -->
+  <!-- Meta Pixel -->
+</head>
+<body>
+  <script src="nav.js" data-page="collection"></script>
+
+  <!-- Size Guide Modal -->
+  <div class="size-modal" id="size-modal">
+    <div class="size-modal-content">
+      <button class="size-modal-close" onclick="closeSizeGuide()"><i class="fas fa-times"></i></button>
+      <h3>SIZE GUIDE</h3>
+      <table class="pd-size-table">
+        <thead>
+          <tr><th>Size</th><th>Chest (cm)</th><th>Length (cm)</th><th>Shoulder (cm)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>XS</td><td>88–92</td><td>66</td><td>42</td></tr>
+          <tr><td>S</td><td>92–96</td><td>68</td><td>44</td></tr>
+          <tr><td>M</td><td>96–100</td><td>70</td><td>46</td></tr>
+          <tr><td>L</td><td>100–106</td><td>72</td><td>48</td></tr>
+          <tr><td>XL</td><td>106–112</td><td>74</td><td>50</td></tr>
+          <tr><td>XXL</td><td>112–120</td><td>76</td><td>52</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:16px;font-size:12px;color:var(--muted);">Measurements are in centimetres. If between sizes, size up for an oversized fit.</p>
+    </div>
+  </div>
+
+  <div class="pd-wrap">
+
+    <!-- Breadcrumb -->
+    <div class="pd-breadcrumb" id="pd-breadcrumb">
+      <a href="index.html">Home</a>
+      <span>/</span>
+      <a href="collection.html">Collection</a>
+      <span>/</span>
+      <span id="pd-bc-name">Loading…</span>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="pd-grid">
+
+      <!-- Gallery -->
+      <div class="pd-gallery">
+        <div class="pd-main-img" id="pd-main-img">
+          <span class="pd-badge-new" id="pd-new-badge" style="display:none;">NEW</span>
+        </div>
+        <div class="pd-thumbs" id="pd-thumbs"></div>
+      </div>
+
+      <!-- Info -->
+      <div class="pd-info">
+        <p class="pd-universe" id="pd-universe"></p>
+        <h1 class="pd-name" id="pd-name">Loading…</h1>
+
+        <div class="pd-rating">
+          <span class="pd-stars">★★★★★</span>
+          <span class="pd-rating-count" id="pd-rating-count"></span>
+        </div>
+
+        <div class="pd-price-row">
+          <span class="pd-price" id="pd-price"></span>
+          <span class="pd-price-orig" id="pd-price-orig"></span>
+          <span class="pd-discount" id="pd-discount"></span>
+        </div>
+
+        <div class="pd-div"></div>
+
+        <!-- Size selector -->
+        <div id="pd-size-section">
+          <p class="pd-section-label">
+            <span>Select Size</span>
+            <a onclick="openSizeGuide()">Size Guide</a>
+          </p>
+          <div class="pd-sizes" id="pd-sizes"></div>
+        </div>
+
+        <!-- Quantity -->
+        <p class="pd-section-label">Quantity</p>
+        <div class="pd-qty-row">
+          <span class="pd-qty-label"></span>
+          <button class="pd-qty-btn" onclick="changeQty(-1)">−</button>
+          <div class="pd-qty-num" id="pd-qty">1</div>
+          <button class="pd-qty-btn" onclick="changeQty(1)">+</button>
+        </div>
+
+        <!-- Actions -->
+        <div class="pd-actions">
+          <button class="pd-add-btn" id="pd-add-btn" onclick="pdAddToCart()">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+          <button class="pd-wish-btn" id="pd-wish-btn" onclick="pdToggleWish()">
+            <i class="far fa-heart" id="pd-wish-icon"></i>
+            <span id="pd-wish-txt">Save to Wishlist</span>
+          </button>
+        </div>
+
+        <!-- Trust signals -->
+        <div class="pd-div"></div>
+        <div class="pd-trust">
+          <div class="pd-trust-item"><i class="fas fa-shipping-fast"></i> Free shipping above ₹999</div>
+          <div class="pd-trust-item"><i class="fas fa-undo"></i> Easy 7-day returns</div>
+          <div class="pd-trust-item"><i class="fas fa-shield-alt"></i> Secure checkout</div>
+          <div class="pd-trust-item"><i class="fas fa-tshirt"></i> 350 GSM premium fabric</div>
+        </div>
+
+        <!-- Share -->
+        <div class="pd-share">
+          <span class="pd-share-label">Share</span>
+          <a class="pd-share-btn" onclick="pdShare('instagram')" title="Share on Instagram"><i class="fab fa-instagram"></i></a>
+          <a class="pd-share-btn" onclick="pdShare('copy')" title="Copy link"><i class="fas fa-link"></i></a>
+        </div>
+
+        <!-- Description tabs -->
+        <div class="pd-div"></div>
+        <div class="pd-tabs">
+          <button class="pd-tab active" onclick="switchTab('desc', this)">Description</button>
+          <button class="pd-tab" onclick="switchTab('features', this)">Details</button>
+          <button class="pd-tab" onclick="switchTab('bodytypes', this)">Body Type Fit</button>
+          <button class="pd-tab" onclick="switchTab('sizeguide', this)">Size Guide</button>
+        </div>
+
+        <div class="pd-tab-content active" id="tab-desc">
+          <p class="pd-desc-text" id="pd-desc"></p>
+        </div>
+
+        <div class="pd-tab-content" id="tab-features">
+          <div class="pd-features">
+            <div class="pd-feature"><i class="fas fa-check"></i>350 GSM heavyweight cotton blend</div>
+            <div class="pd-feature"><i class="fas fa-check"></i>Pre-shrunk — minimal shrinkage after wash</div>
+            <div class="pd-feature"><i class="fas fa-check"></i>Ribbed cuffs and hem for structure</div>
+            <div class="pd-feature"><i class="fas fa-check"></i>Double-stitched seams for durability</div>
+            <div class="pd-feature"><i class="fas fa-check"></i>Screen-printed graphic — does not fade or crack</div>
+            <div class="pd-feature"><i class="fas fa-check"></i>Wash cold, tumble dry low</div>
+          </div>
+        </div>
+
+        <div class="pd-tab-content" id="tab-bodytypes">
+          <div id="pd-bodytypes-panel" style="padding:8px 0;">
+            <!-- Injected by product.js renderBodyTypeSuitability -->
+            <p style="font-size:13px;color:var(--muted);font-weight:300;">Loading body type information…</p>
+          </div>
+        </div>
+
+        <div class="pd-tab-content" id="tab-sizeguide">
+          <div class="pd-size-guide">
+            <table class="pd-size-table">
+              <thead>
+                <tr><th>Size</th><th>Chest (cm)</th><th>Length (cm)</th><th>Shoulder (cm)</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>XS</td><td>88–92</td><td>66</td><td>42</td></tr>
+                <tr><td>S</td><td>92–96</td><td>68</td><td>44</td></tr>
+                <tr><td>M</td><td>96–100</td><td>70</td><td>46</td></tr>
+                <tr><td>L</td><td>100–106</td><td>72</td><td>48</td></tr>
+                <tr><td>XL</td><td>106–112</td><td>74</td><td>50</td></tr>
+                <tr><td>XXL</td><td>112–120</td><td>76</td><td>52</td></tr>
+              </tbody>
+            </table>
+            <p style="margin-top:12px;font-size:12px;color:var(--muted);">If between sizes, size up for an oversized fit.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Related Products -->
+    <div class="pd-related">
+      <div class="pd-related-head">
+        <h2>YOU MIGHT ALSO LIKE</h2>
+        <a href="collection.html" class="sec-link">View all <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="pd-related-grid" id="pd-related"></div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">SHONO<span>WEAR</span></a>
+          <p>Anime-inspired streetwear for the modern generation.</p>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/kavin.j.s" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="contact.html" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+        <div class="footer-col"><h5>Shop</h5><a href="collection.html">All Products</a><a href="new-arrivals.html">New Arrivals</a></div>
+        <div class="footer-col"><h5>Help</h5><a href="contact.html">Contact Us</a><a href="cart.html">Your Cart</a><a href="login.html">Login</a></div>
+        <div class="footer-col"><h5>Company</h5><a href="about.html">About</a><a href="privacy.html">Privacy Policy</a><a href="returns.html">Returns</a></div>
+      </div>
+      <div class="footer-base"><p>© <script>document.write(new Date().getFullYear())</script> Shonowear. All rights reserved.</p><p>Made for the community, by the community.</p></div>
+    </div>
+  </footer>
+
+  <!-- Image zoom lightbox -->
+  <div class="img-lightbox" id="img-lightbox" onclick="closeLightbox()">
+    <button class="img-lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
+    <button class="img-lightbox-prev" onclick="event.stopPropagation();lbNav(-1)"><i class="fas fa-chevron-left"></i></button>
+    <div class="img-lightbox-img" id="lb-img"></div>
+    <button class="img-lightbox-next" onclick="event.stopPropagation();lbNav(1)"><i class="fas fa-chevron-right"></i></button>
+  </div>
+
+  <!-- Complete the Look -->
+  <div class="ctl-section">
+    <div class="ctl-head">
+      <h2>COMPLETE THE LOOK</h2>
+      <a href="collection.html" class="sec-link">Browse all <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="ctl-grid" id="ctl-grid"></div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <button class="popup-close" onclick="closePop()"><i class="fas fa-times"></i></button>
+      <div style="text-align:center;padding:40px;">
+        <div id="pop-ico" style="font-size:3rem;margin-bottom:20px;"></div>
+        <h2 id="pop-title" style="font-family:var(--font-d);font-size:1.8rem;margin-bottom:14px;"></h2>
+        <p id="pop-msg" style="color:var(--muted);"></p>
+      </div>
+    </div>
+  </div>
+
+  <button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+  <script src="data.js"></script>
+  <script src="shared-ui.js"></script>
+  <script src="main.js"></script>
+  <script src="wishlist.js"></script>
+  <script src="product.js"></script>
+  <!-- Cookie Consent -->
+  <div class="cookie-banner" id="cookie-banner">
+    <p>We use cookies to improve your experience. By continuing, you agree to our <a href="privacy.html">Privacy Policy</a>.</p>
+    <div class="cookie-btns">
+      <button onclick="acceptCookies()">Accept All</button>
+      <button onclick="acceptCookies()" class="cookie-ghost">Necessary Only</button>
+    </div>
+  </div>
+  <script>
+    function acceptCookies(){document.getElementById('cookie-banner').style.display='none';localStorage.setItem('sw_cookies_accepted','1')}
+    if(localStorage.getItem('sw_cookies_accepted'))document.getElementById('cookie-banner').style.display='none';
+  </script>
+  <!-- WhatsApp Widget -->
+  <a href="https://wa.me/91YOUR_NUMBER?text=Hi%20Shonowear!%20I%20have%20a%20question." target="_blank" rel="noopener" class="wa-float" title="Chat on WhatsApp" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script>
+  </script>
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Shonowear is a fashion discovery platform for anime-inspired streetwear. Built for culture, not commerce.">
+  <meta property="og:title" content="About — Shonowear">
+  <meta property="og:description" content="Shonowear is a fashion discovery platform for anime-inspired streetwear. Built for culture, not commerce.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#e8153a">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Shonowear</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080810'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial Black,sans-serif' font-size='13' font-weight='900' fill='%23e8153a'%3ESW%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .about-hero {
+      background: var(--ink2); border-bottom: 1px solid var(--border);
+      padding: 80px 40px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .about-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=1400&auto=format&fit=crop&q=60');
+      background-size: cover; background-position: center;
+      opacity: 0.06;
+    }
+    .about-hero-inner { position: relative; z-index: 1; }
+    .about-hero h1 {
+      font-family: var(--font-d); font-size: clamp(3rem, 6vw, 5.5rem);
+      letter-spacing: 4px; margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--white), var(--gold));
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .about-hero p { font-size: 16px; color: var(--muted); font-weight: 300; max-width: 500px; margin: 0 auto; }
+
+    .about-body { max-width: 1100px; margin: 0 auto; padding: 80px 40px; }
+
+    /* Story section */
+    .about-story { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-bottom: 80px; }
+    .story-img {
+      aspect-ratio: 4/5;
+      background-image: url('profile.jpg');
+      background-size: cover; background-position: center;
+      position: relative;
+    }
+    .story-img::after {
+      content: ''; position: absolute; inset: 0;
+      border: 1px solid var(--border-r); transform: translate(12px, 12px);
+      pointer-events: none;
+    }
+    .story-text .sec-eyebrow { margin-bottom: 12px; }
+    .story-text h2 { font-family: var(--font-s); font-size: clamp(1.8rem, 3vw, 2.8rem); color: var(--white); margin-bottom: 20px; line-height: 1.2; }
+    .story-text h2 em { font-style: italic; background: linear-gradient(135deg, var(--red), var(--gold)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .story-text p { font-size: 15px; color: var(--muted); line-height: 1.9; font-weight: 300; margin-bottom: 16px; }
+
+    /* Values grid */
+    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin-bottom: 80px; }
+    .val-card {
+      background: var(--ink2); border: 1px solid var(--border);
+      padding: 36px 28px; transition: background .3s, border-color .3s;
+    }
+    .val-card:hover { background: var(--ink3); border-color: var(--border-r); }
+    .val-num { font-family: var(--font-d); font-size: 3rem; color: rgba(255,255,255,.05); line-height: 1; margin-bottom: 16px; }
+    .val-icon { font-size: 1.5rem; color: var(--red); margin-bottom: 14px; display: block; }
+    .val-card h4 { font-family: var(--font-d); font-size: 1.3rem; letter-spacing: 1px; color: var(--white); margin-bottom: 10px; }
+    .val-card p { font-size: 13px; color: var(--muted); line-height: 1.75; font-weight: 300; }
+
+    /* Stats row */
+    .about-stats {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 3px; margin-bottom: 80px;
+    }
+    .astat {
+      background: var(--ink2); border: 1px solid var(--border);
+      padding: 32px 24px; text-align: center;
+    }
+    .astat strong { font-family: var(--font-d); font-size: 2.5rem; color: var(--red); display: block; margin-bottom: 6px; }
+    .astat span { font-size: 12px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+
+    /* CTA strip */
+    .about-cta {
+      background: var(--ink2); border: 1px solid var(--border-r);
+      padding: 48px; display: flex; align-items: center;
+      justify-content: space-between; gap: 32px; flex-wrap: wrap;
+    }
+    .about-cta h3 { font-family: var(--font-s); font-size: clamp(1.4rem, 2.5vw, 2rem); color: var(--white); }
+    .about-cta p { font-size: 14px; color: var(--muted); margin-top: 6px; font-weight: 300; }
+    .about-cta-btns { display: flex; gap: 12px; flex-wrap: wrap; flex-shrink: 0; }
+
+    @media (max-width: 860px) {
+      .about-story { grid-template-columns: 1fr; gap: 40px; }
+      .story-img { aspect-ratio: 16/9; }
+      .values-grid { grid-template-columns: 1fr 1fr; }
+      .about-stats { grid-template-columns: repeat(2, 1fr); }
+      .about-cta { flex-direction: column; }
+      .about-body { padding: 60px 20px; }
+      .about-hero { padding: 60px 20px; }
+    }
+    @media (max-width: 480px) {
+      .values-grid { grid-template-columns: 1fr; }
+      .about-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+  <meta property="og:image" content="https://shonowear.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://shonowear.com/about.html">
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  </head>
+<body>
+
+  <script src="nav.js" data-page="about"></script>
+
+  <div class="about-hero">
+    <div class="about-hero-inner">
+      <p class="sec-eyebrow" style="justify-content:center;">About Shonowear</p>
+      <h1>OUR STORY</h1>
+      <p>Born from anime culture. Built on the streets. Here for the community.</p>
+    </div>
+  </div>
+
+  <div class="about-body">
+
+    <!-- Story -->
+    <div class="about-story">
+      <div class="story-img"></div>
+      <div class="story-text">
+        <p class="sec-eyebrow">Who We Are</p>
+        <h2>Not just merch.<br><em>A movement.</em></h2>
+        <p>Shonowear started as a personal project — one person who loved anime and couldn't find streetwear that actually looked good. Every piece on the market was either cheap, generic, or overpriced. So we built something different.</p>
+        <p>Every design is drawn with intention. Every fabric is chosen for quality. Every drop is curated for the culture — not for margins.</p>
+        <p>We're a fashion discovery platform first, a store second. That means you don't just browse products here — you find your aesthetic.</p>
+        <a href="collection.html" class="cta-primary" style="margin-top:8px;display:inline-flex;">Shop the Collection <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="about-stats">
+      <div class="astat"><strong>10K+</strong><span>Orders Shipped</span></div>
+      <div class="astat"><strong>80+</strong><span>Unique Designs</span></div>
+      <div class="astat"><strong>4.9★</strong><span>Average Rating</span></div>
+      <div class="astat"><strong>100%</strong><span>Premium Fabric</span></div>
+    </div>
+
+    <!-- Values -->
+    <div class="values-grid">
+      <div class="val-card">
+        <div class="val-num">01</div>
+        <i class="val-icon fas fa-tshirt"></i>
+        <h4>Premium Fabric</h4>
+        <p>350 GSM heavyweight cotton. Structured. Soft. Built to last years, not seasons.</p>
+      </div>
+      <div class="val-card">
+        <div class="val-num">02</div>
+        <i class="val-icon fas fa-drafting-compass"></i>
+        <h4>Intentional Design</h4>
+        <p>No filler graphics. Every piece is drawn with purpose — clean compositions, tight execution.</p>
+      </div>
+      <div class="val-card">
+        <div class="val-num">03</div>
+        <i class="val-icon fas fa-rupee-sign"></i>
+        <h4>Fair Pricing</h4>
+        <p>Premium quality without the luxury markup. We cut the middlemen, not the craftsmanship.</p>
+      </div>
+      <div class="val-card">
+        <div class="val-num">04</div>
+        <i class="val-icon fas fa-fire-alt"></i>
+        <h4>Culture-First</h4>
+        <p>Born from anime, raised on the streets. Every drop connects fans across generations.</p>
+      </div>
+      <div class="val-card">
+        <div class="val-num">05</div>
+        <i class="val-icon fas fa-shipping-fast"></i>
+        <h4>Fast Shipping</h4>
+        <p>Dispatched within 24 hours. Delivered in 3–7 days. Free shipping above ₹999.</p>
+      </div>
+      <div class="val-card">
+        <div class="val-num">06</div>
+        <i class="val-icon fas fa-headset"></i>
+        <h4>Real Support</h4>
+        <p>Reach us directly — phone, email, or DM. No bots, no ticket queues. Real people.</p>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="about-cta">
+      <div>
+        <h3>Ready to find your aesthetic?</h3>
+        <p>Browse over 80 designs across hoodies, tees, figurines, and more.</p>
+      </div>
+      <div class="about-cta-btns">
+        <a href="collection.html" class="cta-primary">Shop Now <i class="fas fa-arrow-right"></i></a>
+        <a href="contact.html" class="cta-ghost">Get in Touch</a>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- Founder Section -->
+  <div style="border-top:1px solid var(--border);background:var(--ink2);">
+    <div style="max-width:1100px;margin:0 auto;padding:80px 40px;">
+      <div class="about-founder-grid">
+        <div class="about-founder-img-wrap">
+          <div class="founder-img"></div>
+          <div class="founder-ring"></div>
+        </div>
+        <div class="founder-text">
+          <p class="sec-eyebrow">The Founder</p>
+          <h2 class="founder-name">Kavin J.S</h2>
+          <p class="founder-title">Computer Science · Anime Fan · Builder</p>
+          <blockquote class="founder-quote">
+            "I couldn't find streetwear that actually respected anime culture — so I built it. Shonowear isn't a side project. It's the platform I always wished existed."
+          </blockquote>
+          <div class="founder-stack">
+            <span>Naruto</span>
+            <span>JJK</span>
+            <span>AoT</span>
+            <span>Demon Slayer</span>
+          </div>
+          <div class="founder-links">
+            <a href="https://www.instagram.com/kavin.j.s" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> @kavin.j.s</a>
+            <a href="mailto:kavin.js@outlook.com"><i class="fas fa-envelope"></i> kavin.js@outlook.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">SHONO<span>WEAR</span></a>
+          <p>Anime-inspired streetwear for the modern generation.</p>
+          <div class="footer-socials">
+                      <a href="https://www.instagram.com/kavin.j.s" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="contact.html" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+        <div class="footer-col"><h5>Shop</h5><a href="collection.html">All Products</a><a href="new-arrivals.html">New Arrivals</a></div>
+        <div class="footer-col"><h5>Help</h5><a href="contact.html">Contact Us</a><a href="cart.html">Your Cart</a><a href="login.html">Login</a></div>
+        <div class="footer-col"><h5>Company</h5><a href="about.html">About</a><a href="privacy.html">Privacy Policy</a></div>
+      </div>
+      <div class="footer-base"><p>© <script>document.write(new Date().getFullYear())</script> Shonowear. All rights reserved.</p><p>Made for the community, by the community.</p></div>
+    </div>
+  </footer>
+
+
+  <!-- Wishlist sidebar -->
+  <div class="wish-overlay" id="wish-overlay" onclick="closeWishlist()"></div>
+  <div class="wish-sidebar" id="wish-sidebar">
+    <div class="wish-head">
+      <h3>Saved Items</h3>
+      <button onclick="closeWishlist()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="wish-items" id="wish-items"></div>
+    <div class="wish-empty" id="wish-empty">
+      <i class="far fa-heart"></i>
+      <p>No saved items yet.</p>
+      <a href="collection.html">Browse Collection</a>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="data.js"></script>
+  <script src="wishlist.js"></script>
+  <script src="main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const nb = document.getElementById('navbar');
+      const pr = document.getElementById('nav-progress');
+      window.addEventListener('scroll', () => {
+        nb?.classList.toggle('scrolled', window.scrollY > 60);
+        if (pr) pr.style.width = Math.min((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100, 100) + '%';
+      }, { passive: true });
+    });
+  </script>
+
+  <button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top"><i class="fas fa-chevron-up"></i></button>
+  <!-- Cookie Consent -->
+  <div class="cookie-banner" id="cookie-banner">
+    <p>We use cookies to improve your experience. By continuing, you agree to our <a href="privacy.html">Privacy Policy</a>.</p>
+    <div class="cookie-btns">
+      <button onclick="acceptCookies()">Accept All</button>
+      <button onclick="acceptCookies()" class="cookie-ghost">Necessary Only</button>
+    </div>
+  </div>
+  <script>
+    function acceptCookies(){document.getElementById('cookie-banner').style.display='none';localStorage.setItem('sw_cookies_accepted','1')}
+    if(localStorage.getItem('sw_cookies_accepted'))document.getElementById('cookie-banner').style.display='none';
+  </script>
+  <!-- WhatsApp Widget -->
+  <a href="https://wa.me/91YOUR_NUMBER?text=Hi%20Shonowear!%20I%20have%20a%20question." target="_blank" rel="noopener" class="wa-float" title="Chat on WhatsApp" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</body>
+</html>
