@@ -3,9 +3,16 @@
  * Shonowear — single source of truth for all pages
  */
 (function () {
-  const page     = document.currentScript?.getAttribute('data-page') || '';
+  // ── Apply saved theme immediately (before render) to prevent FOUC ──
+  (function earlyTheme() {
+    const t = localStorage.getItem('sw_theme') || 'dark';
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isDark = t === 'dark' || (t === 'system' && prefersDark);
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  })();
+  const page = document.currentScript?.getAttribute('data-page') || '';
   const bodyType = localStorage.getItem('bodyType') || localStorage.getItem('sw_bodyType');
-  const active   = (p) => p === page ? ' class="active"' : '';
+  const active = (p) => p === page ? ' class="active"' : '';
 
   const NAV_HTML = `
   <div class="announce-bar" id="announce-bar">
@@ -108,35 +115,66 @@
   <div class="nav-progress" id="nav-progress"></div>
 
   <!-- Mobile overlay + menu -->
-  <div class="mob-overlay" id="mob-ov" onclick="closeMob()"></div>
-  <div class="mob-menu" id="mob-menu">
+  <div class="mob-overlay" id="mob-ov" onclick="closeMob()" aria-hidden="true"></div>
+  <div class="mob-menu" id="mob-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+
+    <!-- Header -->
     <div class="mob-head">
       <a href="index.html" class="mob-logo">SHONO<em>WEAR</em></a>
-      <button class="mob-close" onclick="closeMob()"><i class="fas fa-times"></i></button>
+      <button class="mob-close" onclick="closeMob()" aria-label="Close menu"><i class="fas fa-times"></i></button>
     </div>
+
+    <!-- Search -->
     <div class="mob-search">
-      <input type="text" id="mob-search-input" placeholder="Search for products..." />
-      <button onclick="doMobSearch()"><i class="fas fa-search"></i></button>
+      <span class="mob-search-icon"><i class="fas fa-search"></i></span>
+      <input type="text" id="mob-search-input" placeholder="Search for products..." aria-label="Search products" />
+      <button onclick="doMobSearch()" aria-label="Submit search"><i class="fas fa-arrow-right"></i></button>
     </div>
+
+    <!-- Nav links -->
     <div class="mob-links">
       <a href="index.html" class="mob-link"><i class="fas fa-home"></i> Home</a>
+      <div class="mob-divider"></div>
+
       <p class="mob-section-label">Men</p>
       <a href="collection.html?type=hoodie" class="mob-link mob-link-sub"><i class="fas fa-tshirt"></i> Hoodies</a>
       <a href="collection.html?type=tee" class="mob-link mob-link-sub"><i class="fas fa-tshirt"></i> Graphic Tees</a>
       <a href="collection.html?type=oversized" class="mob-link mob-link-sub"><i class="fas fa-tshirt"></i> Oversized</a>
       <a href="collection.html?type=jacket" class="mob-link mob-link-sub"><i class="fas fa-tshirt"></i> Jackets</a>
+      <div class="mob-divider"></div>
+
       <p class="mob-section-label">Women</p>
       <a href="collection.html?type=hoodie" class="mob-link mob-link-sub"><i class="fas fa-tshirt"></i> Hoodies</a>
       <a href="collection.html?type=tee" class="mob-link mob-link-sub"><i class="fas fa-tshirt"></i> Graphic Tees</a>
       <a href="collection.html?type=oversized" class="mob-link mob-link-sub"><i class="fas fa-tshirt"></i> Oversized</a>
-      <a href="collection.html" class="mob-link"><i class="fas fa-th-large"></i> Collections</a>
-      <a href="new-arrivals.html" class="mob-link"><i class="fas fa-star"></i> New Arrivals</a>
+      <div class="mob-divider"></div>
+
+      <p class="mob-section-label">Collections</p>
+      <a href="collection.html" class="mob-link"><i class="fas fa-th-large"></i> All Collections</a>
+      <a href="new-arrivals.html" class="mob-link"><i class="fas fa-fire"></i> New Arrivals</a>
       <a href="recommendations.html" class="mob-link"><i class="fas fa-magic"></i> Outfits</a>
+      <div class="mob-divider"></div>
+
       <a href="about.html" class="mob-link"><i class="fas fa-info-circle"></i> About</a>
       <a href="contact.html" class="mob-link"><i class="fas fa-envelope"></i> Contact</a>
     </div>
+
+    <!-- Theme toggle -->
+    <div class="mob-theme-section">
+      <span class="mob-theme-label">Theme</span>
+      <div class="mob-theme-btns" role="group" aria-label="Theme selector">
+        <button class="mob-theme-btn" data-theme-set="light" aria-pressed="false"><i class="fas fa-sun"></i> Light</button>
+        <button class="mob-theme-btn" data-theme-set="dark" aria-pressed="false"><i class="fas fa-moon"></i> Dark</button>
+        <button class="mob-theme-btn" data-theme-set="system" aria-pressed="false"><i class="fas fa-circle-half-stroke"></i> System</button>
+      </div>
+    </div>
+
+    <!-- Footer: auth + cart -->
     <div class="mob-footer">
-      <a href="login.html" class="mob-auth-btn" id="mob-login"><i class="fas fa-user"></i> Sign In</a>
+      <div class="mob-auth-row">
+        <a href="login.html" class="mob-auth-btn" id="mob-login"><i class="fas fa-user"></i> Sign In</a>
+        <a href="signup.html" class="mob-signup-btn"><i class="fas fa-user-plus"></i> Sign Up</a>
+      </div>
       <a href="cart.html" class="mob-cart-btn"><i class="fas fa-shopping-bag"></i> Cart (<span class="mob-cart-count">0</span>)</a>
     </div>
   </div>
@@ -178,9 +216,10 @@
   }, { passive: true });
 
   // Mobile menu
-  window.openMob  = () => {
+  window.openMob = () => {
     document.getElementById('mob-ov')?.classList.add('on');
     document.getElementById('mob-menu')?.classList.add('on');
+    document.getElementById('mob-menu')?.focus();
     document.body.style.overflow = 'hidden';
   };
   window.closeMob = () => {
@@ -224,6 +263,47 @@
     }
   });
 
+  // ── Theme toggle system ─────────────────────────────────────────
+  (function initTheme() {
+    const saved = localStorage.getItem('sw_theme') || 'dark';
+    applyTheme(saved);
+
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-theme-set]');
+      if (!btn) return;
+      const choice = btn.dataset.themeSet;
+      localStorage.setItem('sw_theme', choice);
+      applyTheme(choice);
+      updateThemeButtons(choice);
+    });
+
+    // Sync buttons whenever sidebar opens
+    const origOpen = window.openMob;
+    window.openMob = function () {
+      origOpen();
+      updateThemeButtons(localStorage.getItem('sw_theme') || 'dark');
+    };
+
+    // Watch system changes when "system" selected
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      if ((localStorage.getItem('sw_theme') || 'dark') === 'system') applyTheme('system');
+    });
+  })();
+
+  function applyTheme(choice) {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isDark = choice === 'dark' || (choice === 'system' && prefersDark);
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  }
+
+  function updateThemeButtons(choice) {
+    document.querySelectorAll('[data-theme-set]').forEach(btn => {
+      const active = btn.dataset.themeSet === choice;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
+
   // Mobile search
   window.doMobSearch = function () {
     const q = document.getElementById('mob-search-input')?.value?.trim();
@@ -238,7 +318,7 @@
   }
 
   function runSearch() {
-    const input   = document.getElementById('nav-search-input');
+    const input = document.getElementById('nav-search-input');
     const results = document.getElementById('nav-search-results');
     if (!input || !results) return;
     const q = input.value.trim().toLowerCase();
@@ -252,8 +332,8 @@
 
     const matches = products.filter(p =>
       p.name.toLowerCase().includes(q) ||
-      (p.anime||'').toLowerCase().includes(q) ||
-      (p.type||'').toLowerCase().includes(q)
+      (p.anime || '').toLowerCase().includes(q) ||
+      (p.type || '').toLowerCase().includes(q)
     ).slice(0, 6);
 
     if (!matches.length) {
