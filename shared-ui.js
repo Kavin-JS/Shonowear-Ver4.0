@@ -4,9 +4,7 @@
  * Include after style.css, before main.js
  */
 
-/* ══════════════════════════════════════════════════════
-   1. SIZE GUIDE MODAL
-   ══════════════════════════════════════════════════════ */
+/* SIZE GUIDE MODAL */
 
 (function injectSizeGuide() {
   const HTML = `
@@ -153,9 +151,7 @@ document.addEventListener('keydown', e => {
 });
 
 
-/* ══════════════════════════════════════════════════════
-   2. STICKY ADD-TO-CART BAR (mobile, product page only)
-   ══════════════════════════════════════════════════════ */
+/* STICKY ADD-TO-CART BAR (mobile, product page only) */
 
 (function injectStickyATC() {
   // Only inject on product.html
@@ -243,9 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 })();
 
-/* ══════════════════════════════════════════════════════
-   5. SKELETON LOADER SYSTEM
-   ══════════════════════════════════════════════════════ */
+/* SKELETON LOADER SYSTEM */
 
 (function injectSkeletonStyles() {
   const style = document.createElement('style');
@@ -296,12 +290,7 @@ function skeletonCards(count = 6) {
   `).join('');
 }
 
-/**
- * Show skeleton loaders in a grid, then swap to real content
- * @param {string} gridSelector - CSS selector for the grid
- * @param {Function} renderFn - function to call after skeleton duration
- * @param {number} duration - ms to show skeletons (default 300)
- */
+
 function withSkeleton(gridSelector, renderFn, duration = 300) {
   const grid = document.querySelector(gridSelector);
   if (!grid) return renderFn();
@@ -313,9 +302,7 @@ window.skeletonCards = skeletonCards;
 window.withSkeleton  = withSkeleton;
 
 
-/* ══════════════════════════════════════════════════════
-   6. SCROLL-TO-TOP (Enhanced)
-   ══════════════════════════════════════════════════════ */
+/* SCROLL-TO-TOP (Enhanced) */
 
 (function enhanceScrollTop() {
   // Inject button if not already in HTML

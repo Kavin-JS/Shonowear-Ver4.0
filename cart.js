@@ -10,7 +10,7 @@ function getProductImg(name) {
   return 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=200&auto=format&fit=crop&q=80';
 }
 
-// ── Saved-for-later helpers ────────────────────────────────
+// Saved-for-later helpers
 function getSaved() { return JSON.parse(localStorage.getItem('sw_saved') || '[]'); }
 function setSaved(arr) { localStorage.setItem('sw_saved', JSON.stringify(arr)); }
 

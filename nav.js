@@ -267,7 +267,7 @@
     }
   });
 
-  // ── Theme toggle system ─────────────────────────────────────────
+  // Theme toggle system
   (function initTheme() {
     const saved = localStorage.getItem('sw_theme') || 'dark';
     applyTheme(saved);
@@ -368,7 +368,7 @@
     }
   });
 
-  // ── Rotating announcement ticker ────────────────────────
+  // Rotating announcement ticker
   (function initTicker() {
     const MESSAGES = [
       '🔥 <strong>New Collection Live</strong> &nbsp;·&nbsp; Free shipping above ₹999',
@@ -393,7 +393,7 @@
     setInterval(rotateTicker, 4000);
   })();
 
-  // ── Focus trap for sidebar (a11y) ───────────────────────
+  // Focus trap for sidebar (a11y)
   document.addEventListener('keydown', (e) => {
     const menu = document.getElementById('mob-menu');
     if (!menu || !menu.classList.contains('on')) return;
