@@ -30,15 +30,42 @@
 
   <!-- ═══ 1. HERO BANNER ═══════════════════════════════════════ -->
   <section class="hero" id="hero">
-    <picture class="hero-photo" aria-hidden="true">
-      <source type="image/webp" srcset="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=1600&auto=format&fit=crop&q=80&fm=webp">
+    <picture class="hero-photo" aria-hidden="true" id="hero-picture">
+      <!-- Light theme hero: bright editorial streetwear flat-lay -->
+      <source media="[data-theme='light']"
+              type="image/webp"
+              srcset="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=1600&auto=format&fit=crop&q=80&fm=webp">
+      <!-- Dark theme hero (default): moody dark streetwear -->
+      <source type="image/webp"
+              srcset="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=1600&auto=format&fit=crop&q=80&fm=webp">
       <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=1600&auto=format&fit=crop&q=80"
+           id="hero-img"
            alt="Shonowear anime streetwear collection hero"
            loading="eager" fetchpriority="high"
            width="1600" height="900"
            style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
     </picture>
     <div class="hero-vignette"></div>
+    <script>
+      // Swap hero image immediately based on current theme (runs before paint)
+      (function() {
+        var theme = document.documentElement.getAttribute('data-theme') || 'dark';
+        var img   = document.getElementById('hero-img');
+        if (!img) return;
+        var DARK  = 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=1600&auto=format&fit=crop&q=80';
+        var LIGHT = 'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=1600&auto=format&fit=crop&q=80';
+        img.src = theme === 'light' ? LIGHT : DARK;
+        // Listen for theme changes at runtime
+        var observer = new MutationObserver(function() {
+          var t = document.documentElement.getAttribute('data-theme');
+          img.style.opacity = '0';
+          img.style.transition = 'opacity .4s ease';
+          img.src = t === 'light' ? LIGHT : DARK;
+          img.onload = function() { img.style.opacity = '1'; };
+        });
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+      })();
+    </script>
     <div class="hero-grain"></div>
     <div class="hero-body">
       <div class="hero-label">
