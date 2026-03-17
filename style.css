@@ -350,7 +350,8 @@ textarea.error {
 }
 
 .nav-logo span {
-  -webkit-text-fill-color: var(--red)
+  -webkit-text-fill-color: var(--red);
+  color: var(--red);
 }
 
 .nav-logo:hover {
@@ -4060,29 +4061,27 @@ button:focus-visible {
   font-size: 1.5rem;
   letter-spacing: 3px;
   color: #fff;
+  -webkit-text-fill-color: #fff;
   flex-shrink: 0;
-  background: linear-gradient(130deg, #ffffff 40%, var(--gold));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 1px 3px rgba(0,0,0,.5));
-  transition: filter .2s;
+  text-shadow: 0 1px 4px rgba(0,0,0,.6), 0 0 12px rgba(0,0,0,.3);
+  transition: color .2s, text-shadow .2s;
 }
 
 .nav-logo span {
+  color: var(--red);
   -webkit-text-fill-color: var(--red);
+  text-shadow: none;
 }
 
-/* When scrolled in light mode, darken logo so it reads on white navbar */
+/* When scrolled in light mode — logo goes dark on white navbar */
 [data-theme="light"] .navbar.scrolled .nav-logo {
-  background: linear-gradient(130deg, #111111 40%, var(--gold));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: none;
+  color: #111;
+  -webkit-text-fill-color: #111;
+  text-shadow: none;
 }
 
 [data-theme="light"] .navbar.scrolled .nav-logo span {
+  color: var(--red);
   -webkit-text-fill-color: var(--red);
 }
 
@@ -7710,20 +7709,21 @@ body {
   font-family: var(--font-d);
   font-size: 1.45rem;
   letter-spacing: 3px;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
   flex-shrink: 0;
-  background: linear-gradient(130deg, var(--white) 40%, var(--gold));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  transition: filter .2s;
+  text-shadow: 0 1px 4px rgba(0,0,0,.6), 0 0 12px rgba(0,0,0,.3);
+  transition: color .2s, text-shadow .2s;
 }
 
 .nav-logo span {
+  color: var(--red);
   -webkit-text-fill-color: var(--red);
+  text-shadow: none;
 }
 
 .nav-logo:hover {
-  filter: drop-shadow(0 0 8px rgba(240, 180, 41, .3));
+  text-shadow: 0 0 12px rgba(240,180,41,.5);
 }
 
 /* Center column */
@@ -8470,10 +8470,14 @@ body {
 
 [data-theme="light"] .navbar.scrolled .nav-logo {
   color: #111;
+  -webkit-text-fill-color: #111;
+  text-shadow: none;
 }
 
 [data-theme="light"] .navbar.scrolled .nav-logo span {
+  color: var(--red);
   -webkit-text-fill-color: var(--red);
+  text-shadow: none;
 }
 
 [data-theme="light"] .mob-menu {
