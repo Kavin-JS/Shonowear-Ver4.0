@@ -600,9 +600,17 @@
 
   // ── DOM ready ─────────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', () => {
-    renderTrendingGrid('all');
-    renderBestSellers();
-    renderNewArrivalsHome();
+    // Products may load async — retry if not available yet
+    function initProducts() {
+      if (typeof products !== 'undefined' && products.length) {
+        renderTrendingGrid('all');
+        renderBestSellers();
+        renderNewArrivalsHome();
+      } else {
+        setTimeout(initProducts, 100);
+      }
+    }
+    initProducts();
 
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });

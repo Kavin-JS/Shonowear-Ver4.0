@@ -81,19 +81,9 @@ function removeItem(idx) {
 }
 
 function checkout() {
-  const user = localStorage.getItem('sw_user');
-  if (!user) {
-    showPop('⚠️', 'Login Required', 'Please login to proceed with checkout.');
-    setTimeout(() => window.location.href = 'login.html', 2000);
-    return;
-  }
-  showPop('✅', 'Order Placed!', 'Thank you! Your order has been confirmed and will be shipped soon.');
-  setTimeout(() => {
-    localStorage.setItem('sw_cart', '[]');
-    closePop();
-    loadCart();
-    updateCartBadge();
-  }, 2500);
+  const cart = JSON.parse(localStorage.getItem('sw_cart') || '[]');
+  if (!cart.length) return;
+  window.location.href = 'checkout.html';
 }
 
 document.addEventListener('DOMContentLoaded', loadCart);

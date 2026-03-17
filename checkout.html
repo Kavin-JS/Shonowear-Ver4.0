@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — Shonowear</title>
+  <meta name="description" content="Complete your Shonowear order. Secure checkout with UPI, cards, and COD.">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080810'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial Black,sans-serif' font-size='13' font-weight='900' fill='%23e8153a'%3ESW%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .co-page {
+      padding-top: 64px;
+      min-height: 100vh;
+      background: var(--ink);
+    }
+
+    /* Steps bar */
+    .co-steps {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0; padding: 24px 40px;
+      border-bottom: 1px solid var(--border);
+      background: var(--ink2);
+    }
+    .co-step {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--muted);
+      padding: 0 20px;
+    }
+    .co-step.active { color: var(--white); }
+    .co-step.done   { color: var(--gold); }
+    .co-step-num {
+      width: 26px; height: 26px;
+      border: 2px solid currentColor;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 700; flex-shrink: 0;
+    }
+    .co-step.done .co-step-num { background: var(--gold); border-color: var(--gold); color: #080810; }
+    .co-step.active .co-step-num { background: var(--red); border-color: var(--red); color: #fff; }
+    .co-step-divider { width: 40px; height: 1px; background: var(--border); }
+
+    /* Layout */
+    .co-body {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 0;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 40px 80px;
+      align-items: start;
+    }
+
+    /* ── Left: form ─────────────────────────────── */
+    .co-form-col { padding-right: 48px; }
+
+    .co-section-title {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .co-section-title::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    .co-field-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+      margin-bottom: 14px;
+    }
+    .co-field-row.full { grid-template-columns: 1fr; }
+    .co-field {
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .co-field label {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .co-field input,
+    .co-field select {
+      padding: 13px 16px;
+      background: var(--ink2); border: 1px solid var(--border);
+      color: var(--white); font-family: 'Poppins', sans-serif;
+      font-size: 13px; outline: none;
+      transition: border-color .2s;
+    }
+    .co-field input::placeholder { color: var(--muted); }
+    .co-field input:focus,
+    .co-field select:focus { border-color: var(--border-r); }
+    .co-field input.error { border-color: var(--red) !important; }
+    .co-field select { cursor: pointer; }
+    .co-field-hint { font-size: 10px; color: var(--muted); margin-top: 4px; }
+
+    /* Payment options */
+    .co-pay-opts {
+      display: flex; flex-direction: column; gap: 10px;
+      margin-bottom: 28px;
+    }
+    .co-pay-opt {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 18px;
+      background: var(--ink2); border: 2px solid var(--border);
+      cursor: pointer; transition: border-color .2s;
+    }
+    .co-pay-opt:hover { border-color: var(--border-r); }
+    .co-pay-opt.selected { border-color: var(--red); }
+    .co-pay-opt input[type="radio"] { accent-color: var(--red); width: 16px; height: 16px; flex-shrink: 0; }
+    .co-pay-opt-icon { font-size: 20px; width: 28px; text-align: center; flex-shrink: 0; }
+    .co-pay-opt-info strong { display: block; font-size: 13px; font-weight: 600; color: var(--white); }
+    .co-pay-opt-info span { font-size: 11px; color: var(--muted); font-weight: 300; }
+
+    /* Card fields (shown when card selected) */
+    .co-card-fields {
+      display: none;
+      background: var(--ink3); border: 1px solid var(--border);
+      padding: 20px; margin-top: -4px; margin-bottom: 14px;
+    }
+    .co-card-fields.show { display: block; }
+
+    /* Place order button */
+    .co-place-btn {
+      width: 100%; padding: 18px;
+      background: var(--red); color: #fff;
+      font-family: 'Poppins', sans-serif; font-size: 13px;
+      font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      transition: background .2s, transform .15s;
+    }
+    .co-place-btn:hover { background: #f52040; transform: translateY(-1px); }
+    .co-place-btn:active { transform: translateY(0); }
+    .co-place-btn.loading { opacity: .7; pointer-events: none; }
+
+    .co-security-note {
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      font-size: 11px; color: var(--muted); margin-top: 14px;
+      text-align: center;
+    }
+    .co-security-note i { color: var(--gold); }
+
+    /* ── Right: order summary ──────────────────── */
+    .co-summary {
+      background: var(--ink2); border: 1px solid var(--border);
+      padding: 28px; position: sticky; top: 84px;
+    }
+    .co-summary-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem; letter-spacing: 2px;
+      color: var(--white); margin-bottom: 20px;
+      padding-bottom: 14px; border-bottom: 1px solid var(--border);
+    }
+    .co-summary-items { margin-bottom: 20px; max-height: 280px; overflow-y: auto; }
+    .co-si {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+    }
+    .co-si:last-child { border-bottom: none; }
+    .co-si-img {
+      width: 56px; height: 70px; flex-shrink: 0;
+      background-size: cover; background-position: center;
+      background-color: var(--ink3); position: relative;
+    }
+    .co-si-qty-badge {
+      position: absolute; top: -6px; right: -6px;
+      width: 18px; height: 18px; background: var(--red);
+      color: #fff; border-radius: 50%;
+      font-size: 10px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .co-si-info { flex: 1; min-width: 0; }
+    .co-si-name { font-size: 12px; font-weight: 500; color: var(--white); line-height: 1.4; margin-bottom: 4px; }
+    .co-si-meta { font-size: 10px; color: var(--muted); }
+    .co-si-price { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: var(--white); }
+
+    /* Promo code */
+    .co-promo-row { display: flex; gap: 8px; margin-bottom: 16px; }
+    .co-promo-input {
+      flex: 1; padding: 11px 14px;
+      background: var(--ink3); border: 1px solid var(--border);
+      color: var(--white); font-family: 'Poppins', sans-serif;
+      font-size: 12px; outline: none;
+      transition: border-color .2s;
+    }
+    .co-promo-input:focus { border-color: var(--border-r); }
+    .co-promo-input::placeholder { color: var(--muted); }
+    .co-promo-btn {
+      padding: 11px 16px; background: transparent;
+      border: 1px solid var(--border-r); color: var(--red);
+      font-family: 'Poppins', sans-serif; font-size: 11px;
+      font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      cursor: pointer; transition: all .2s; white-space: nowrap;
+    }
+    .co-promo-btn:hover { background: var(--red); color: #fff; }
+    .co-promo-note { font-size: 11px; min-height: 14px; margin-bottom: 12px; }
+    .co-promo-note.ok  { color: #10b981; }
+    .co-promo-note.err { color: var(--red); }
+
+    .co-totals { border-top: 1px solid var(--border); padding-top: 16px; }
+    .co-total-row {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 13px; padding: 7px 0; color: var(--off);
+    }
+    .co-total-row.grand {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem;
+      color: var(--white); border-top: 1px solid var(--border);
+      margin-top: 6px; padding-top: 14px;
+    }
+    .co-total-row.grand span:last-child { color: var(--gold); }
+    .co-free-ship { color: #10b981; font-weight: 600; }
+
+    /* Success modal */
+    .co-success-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,.85); z-index: 2000;
+      align-items: center; justify-content: center;
+    }
+    .co-success-overlay.show { display: flex; }
+    .co-success-modal {
+      background: var(--ink2); border: 1px solid var(--border);
+      padding: 48px 40px; max-width: 440px; width: 90%;
+      text-align: center;
+      animation: successPop .4s cubic-bezier(.34, 1.56, .64, 1) both;
+    }
+    @keyframes successPop {
+      from { opacity: 0; transform: scale(.85); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    .co-success-icon {
+      width: 72px; height: 72px; background: rgba(16,185,129,.15);
+      border: 2px solid #10b981; border-radius: 50%;
+      margin: 0 auto 24px; display: flex;
+      align-items: center; justify-content: center;
+    }
+    .co-success-icon i { font-size: 28px; color: #10b981; }
+    .co-success-modal h2 {
+      font-family: 'Bebas Neue', sans-serif; font-size: 2rem;
+      letter-spacing: 3px; margin-bottom: 12px; color: var(--white);
+    }
+    .co-success-modal p { font-size: 14px; color: var(--muted); margin-bottom: 8px; font-weight: 300; }
+    .co-success-modal .co-order-id { color: var(--gold); font-weight: 600; font-size: 13px; margin-bottom: 28px; }
+    .co-success-shop-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; background: var(--red); color: #fff;
+      font-family: 'Poppins', sans-serif; font-size: 12px;
+      font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      transition: background .2s;
+    }
+    .co-success-shop-btn:hover { background: #f52040; }
+
+    @media (max-width: 900px) {
+      .co-body { grid-template-columns: 1fr; padding: 24px 20px 60px; }
+      .co-form-col { padding-right: 0; margin-bottom: 32px; }
+      .co-summary { position: static; }
+    }
+    @media (max-width: 600px) {
+      .co-steps { padding: 16px 20px; gap: 0; }
+      .co-step { padding: 0 8px; font-size: 9px; }
+      .co-step-label { display: none; }
+      .co-field-row { grid-template-columns: 1fr; }
+      .co-body { padding: 20px 16px 40px; }
+    }
+  </style>
+</head>
+<body>
+  <script src="nav.js" data-page="checkout"></script>
+
+  <div class="co-page">
+
+    <!-- Steps -->
+    <div class="co-steps">
+      <div class="co-step done">
+        <div class="co-step-num"><i class="fas fa-check"></i></div>
+        <span class="co-step-label">Cart</span>
+      </div>
+      <div class="co-step-divider"></div>
+      <div class="co-step active">
+        <div class="co-step-num">2</div>
+        <span class="co-step-label">Checkout</span>
+      </div>
+      <div class="co-step-divider"></div>
+      <div class="co-step">
+        <div class="co-step-num">3</div>
+        <span class="co-step-label">Confirmation</span>
+      </div>
+    </div>
+
+    <div class="co-body">
+
+      <!-- ── LEFT: FORM ─────────────────────── -->
+      <div class="co-form-col">
+
+        <!-- Contact -->
+        <p class="co-section-title">Contact Information</p>
+        <div class="co-field-row">
+          <div class="co-field">
+            <label>Full Name *</label>
+            <input type="text" id="co-name" placeholder="Rahul Sharma" autocomplete="name">
+          </div>
+          <div class="co-field">
+            <label>Phone Number *</label>
+            <input type="tel" id="co-phone" placeholder="+91 98765 43210" autocomplete="tel">
+          </div>
+        </div>
+        <div class="co-field-row full">
+          <div class="co-field">
+            <label>Email Address</label>
+            <input type="email" id="co-email" placeholder="you@email.com" autocomplete="email">
+            <span class="co-field-hint">Order confirmation will be sent here</span>
+          </div>
+        </div>
+
+        <!-- Shipping -->
+        <p class="co-section-title" style="margin-top:28px;">Shipping Address</p>
+        <div class="co-field-row full">
+          <div class="co-field">
+            <label>Street Address *</label>
+            <input type="text" id="co-address" placeholder="House no., Street, Area" autocomplete="street-address">
+          </div>
+        </div>
+        <div class="co-field-row full">
+          <div class="co-field">
+            <label>Landmark (Optional)</label>
+            <input type="text" id="co-landmark" placeholder="Near metro station, school, etc.">
+          </div>
+        </div>
+        <div class="co-field-row">
+          <div class="co-field">
+            <label>City *</label>
+            <input type="text" id="co-city" placeholder="Mumbai" autocomplete="address-level2">
+          </div>
+          <div class="co-field">
+            <label>State *</label>
+            <select id="co-state">
+              <option value="">Select State</option>
+              <option>Andhra Pradesh</option><option>Assam</option>
+              <option>Bihar</option><option>Chandigarh</option>
+              <option>Chhattisgarh</option><option>Delhi</option>
+              <option>Goa</option><option>Gujarat</option>
+              <option>Haryana</option><option>Himachal Pradesh</option>
+              <option>Jharkhand</option><option>Karnataka</option>
+              <option>Kerala</option><option>Madhya Pradesh</option>
+              <option>Maharashtra</option><option>Manipur</option>
+              <option>Meghalaya</option><option>Mizoram</option>
+              <option>Nagaland</option><option>Odisha</option>
+              <option>Punjab</option><option>Rajasthan</option>
+              <option>Sikkim</option><option>Tamil Nadu</option>
+              <option>Telangana</option><option>Tripura</option>
+              <option>Uttar Pradesh</option><option>Uttarakhand</option>
+              <option>West Bengal</option>
+            </select>
+          </div>
+        </div>
+        <div class="co-field-row">
+          <div class="co-field">
+            <label>Postal Code *</label>
+            <input type="text" id="co-pin" placeholder="400001" maxlength="6" autocomplete="postal-code">
+          </div>
+          <div class="co-field">
+            <label>Country</label>
+            <input type="text" value="India" readonly style="opacity:.5;cursor:not-allowed;">
+          </div>
+        </div>
+
+        <!-- Payment -->
+        <p class="co-section-title" style="margin-top:28px;">Payment Method</p>
+        <div class="co-pay-opts" id="co-pay-opts">
+          <label class="co-pay-opt selected" onclick="selectPay(this,'upi')">
+            <input type="radio" name="payment" value="upi" checked>
+            <div class="co-pay-opt-icon">📱</div>
+            <div class="co-pay-opt-info">
+              <strong>UPI</strong>
+              <span>Google Pay, PhonePe, Paytm, BHIM</span>
+            </div>
+          </label>
+          <label class="co-pay-opt" onclick="selectPay(this,'card')">
+            <input type="radio" name="payment" value="card">
+            <div class="co-pay-opt-icon">💳</div>
+            <div class="co-pay-opt-info">
+              <strong>Credit / Debit Card</strong>
+              <span>Visa, Mastercard, RuPay</span>
+            </div>
+          </label>
+          <label class="co-pay-opt" onclick="selectPay(this,'cod')">
+            <input type="radio" name="payment" value="cod">
+            <div class="co-pay-opt-icon">💵</div>
+            <div class="co-pay-opt-info">
+              <strong>Cash on Delivery</strong>
+              <span>Pay when your order arrives</span>
+            </div>
+          </label>
+        </div>
+
+        <!-- Card fields -->
+        <div class="co-card-fields" id="co-card-fields">
+          <div class="co-field-row full">
+            <div class="co-field">
+              <label>Card Number</label>
+              <input type="text" id="co-card-num" placeholder="1234 5678 9012 3456" maxlength="19"
+                oninput="formatCard(this)">
+            </div>
+          </div>
+          <div class="co-field-row">
+            <div class="co-field">
+              <label>Expiry Date</label>
+              <input type="text" id="co-card-exp" placeholder="MM / YY" maxlength="7"
+                oninput="formatExpiry(this)">
+            </div>
+            <div class="co-field">
+              <label>CVV</label>
+              <input type="text" id="co-card-cvv" placeholder="•••" maxlength="4" type="password">
+            </div>
+          </div>
+          <div class="co-field-row full">
+            <div class="co-field">
+              <label>Name on Card</label>
+              <input type="text" id="co-card-name" placeholder="RAHUL SHARMA">
+            </div>
+          </div>
+        </div>
+
+        <!-- UPI field -->
+        <div id="co-upi-field" style="margin-bottom:20px;">
+          <div class="co-field">
+            <label>UPI ID</label>
+            <input type="text" id="co-upi-id" placeholder="yourname@upi">
+          </div>
+        </div>
+
+        <!-- Place order -->
+        <button class="co-place-btn" id="co-place-btn" onclick="placeOrder()">
+          <i class="fas fa-lock"></i> Place Order
+        </button>
+        <p class="co-security-note">
+          <i class="fas fa-shield-alt"></i>
+          Your payment information is encrypted and secure
+        </p>
+      </div>
+
+      <!-- ── RIGHT: ORDER SUMMARY ────────────── -->
+      <div class="co-summary">
+        <div class="co-summary-title">Order Summary</div>
+
+        <div class="co-summary-items" id="co-items"></div>
+
+        <div class="co-promo-row">
+          <input class="co-promo-input" id="co-promo" placeholder="Promo code (ANIME10)" />
+          <button class="co-promo-btn" onclick="applyPromo()">Apply</button>
+        </div>
+        <p class="co-promo-note" id="co-promo-note"></p>
+
+        <div class="co-totals">
+          <div class="co-total-row">
+            <span>Subtotal</span>
+            <span id="co-subtotal">₹0</span>
+          </div>
+          <div class="co-total-row" id="co-discount-row" style="display:none;">
+            <span>Discount</span>
+            <span id="co-discount" style="color:#10b981;">-₹0</span>
+          </div>
+          <div class="co-total-row">
+            <span>Shipping</span>
+            <span class="co-free-ship" id="co-shipping">FREE</span>
+          </div>
+          <div class="co-total-row grand">
+            <span>Total</span>
+            <span id="co-total">₹0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success modal -->
+  <div class="co-success-overlay" id="co-success">
+    <div class="co-success-modal">
+      <div class="co-success-icon"><i class="fas fa-check"></i></div>
+      <h2>Order Placed!</h2>
+      <p>Thank you for shopping with Shonowear.</p>
+      <p>Your order has been confirmed and will be shipped within 24 hours.</p>
+      <p class="co-order-id" id="co-order-id">Order #SW25-00000</p>
+      <a href="collection.html" class="co-success-shop-btn" onclick="clearCartAndGo()">
+        <i class="fas fa-shopping-bag"></i> Continue Shopping
+      </a>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="data.js"></script>
+  <script src="main.js"></script>
+  <script>
+  let discount = 0;
+
+  // Load cart items into summary
+  function loadSummary() {
+    const cart = JSON.parse(localStorage.getItem('sw_cart') || '[]');
+    if (!cart.length) { window.location.href = 'cart.html'; return; }
+
+    const container = document.getElementById('co-items');
+    let subtotal = 0;
+
+    container.innerHTML = cart.map(item => {
+      subtotal += item.price * (item.qty || 1);
+      const img = getProductImgCo(item.name);
+      return `
+        <div class="co-si">
+          <div class="co-si-img" style="background-image:url('${img}')">
+            <div class="co-si-qty-badge">${item.qty || 1}</div>
+          </div>
+          <div class="co-si-info">
+            <div class="co-si-name">${item.name}</div>
+            <div class="co-si-meta">${item.size ? 'Size: ' + item.size : ''}</div>
+          </div>
+          <div class="co-si-price">₹${(item.price * (item.qty||1)).toLocaleString()}</div>
+        </div>`;
+    }).join('');
+
+    updateTotals(subtotal);
+  }
+
+  function getProductImgCo(name) {
+    const n = name.toLowerCase();
+    if (n.includes('hoodie'))   return 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=120&auto=format&fit=crop&q=80';
+    if (n.includes('tee'))      return 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=120&auto=format&fit=crop&q=80';
+    if (n.includes('jacket'))   return 'https://images.unsplash.com/photo-1551537482-f2075a1d41f2?w=120&auto=format&fit=crop&q=80';
+    if (n.includes('figurine')) return 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=120&auto=format&fit=crop&q=80';
+    return 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=120&auto=format&fit=crop&q=80';
+  }
+
+  function updateTotals(sub) {
+    const disc  = Math.round(sub * discount / 100);
+    const total = sub - disc;
+    const ship  = total >= 999 ? 0 : 79;
+    document.getElementById('co-subtotal').textContent = '₹' + sub.toLocaleString();
+    document.getElementById('co-total').textContent    = '₹' + (total + ship).toLocaleString();
+    document.getElementById('co-shipping').textContent = ship === 0 ? 'FREE' : '₹' + ship;
+    document.getElementById('co-shipping').className   = ship === 0 ? 'co-free-ship' : '';
+    const discRow = document.getElementById('co-discount-row');
+    if (disc > 0) {
+      discRow.style.display = 'flex';
+      document.getElementById('co-discount').textContent = '-₹' + disc.toLocaleString();
+    } else {
+      discRow.style.display = 'none';
+    }
+  }
+
+  // Payment method selection
+  function selectPay(el, type) {
+    document.querySelectorAll('.co-pay-opt').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    document.getElementById('co-card-fields').classList.toggle('show', type === 'card');
+    document.getElementById('co-upi-field').style.display = type === 'upi' ? 'block' : 'none';
+  }
+
+  // Promo codes
+  const PROMOS = { 'ANIME10': 10, 'CULTURE15': 15, 'SW25': 25, 'SHONO20': 20 };
+  function applyPromo() {
+    const code = document.getElementById('co-promo').value.trim().toUpperCase();
+    const note = document.getElementById('co-promo-note');
+    if (PROMOS[code]) {
+      discount = PROMOS[code];
+      note.textContent = `✓ "${code}" applied — ${discount}% off!`;
+      note.className = 'co-promo-note ok';
+      const cart = JSON.parse(localStorage.getItem('sw_cart') || '[]');
+      const sub  = cart.reduce((s, i) => s + i.price * (i.qty || 1), 0);
+      updateTotals(sub);
+    } else {
+      discount = 0;
+      note.textContent = 'Invalid code. Try ANIME10 or CULTURE15.';
+      note.className = 'co-promo-note err';
+    }
+  }
+
+  // Card formatting
+  function formatCard(el) {
+    let v = el.value.replace(/\D/g, '').slice(0, 16);
+    el.value = v.match(/.{1,4}/g)?.join(' ') || v;
+  }
+  function formatExpiry(el) {
+    let v = el.value.replace(/\D/g, '').slice(0, 4);
+    if (v.length > 2) v = v.slice(0,2) + ' / ' + v.slice(2);
+    el.value = v;
+  }
+
+  // Validation
+  function validate() {
+    let ok = true;
+    const required = ['co-name','co-phone','co-address','co-city','co-pin'];
+    required.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (!el.value.trim()) { el.classList.add('error'); ok = false; }
+      else el.classList.remove('error');
+    });
+    const state = document.getElementById('co-state');
+    if (state && !state.value) { state.classList.add('error'); ok = false; }
+    else if (state) state.classList.remove('error');
+    return ok;
+  }
+
+  // Place order
+  function placeOrder() {
+    if (!validate()) {
+      if (typeof toast === 'function') toast('Please fill in all required fields.', 'error');
+      return;
+    }
+    const btn = document.getElementById('co-place-btn');
+    btn.classList.add('loading');
+    btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Processing…';
+
+    setTimeout(() => {
+      const orderId = 'SW25-' + Math.floor(10000 + Math.random() * 90000);
+      document.getElementById('co-order-id').textContent = 'Order #' + orderId;
+      document.getElementById('co-success').classList.add('show');
+      btn.classList.remove('loading');
+    }, 1600);
+  }
+
+  function clearCartAndGo() {
+    localStorage.setItem('sw_cart', '[]');
+  }
+
+  document.addEventListener('DOMContentLoaded', loadSummary);
+  </script>
+</body>
+</html>

@@ -564,14 +564,19 @@
 
   /* ── Init ───────────────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', () => {
-    if (typeof products !== 'undefined') {
-      allProducts = [...products];
+    // Retry until data.js has loaded products array
+    function initCollection() {
+      if (typeof products !== 'undefined' && products.length) {
+        allProducts = [...products];
+        buildAnimePills();
+        readURLParams();
+        applyFilters();
+        updatePriceSlider(document.getElementById('price-filter'));
+      } else {
+        setTimeout(initCollection, 80);
+      }
     }
-
-    buildAnimePills();
-    readURLParams();
-    applyFilters();
-    updatePriceSlider(document.getElementById('price-filter'));
+    initCollection();
 
     // Scroll-to-top
     window.addEventListener('scroll', () => {
