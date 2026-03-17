@@ -4827,11 +4827,12 @@ button:focus-visible {
   }
 }
 
-/* ── HERO SUBTITLE — tighten line height ────────────────── */
+/* ── HERO SUBTITLE — always white: hero has dark bg photo regardless of theme */
 .hero-sub {
   font-size: 14px;
   line-height: 1.9;
   max-width: 440px;
+  color: rgba(255, 255, 255, .65);
 }
 
 /* ── SECTION TITLES — add max-width for readability ─────── */
@@ -6292,13 +6293,14 @@ body {
   margin-bottom: 20px;
 }
 
+/* Hero text is ALWAYS light — hero has a dark bg photo regardless of theme */
 .ht-pre {
   font-family: var(--font-b);
   font-size: clamp(.9rem, 2vw, 1.15rem);
   font-weight: 400;
   letter-spacing: 8px;
   text-transform: uppercase;
-  color: var(--off);
+  color: rgba(255, 255, 255, .55);
   margin-bottom: 8px;
 }
 
@@ -6307,7 +6309,7 @@ body {
   font-size: clamp(4rem, 9vw, 8rem);
   letter-spacing: 4px;
   text-transform: uppercase;
-  background: linear-gradient(130deg, var(--white) 40%, var(--gold));
+  background: linear-gradient(130deg, #ffffff 40%, var(--gold));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -6318,7 +6320,7 @@ body {
   font-size: clamp(2rem, 5vw, 4rem);
   letter-spacing: 10px;
   text-transform: uppercase;
-  color: var(--muted);
+  color: rgba(255, 255, 255, .38);
   margin-top: -4px;
 }
 
@@ -6351,25 +6353,28 @@ body {
   box-shadow: 0 6px 24px rgba(232, 21, 58, .35);
 }
 
+/* cta-ghost inside .hero always has white text/border — dark bg photo behind it */
+.hero .cta-ghost,
 .cta-ghost {
   display: inline-flex;
   align-items: center;
   gap: 9px;
   padding: 15px 32px;
   background: transparent;
-  color: var(--white);
+  color: #fff;
   font-family: var(--font-b);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  border: 2px solid rgba(255, 255, 255, .25);
+  border: 2px solid rgba(255, 255, 255, .35);
   transition: border-color .2s, background .2s;
 }
 
+.hero .cta-ghost:hover,
 .cta-ghost:hover {
-  border-color: var(--white);
-  background: rgba(255, 255, 255, .06);
+  border-color: rgba(255, 255, 255, .8);
+  background: rgba(255, 255, 255, .08);
 }
 
 /* Hero spotlight card */
@@ -8463,6 +8468,38 @@ body {
 [data-theme="light"] .mob-auth-btn:hover {
   background: rgba(0, 0, 0, .05);
 }
+
+/* ── Hero section: ALWAYS dark/light text locked ───────────────────
+   The hero has a dark background photo in both themes.
+   All hero text must be hardcoded white — never inherit light mode vars. */
+[data-theme="light"] .hero-label,
+[data-theme="light"] .hero-dot { color: var(--red); }
+
+[data-theme="light"] .ht-pre  { color: rgba(255,255,255,.55); }
+[data-theme="light"] .ht-2    {
+  background: linear-gradient(130deg, #ffffff 40%, var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+[data-theme="light"] .ht-street { color: rgba(255,255,255,.38); }
+[data-theme="light"] .hero-sub  { color: rgba(255,255,255,.65); }
+
+[data-theme="light"] .hero .cta-ghost {
+  color: #fff;
+  border-color: rgba(255,255,255,.35);
+}
+[data-theme="light"] .hero .cta-ghost:hover {
+  border-color: rgba(255,255,255,.8);
+  background: rgba(255,255,255,.08);
+}
+
+[data-theme="light"] .hero-trust {
+  background: rgba(255,255,255,.08);
+  border-color: rgba(255,255,255,.15);
+  color: rgba(255,255,255,.7);
+}
+[data-theme="light"] .hero-trust i { color: var(--gold); }
 
 /* ── Wishlist sidebar open state ────────────────────────────────── */
 .wish-sidebar.open {
