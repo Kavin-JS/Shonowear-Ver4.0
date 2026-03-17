@@ -79,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
   currentProduct = product;
   renderProduct(product);
   renderRelated(product);
+  renderReviews(product);
   checkWishState(product.id);
   updateWishBadge();
   renderCompleteTheLook(product);
@@ -352,6 +353,39 @@ function pdAddToCart() {
   if (typeof toast === 'function') toast(`${currentProduct.name} (${selectedSize || 'One Size'}) × ${qty} added!`, 'success');
 }
 
+function pdBuyNow() {
+  if (!currentProduct) return;
+
+  const needsSize = currentProduct.type !== 'phone' && currentProduct.type !== 'figurine';
+  if (needsSize && !selectedSize) {
+    document.getElementById('pd-sizes').style.animation = 'none';
+    document.getElementById('pd-sizes').offsetHeight;
+    document.getElementById('pd-sizes').style.animation = 'shakeSizes .4s ease';
+    if (typeof toast === 'function') toast('Please select a size first.', 'error');
+    return;
+  }
+
+  // Add to cart then redirect
+  const cart = JSON.parse(localStorage.getItem('sw_cart') || '[]');
+  const key  = `${currentProduct.id}-${selectedSize || 'OS'}`;
+  const existing = cart.find(i => i.key === key);
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    cart.push({
+      key,
+      id:    currentProduct.id,
+      name:  currentProduct.name,
+      price: currentProduct.price,
+      size:  selectedSize || 'One Size',
+      qty,
+    });
+  }
+  localStorage.setItem('sw_cart', JSON.stringify(cart));
+  updateCartBadge();
+  window.location.href = 'checkout.html';
+}
+
 // Tab switching
 function switchTab(id, btn) {
   document.querySelectorAll('.pd-tab').forEach(t => t.classList.remove('active'));
@@ -489,4 +523,50 @@ function renderCompleteTheLook(p) {
         </button>
       </div>`;
   }).join('');
+}
+
+/* ── Customer Reviews ─────────────────────────────────── */
+function renderReviews(p) {
+  const list = document.getElementById('pd-reviews-list');
+  if (!list) return;
+
+  const numId = parseInt(p.id.replace(/\D/g, '')) || 1;
+  const ratings = [4.7, 4.8, 4.9, 5.0, 4.6, 4.8, 4.9, 5.0];
+  const avgRating = ratings[numId % ratings.length];
+  const totalReviews = 12 + (numId * 7 % 88);
+
+  // Update summary
+  const avgEl = document.getElementById('pd-review-avg');
+  const totalEl = document.getElementById('pd-review-total');
+  if (avgEl) avgEl.textContent = avgRating.toFixed(1);
+  if (totalEl) totalEl.textContent = `Based on ${totalReviews} reviews`;
+
+  const NAMES = ['Arjun K.', 'Priya M.', 'Rahul S.', 'Ananya D.', 'Vikram T.', 'Sneha R.', 'Karthik N.', 'Meera J.'];
+  const REVIEWS = [
+    { text: 'Absolutely love the fabric quality! The 350 GSM feels premium and the print hasn\'t faded after multiple washes. Worth every rupee.', stars: 5, days: 3 },
+    { text: 'Perfect fit for my build. The oversized cut is just right — not too baggy, not too tight. Got compliments the first day I wore it.', stars: 5, days: 7 },
+    { text: 'Great design but I wish there were more color options. The current one is fire though. Shipping was quick too.', stars: 4, days: 12 },
+    { text: 'This is my third purchase from Shonowear and they never disappoint. The attention to detail is impressive for the price point.', stars: 5, days: 18 },
+    { text: 'Comfortable and stylish. I sized up as recommended and it fits perfectly. The stitching quality is top-notch.', stars: 5, days: 24 },
+  ];
+
+  const reviewsHTML = REVIEWS.map((r, i) => {
+    const name = NAMES[(numId + i) % NAMES.length];
+    const initials = name.split(' ').map(n => n[0]).join('');
+    const starStr = '★'.repeat(r.stars) + '☆'.repeat(5 - r.stars);
+    return `
+      <div style="padding:20px;background:var(--ink2);border:1px solid var(--border);">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <div style="width:38px;height:38px;background:var(--red-lo);border:1px solid var(--border-r);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--red);letter-spacing:1px;">${initials}</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--white);">${name}</div>
+            <div style="font-size:11px;color:var(--muted);">${r.days} days ago · Verified Purchase</div>
+          </div>
+          <div style="margin-left:auto;color:var(--gold);font-size:12px;letter-spacing:2px;">${starStr}</div>
+        </div>
+        <p style="font-size:13px;color:var(--muted);line-height:1.7;font-weight:300;">${r.text}</p>
+      </div>`;
+  }).join('');
+
+  list.innerHTML = reviewsHTML;
 }

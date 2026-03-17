@@ -12,7 +12,7 @@
   <title>Shonowear — Anime Streetwear | Shop Hoodies, Tees & More</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous"/>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080810'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial Black,sans-serif' font-size='13' font-weight='900' fill='%23e8153a'%3ESW%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="style.css">
@@ -24,33 +24,42 @@
   <script src="nav.js" data-page="home"></script>
 
   <!-- ═══ 1. HERO BANNER ═══════════════════════════════════════ -->
-  <section class="ec-hero" id="hero">
-    <div class="ec-hero-bg"></div>
-    <div class="ec-hero-overlay"></div>
-    <div class="ec-hero-grain"></div>
-    <div class="ec-hero-content">
-      <span class="ec-hero-badge"><i class="fas fa-fire"></i> SS25 Collection — Live Now</span>
-      <h1 class="ec-hero-h1">
-        <span class="ec-h1-top">Anime Streetwear</span>
-        <span class="ec-h1-main">Collection</span>
-      </h1>
-      <p class="ec-hero-sub">Explore anime-inspired clothing designed for your style.<br>Premium 350 GSM fabric. Free shipping above ₹999.</p>
-      <div class="ec-hero-btns">
-        <a href="collection.html" class="ec-btn-primary"><i class="fas fa-shopping-bag"></i> Shop Collection</a>
-        <a href="body-profile.html" class="ec-btn-ghost"><i class="fas fa-magic"></i> Find My Style</a>
+  <section class="hero" id="hero">
+    <div class="hero-photo"></div>
+    <div class="hero-vignette"></div>
+    <div class="hero-grain"></div>
+    <div class="hero-body">
+      <div class="hero-label">
+        <span class="hero-dot"></span> NEW COLLECTION — LIVE NOW
+      </div>
+      <div class="hero-title">
+        <span class="ht-pre">SHONOWEAR</span>
+        <span class="ht-2">STREET CORE</span>
+        <span class="ht-street">COLLECTION</span>
+      </div>
+      <p class="hero-sub" style="font-size:15px;color:var(--muted);font-weight:300;line-height:1.8;margin-bottom:28px;max-width:480px;">Premium oversized streetwear designed for comfort and style.<br>350 GSM fabric. Free shipping above ₹999.</p>
+      <div class="hero-ctas">
+        <a href="#trending" class="cta-primary"><i class="fas fa-shopping-bag"></i> Shop Now</a>
+        <a href="#shop-category" class="cta-ghost"><i class="fas fa-compass"></i> Explore Collection</a>
+      </div>
+      <div class="hero-trust" style="margin-top:32px;">
+        <span style="font-size:12px;color:var(--muted);font-weight:300;"><i class="fas fa-star" style="color:var(--gold)"></i> 4.9/5 — 500+ reviews</span>
+        <span class="ht-sep" style="margin:0 10px;">|</span>
+        <span style="font-size:12px;color:var(--muted);font-weight:300;"><i class="fas fa-shipping-fast" style="color:var(--gold)"></i> Free Shipping 999+</span>
       </div>
     </div>
-    <div class="ec-hero-card">
-      <div class="ec-hero-card-img"></div>
-      <div class="ec-hero-card-body">
-        <span class="ec-hc-tag">Bestseller · SS25</span>
-        <p class="ec-hc-name">Naruto Uzumaki Oversized Hoodie</p>
-        <div class="ec-hc-row">
-          <span class="ec-hc-price">₹1,999</span>
-          <span class="ec-hc-rating"><i class="fas fa-star"></i> 4.9</span>
-        </div>
-        <a href="product.html?id=p1" class="ec-hc-btn">Shop Now <i class="fas fa-arrow-right"></i></a>
+    <div class="hero-spotlight">
+      <div class="spotlight-img spotlight-img-1"></div>
+      <div class="spotlight-info">
+        <span class="spot-tag">Bestseller</span>
+        <p class="spot-name">Naruto Uzumaki Oversized Hoodie</p>
+        <span class="spot-price">₹1,999</span>
+        <a href="product.html?id=p1" class="spot-btn">Shop Now <i class="fas fa-arrow-right"></i></a>
       </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-track"><div class="scroll-thumb"></div></div>
+      SCROLL TO EXPLORE
     </div>
   </section>
 
@@ -70,12 +79,10 @@
     <div class="ec-cat-inner">
       <a href="collection.html" class="ec-cat-item">All</a>
       <a href="collection.html?type=hoodie" class="ec-cat-item">Hoodies</a>
-      <a href="collection.html?type=tee" class="ec-cat-item">T-Shirts</a>
-      <a href="collection.html?type=jacket" class="ec-cat-item">Jackets</a>
+      <a href="collection.html?type=tee" class="ec-cat-item">Graphic Tees</a>
       <a href="collection.html?type=oversized" class="ec-cat-item">Oversized</a>
-      <a href="collection.html?type=phone" class="ec-cat-item">Accessories</a>
-      <a href="collection.html?category=Figurines" class="ec-cat-item">Figurines</a>
-      <a href="recommendations.html" class="ec-cat-item ec-cat-hot"><i class="fas fa-magic"></i> Outfits</a>
+      <a href="collection.html?type=jacket" class="ec-cat-item">Jackets</a>
+      <a href="new-arrivals.html" class="ec-cat-item ec-cat-hot"><i class="fas fa-fire"></i> New Arrivals</a>
     </div>
   </nav>
 
@@ -124,31 +131,36 @@
         <p class="sec-eyebrow">Browse</p>
         <h2 class="sec-title">Shop by Category</h2>
       </div>
-      <div class="ec-cat-grid">
-        <a href="collection.html?type=hoodie" class="ec-cat-card">
-          <div class="ec-cat-img" style="background-image:url('https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=400&auto=format&fit=crop&q=80')"></div>
+      <div class="ec-cat-grid ec-cat-grid-6">
+        <a href="collection.html?category=Apparel" class="ec-cat-card">
+          <div class="ec-cat-img" style="background-image:url('https://images.unsplash.com/photo-1520975954732-35dd22299614?w=400&auto=format&fit=crop&q=80')"></div>
           <div class="ec-cat-card-overlay"></div>
-          <div class="ec-cat-card-body"><h3>Hoodies</h3><span class="ec-cat-count">48 styles</span><span class="ec-cat-shop">Shop Now <i class="fas fa-arrow-right"></i></span></div>
+          <div class="ec-cat-card-body"><h3>Men</h3><span class="ec-cat-count">60+ styles</span><span class="ec-cat-shop">Shop Now <i class="fas fa-arrow-right"></i></span></div>
         </a>
-        <a href="collection.html?type=tee" class="ec-cat-card">
-          <div class="ec-cat-img" style="background-image:url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&auto=format&fit=crop&q=80')"></div>
+        <a href="collection.html?category=Apparel" class="ec-cat-card">
+          <div class="ec-cat-img" style="background-image:url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&auto=format&fit=crop&q=80')"></div>
           <div class="ec-cat-card-overlay"></div>
-          <div class="ec-cat-card-body"><h3>T-Shirts</h3><span class="ec-cat-count">36 styles</span><span class="ec-cat-shop">Shop Now <i class="fas fa-arrow-right"></i></span></div>
-        </a>
-        <a href="collection.html?type=jacket" class="ec-cat-card">
-          <div class="ec-cat-img" style="background-image:url('https://images.unsplash.com/photo-1551537482-f2075a1d41f2?w=400&auto=format&fit=crop&q=80')"></div>
-          <div class="ec-cat-card-overlay"></div>
-          <div class="ec-cat-card-body"><h3>Jackets</h3><span class="ec-cat-count">12 styles</span><span class="ec-cat-shop">Shop Now <i class="fas fa-arrow-right"></i></span></div>
+          <div class="ec-cat-card-body"><h3>Women</h3><span class="ec-cat-count">60+ styles</span><span class="ec-cat-shop">Shop Now <i class="fas fa-arrow-right"></i></span></div>
         </a>
         <a href="collection.html?type=oversized" class="ec-cat-card">
           <div class="ec-cat-img" style="background-image:url('https://images.unsplash.com/photo-1603252109303-2751441dd157?w=400&auto=format&fit=crop&q=80')"></div>
           <div class="ec-cat-card-overlay"></div>
           <div class="ec-cat-card-body"><h3>Oversized</h3><span class="ec-cat-count">18 styles</span><span class="ec-cat-shop">Shop Now <i class="fas fa-arrow-right"></i></span></div>
         </a>
-        <a href="collection.html?category=Accessories" class="ec-cat-card">
-          <div class="ec-cat-img" style="background-image:url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=400&auto=format&fit=crop&q=80')"></div>
+        <a href="collection.html?type=tee" class="ec-cat-card">
+          <div class="ec-cat-img" style="background-image:url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&auto=format&fit=crop&q=80')"></div>
           <div class="ec-cat-card-overlay"></div>
-          <div class="ec-cat-card-body"><h3>Accessories</h3><span class="ec-cat-count">24 styles</span><span class="ec-cat-shop">Shop Now <i class="fas fa-arrow-right"></i></span></div>
+          <div class="ec-cat-card-body"><h3>Graphic Tees</h3><span class="ec-cat-count">36 styles</span><span class="ec-cat-shop">Shop Now <i class="fas fa-arrow-right"></i></span></div>
+        </a>
+        <a href="collection.html?type=hoodie" class="ec-cat-card">
+          <div class="ec-cat-img" style="background-image:url('https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=400&auto=format&fit=crop&q=80')"></div>
+          <div class="ec-cat-card-overlay"></div>
+          <div class="ec-cat-card-body"><h3>Hoodies</h3><span class="ec-cat-count">48 styles</span><span class="ec-cat-shop">Shop Now <i class="fas fa-arrow-right"></i></span></div>
+        </a>
+        <a href="new-arrivals.html" class="ec-cat-card">
+          <div class="ec-cat-img" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&auto=format&fit=crop&q=80')"></div>
+          <div class="ec-cat-card-overlay"></div>
+          <div class="ec-cat-card-body"><h3>New Arrivals</h3><span class="ec-cat-count">Fresh drops</span><span class="ec-cat-shop">Shop Now <i class="fas fa-arrow-right"></i></span></div>
         </a>
       </div>
     </div>
@@ -277,6 +289,24 @@
         <a href="new-arrivals.html" class="sec-link">View all <i class="fas fa-arrow-right"></i></a>
       </div>
       <div class="prd-grid" id="new-arrivals-grid"></div>
+    </div>
+  </section>
+
+  <!-- ═══ PROMOTIONAL BANNER ═══════════════════════════════════ -->
+  <section class="promo-banner fade-in-section">
+    <div class="promo-banner-bg"></div>
+    <div class="container promo-banner-inner">
+      <div class="promo-banner-content">
+        <span class="promo-badge"><i class="fas fa-bolt"></i> LIMITED TIME OFFER</span>
+        <h2 class="promo-title">Get 10% Off Your First Order</h2>
+        <p class="promo-desc">Use code <strong>ANIME10</strong> at checkout. Free shipping on orders above ₹999.</p>
+        <a href="collection.html" class="cta-primary"><i class="fas fa-shopping-bag"></i> Shop Now</a>
+      </div>
+      <div class="promo-stats">
+        <div class="promo-stat"><span class="promo-stat-num">120+</span><span class="promo-stat-label">Products</span></div>
+        <div class="promo-stat"><span class="promo-stat-num">4.9★</span><span class="promo-stat-label">Rating</span></div>
+        <div class="promo-stat"><span class="promo-stat-num">10K+</span><span class="promo-stat-label">Happy Customers</span></div>
+      </div>
     </div>
   </section>
 
@@ -426,12 +456,14 @@
   <!-- ═══ 18. FOOTER ════════════════════════════════════════════ -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-grid">
+      <div class="footer-grid footer-grid-5">
         <div class="footer-brand">
           <a href="index.html" class="nav-logo">SHONO<span>WEAR</span></a>
-          <p>Anime-inspired streetwear. Premium fabric. Curated drops.</p>
+          <p>Premium streetwear designed for comfort, style, and self-expression. Curated drops. Quality fabric.</p>
           <div class="footer-socials">
             <a href="https://www.instagram.com/kavin.j.s" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
             <a href="contact.html" aria-label="Email"><i class="fas fa-envelope"></i></a>
           </div>
         </div>
@@ -440,26 +472,26 @@
           <a href="collection.html">All Products</a>
           <a href="new-arrivals.html">New Arrivals</a>
           <a href="collection.html?type=hoodie">Hoodies</a>
-          <a href="collection.html?type=tee">T-Shirts</a>
+          <a href="collection.html?type=tee">Graphic Tees</a>
+          <a href="collection.html?type=oversized">Oversized</a>
           <a href="collection.html?type=jacket">Jackets</a>
-          <a href="collection.html?category=Accessories">Accessories</a>
         </div>
         <div class="footer-col">
-          <h5>Collections</h5>
-          <a href="collection.html?style=Tokyo+Street">Tokyo Street</a>
-          <a href="collection.html?style=Cyberpunk">Cyberpunk</a>
-          <a href="collection.html?style=Minimal+Anime">Minimal Anime</a>
-          <a href="collection.html?style=Shibuya+Casual">Shibuya Casual</a>
-          <a href="recommendations.html">Outfit Finder</a>
+          <h5>About</h5>
+          <a href="about.html">About Shonowear</a>
+          <a href="about.html">Careers</a>
+          <a href="contact.html">Contact Us</a>
         </div>
         <div class="footer-col">
           <h5>Help</h5>
           <a href="shipping.html">Shipping Policy</a>
-          <a href="returns.html">Returns Policy</a>
-          <a href="contact.html">Contact Us</a>
-          <a href="about.html">About</a>
-          <a href="cart.html">Your Cart</a>
+          <a href="returns.html">Returns & Exchanges</a>
+          <a href="contact.html">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <h5>Legal</h5>
           <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms & Conditions</a>
         </div>
       </div>
       <div class="footer-base">

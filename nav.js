@@ -10,7 +10,7 @@
   const NAV_HTML = `
   <div class="announce-bar" id="announce-bar">
     <div class="ab-inner">
-      <span>🔥 <strong>SS25 Drop Live</strong> &nbsp;·&nbsp; Free shipping above ₹999 &nbsp;·&nbsp; Use code <strong>ANIME10</strong> for 10% off</span>
+      <span>🔥 <strong>New Collection Live</strong> &nbsp;·&nbsp; Free shipping above ₹999 &nbsp;·&nbsp; Use code <strong>ANIME10</strong> for 10% off</span>
       <button class="ab-close" onclick="this.parentElement.parentElement.style.display='none';sessionStorage.setItem('sw_announce_closed','1')" aria-label="Close">✕</button>
     </div>
   </div>
@@ -24,9 +24,8 @@
       <!-- Center: links + search -->
       <div class="nav-center">
         <ul class="nav-links" id="navbar-links">
-          <li><a href="index.html"${active('home')}>Home</a></li>
           <li class="nav-has-drop">
-            <a href="collection.html"${active('collection')}>Shop <i class="fas fa-chevron-down"></i></a>
+            <a href="collection.html?category=Apparel"${active('collection')}>Men <i class="fas fa-chevron-down" style="font-size:8px;margin-left:3px;"></i></a>
             <div class="nav-dropdown">
               <div class="nav-drop-col">
                 <p class="nav-drop-head">Categories</p>
@@ -34,8 +33,6 @@
                 <a href="collection.html?type=tee"><i class="fas fa-tshirt"></i> Graphic Tees</a>
                 <a href="collection.html?type=oversized"><i class="fas fa-tshirt"></i> Oversized</a>
                 <a href="collection.html?type=jacket"><i class="fas fa-tshirt"></i> Jackets</a>
-                <a href="collection.html?category=Accessories"><i class="fas fa-box"></i> Accessories</a>
-                <a href="collection.html?category=Figurines"><i class="fas fa-star"></i> Figurines</a>
               </div>
               <div class="nav-drop-col">
                 <p class="nav-drop-head">By Style</p>
@@ -47,14 +44,32 @@
               <div class="nav-drop-col nav-drop-featured">
                 <p class="nav-drop-head">Featured</p>
                 <a href="new-arrivals.html" class="nav-drop-badge-link"><span class="nav-drop-badge">NEW</span> New Arrivals</a>
-                <a href="recommendations.html" class="nav-drop-badge-link"><span class="nav-drop-badge" style="background:var(--gold);color:#080810;">HOT</span> Outfit Finder</a>
                 <a href="collection.html">All Products →</a>
               </div>
             </div>
           </li>
+          <li class="nav-has-drop">
+            <a href="collection.html?category=Apparel">Women <i class="fas fa-chevron-down" style="font-size:8px;margin-left:3px;"></i></a>
+            <div class="nav-dropdown">
+              <div class="nav-drop-col">
+                <p class="nav-drop-head">Categories</p>
+                <a href="collection.html?type=hoodie"><i class="fas fa-tshirt"></i> Hoodies</a>
+                <a href="collection.html?type=tee"><i class="fas fa-tshirt"></i> Graphic Tees</a>
+                <a href="collection.html?type=oversized"><i class="fas fa-tshirt"></i> Oversized</a>
+              </div>
+              <div class="nav-drop-col">
+                <p class="nav-drop-head">By Style</p>
+                <a href="collection.html?style=Minimal+Anime">Minimal Anime</a>
+                <a href="collection.html?style=Shibuya+Casual">Shibuya Casual</a>
+                <a href="collection.html?style=Tokyo+Street">Tokyo Street</a>
+              </div>
+            </div>
+          </li>
+          <li><a href="collection.html?type=oversized">Oversized</a></li>
+          <li><a href="collection.html?type=tee">Graphic Tees</a></li>
+          <li><a href="collection.html?type=hoodie">Hoodies</a></li>
+          <li><a href="collection.html"${active('collection')}>Collections</a></li>
           <li><a href="new-arrivals.html"${active('new-arrivals')}>New Arrivals</a></li>
-          <li><a href="recommendations.html"${active('outfits')}>Outfits</a></li>
-          <li><a href="about.html"${active('about')}>About</a></li>
         </ul>
 
         <!-- Search bar -->
@@ -72,16 +87,13 @@
       <div class="nav-actions">
         <a href="login.html" class="nav-icon-btn" id="nav-account-btn" title="Account">
           <i class="fas fa-user"></i>
-          <span class="nav-icon-label" id="nav-uname-label">Account</span>
         </a>
         <button class="nav-icon-btn" id="wish-toggle" title="Wishlist" onclick="openWishlist()" style="position:relative;">
           <i class="far fa-heart"></i>
-          <span class="nav-icon-label">Wishlist</span>
           <div class="wish-badge" id="wish-badge" style="display:none;">0</div>
         </button>
         <a href="cart.html" class="nav-icon-btn nav-cart-btn" title="Cart">
           <i class="fas fa-shopping-bag"></i>
-          <span class="nav-icon-label">Cart</span>
           <div class="cart-badge" style="display:none;">0</div>
         </a>
         <div class="nav-user-drop" id="nav-user" style="display:none;">
@@ -108,11 +120,16 @@
     </div>
     <div class="mob-links">
       <a href="index.html" class="mob-link"><i class="fas fa-home"></i> Home</a>
-      <a href="collection.html" class="mob-link"><i class="fas fa-th-large"></i> Shop All</a>
+      <p class="mob-section-label">Men</p>
       <a href="collection.html?type=hoodie" class="mob-link mob-link-sub"><i class="fas fa-tshirt"></i> Hoodies</a>
       <a href="collection.html?type=tee" class="mob-link mob-link-sub"><i class="fas fa-tshirt"></i> Graphic Tees</a>
       <a href="collection.html?type=oversized" class="mob-link mob-link-sub"><i class="fas fa-tshirt"></i> Oversized</a>
       <a href="collection.html?type=jacket" class="mob-link mob-link-sub"><i class="fas fa-tshirt"></i> Jackets</a>
+      <p class="mob-section-label">Women</p>
+      <a href="collection.html?type=hoodie" class="mob-link mob-link-sub"><i class="fas fa-tshirt"></i> Hoodies</a>
+      <a href="collection.html?type=tee" class="mob-link mob-link-sub"><i class="fas fa-tshirt"></i> Graphic Tees</a>
+      <a href="collection.html?type=oversized" class="mob-link mob-link-sub"><i class="fas fa-tshirt"></i> Oversized</a>
+      <a href="collection.html" class="mob-link"><i class="fas fa-th-large"></i> Collections</a>
       <a href="new-arrivals.html" class="mob-link"><i class="fas fa-star"></i> New Arrivals</a>
       <a href="recommendations.html" class="mob-link"><i class="fas fa-magic"></i> Outfits</a>
       <a href="about.html" class="mob-link"><i class="fas fa-info-circle"></i> About</a>

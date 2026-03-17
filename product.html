@@ -436,9 +436,14 @@
 
         <!-- Actions -->
         <div class="pd-actions">
-          <button class="pd-add-btn" id="pd-add-btn" onclick="pdAddToCart()">
-            <i class="fas fa-shopping-bag"></i> Add to Cart
-          </button>
+          <div style="display:flex;gap:10px;">
+            <button class="pd-add-btn" id="pd-add-btn" onclick="pdAddToCart()" style="flex:1;">
+              <i class="fas fa-shopping-bag"></i> Add to Cart
+            </button>
+            <button class="pd-add-btn pd-buynow-btn" id="pd-buynow-btn" onclick="pdBuyNow()" style="flex:1;background:var(--gold);border-color:var(--gold);color:#080810;">
+              <i class="fas fa-bolt"></i> Buy Now
+            </button>
+          </div>
           <button class="pd-wish-btn" id="pd-wish-btn" onclick="pdToggleWish()">
             <i class="far fa-heart" id="pd-wish-icon"></i>
             <span id="pd-wish-txt">Save to Wishlist</span>
@@ -466,6 +471,8 @@
         <div class="pd-tabs">
           <button class="pd-tab active" onclick="switchTab('desc', this)">Description</button>
           <button class="pd-tab" onclick="switchTab('features', this)">Details</button>
+          <button class="pd-tab" onclick="switchTab('material', this)">Material & Care</button>
+          <button class="pd-tab" onclick="switchTab('shipping', this)">Shipping</button>
           <button class="pd-tab" onclick="switchTab('bodytypes', this)">Body Type Fit</button>
           <button class="pd-tab" onclick="switchTab('sizeguide', this)">Size Guide</button>
         </div>
@@ -482,6 +489,24 @@
             <div class="pd-feature"><i class="fas fa-check"></i>Double-stitched seams for durability</div>
             <div class="pd-feature"><i class="fas fa-check"></i>Screen-printed graphic — does not fade or crack</div>
             <div class="pd-feature"><i class="fas fa-check"></i>Wash cold, tumble dry low</div>
+          </div>
+        </div>
+
+        <div class="pd-tab-content" id="tab-material">
+          <div class="pd-features">
+            <div class="pd-feature"><i class="fas fa-leaf"></i><div><strong>Fabric:</strong> 80% Cotton, 20% Polyester — 350 GSM heavyweight terry</div></div>
+            <div class="pd-feature"><i class="fas fa-tint"></i><div><strong>Wash care:</strong> Machine wash cold with similar colors. Do not bleach.</div></div>
+            <div class="pd-feature"><i class="fas fa-wind"></i><div><strong>Drying:</strong> Tumble dry on low heat or hang dry. Do not iron on print.</div></div>
+            <div class="pd-feature"><i class="fas fa-recycle"></i><div><strong>Sustainability:</strong> Made with eco-friendly dyes and responsible sourcing.</div></div>
+          </div>
+        </div>
+
+        <div class="pd-tab-content" id="tab-shipping">
+          <div class="pd-features">
+            <div class="pd-feature"><i class="fas fa-shipping-fast"></i><div><strong>Free shipping</strong> on orders above ₹999. Standard delivery in 5–7 business days.</div></div>
+            <div class="pd-feature"><i class="fas fa-box"></i><div><strong>Express delivery</strong> available at ₹149. Delivered in 2–3 business days.</div></div>
+            <div class="pd-feature"><i class="fas fa-undo"></i><div><strong>Easy returns</strong> within 7 days of delivery. No questions asked.</div></div>
+            <div class="pd-feature"><i class="fas fa-exchange-alt"></i><div><strong>Size exchange</strong> available free of charge on your first exchange.</div></div>
           </div>
         </div>
 
@@ -523,25 +548,70 @@
       <div class="pd-related-grid" id="pd-related"></div>
     </div>
 
+    <!-- Customer Reviews -->
+    <div class="pd-related" id="pd-reviews-section">
+      <div class="pd-related-head">
+        <h2>CUSTOMER REVIEWS</h2>
+      </div>
+      <div class="pd-reviews-summary" style="display:flex;align-items:center;gap:32px;margin-bottom:32px;padding:24px;background:var(--ink2);border:1px solid var(--border);">
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-d);font-size:3rem;color:var(--gold);letter-spacing:1px;" id="pd-review-avg">4.8</div>
+          <div style="color:var(--gold);font-size:14px;margin-bottom:4px;">★★★★★</div>
+          <div style="font-size:12px;color:var(--muted);" id="pd-review-total">Based on 47 reviews</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:6px;" id="pd-review-bars">
+          <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);">
+            <span style="width:20px;">5★</span>
+            <div style="flex:1;height:8px;background:var(--ink3);overflow:hidden;"><div style="height:100%;width:72%;background:var(--gold);"></div></div>
+            <span style="width:30px;text-align:right;">72%</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);">
+            <span style="width:20px;">4★</span>
+            <div style="flex:1;height:8px;background:var(--ink3);overflow:hidden;"><div style="height:100%;width:20%;background:var(--gold);"></div></div>
+            <span style="width:30px;text-align:right;">20%</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);">
+            <span style="width:20px;">3★</span>
+            <div style="flex:1;height:8px;background:var(--ink3);overflow:hidden;"><div style="height:100%;width:5%;background:var(--gold);"></div></div>
+            <span style="width:30px;text-align:right;">5%</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);">
+            <span style="width:20px;">2★</span>
+            <div style="flex:1;height:8px;background:var(--ink3);overflow:hidden;"><div style="height:100%;width:2%;background:var(--gold);"></div></div>
+            <span style="width:30px;text-align:right;">2%</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);">
+            <span style="width:20px;">1★</span>
+            <div style="flex:1;height:8px;background:var(--ink3);overflow:hidden;"><div style="height:100%;width:1%;background:var(--gold);"></div></div>
+            <span style="width:30px;text-align:right;">1%</span>
+          </div>
+        </div>
+      </div>
+      <div id="pd-reviews-list" style="display:flex;flex-direction:column;gap:20px;"></div>
+    </div>
+
   </div>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-grid">
+      <div class="footer-grid footer-grid-5">
         <div class="footer-brand">
           <a href="index.html" class="nav-logo">SHONO<span>WEAR</span></a>
-          <p>Anime-inspired streetwear for the modern generation.</p>
+          <p>Premium streetwear designed for comfort, style, and self-expression. Curated drops. Quality fabric.</p>
           <div class="footer-socials">
             <a href="https://www.instagram.com/kavin.j.s" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
             <a href="contact.html" aria-label="Email"><i class="fas fa-envelope"></i></a>
           </div>
         </div>
-        <div class="footer-col"><h5>Shop</h5><a href="collection.html">All Products</a><a href="new-arrivals.html">New Arrivals</a></div>
-        <div class="footer-col"><h5>Help</h5><a href="contact.html">Contact Us</a><a href="cart.html">Your Cart</a><a href="login.html">Login</a></div>
-        <div class="footer-col"><h5>Company</h5><a href="about.html">About</a><a href="privacy.html">Privacy Policy</a><a href="returns.html">Returns</a></div>
+        <div class="footer-col"><h5>Shop</h5><a href="collection.html">All Products</a><a href="new-arrivals.html">New Arrivals</a><a href="collection.html?type=hoodie">Hoodies</a><a href="collection.html?type=tee">Graphic Tees</a><a href="collection.html?type=oversized">Oversized</a></div>
+        <div class="footer-col"><h5>About</h5><a href="about.html">About Shonowear</a><a href="about.html">Careers</a><a href="contact.html">Contact Us</a></div>
+        <div class="footer-col"><h5>Help</h5><a href="shipping.html">Shipping Policy</a><a href="returns.html">Returns & Exchanges</a><a href="contact.html">FAQ</a></div>
+        <div class="footer-col"><h5>Legal</h5><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms & Conditions</a></div>
       </div>
-      <div class="footer-base"><p>© <script>document.write(new Date().getFullYear())</script> Shonowear. All rights reserved.</p><p>Made for the community, by the community.</p></div>
+      <div class="footer-base"><p>© <script>document.write(new Date().getFullYear())</script> Shonowear. All rights reserved.</p></div>
     </div>
   </footer>
 
