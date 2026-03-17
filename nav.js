@@ -5,9 +5,15 @@
 (function () {
   // ── Apply saved theme immediately (before render) to prevent FOUC ──
   (function earlyTheme() {
-    const t = localStorage.getItem('sw_theme') || 'dark';
+    const t = localStorage.getItem('sw_theme');
+    // If never set, default to DARK — never inherit device light mode automatically
+    if (!t) {
+      localStorage.setItem('sw_theme', 'dark');
+      document.documentElement.setAttribute('data-theme', 'dark');
+      return;
+    }
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const isDark = t === 'dark' || (t === 'system' && prefersDark);
+    const isDark = t === 'dark' || (t === 'system' && prefersDark) || t === 'system';
     document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
   })();
   const page = document.currentScript?.getAttribute('data-page') || '';

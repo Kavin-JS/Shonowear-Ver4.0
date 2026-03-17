@@ -196,7 +196,8 @@ function renderProductCard(product) {
   return `
     <div class="prd-card" data-id="${product.id}" data-type="${product.type||''}" data-anime="${product.anime||''}" onclick="window.location='product.html?id=${product.id}'" style="cursor:pointer;">
       <div class="prd-img">
-        <div class="prd-img-inner" style="background-image:url('${imgUrl}')"></div>
+        <div class="prd-img-inner" style="background-image:url('${imgUrl}');background-color:var(--ink3);"
+             onerror="this.style.backgroundImage='none';this.style.backgroundColor='var(--ink3)'"></div>
         <div class="prd-badges">
           ${product.isNew ? '<span class="prd-badge prd-badge-new">NEW</span>' : ''}
           ${disc >= 10 ? `<span class="prd-badge prd-badge-sale">${disc}% OFF</span>` : ''}

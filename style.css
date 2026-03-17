@@ -799,6 +799,12 @@ textarea.error {
   overflow: hidden
 }
 
+@supports (height: 100svh) {
+  .hero {
+    height: 100svh;
+  }
+}
+
 .hero-photo {
   position: absolute;
   inset: 0;
@@ -6205,6 +6211,12 @@ body {
   background: var(--ink);
 }
 
+@supports (min-height: 100svh) {
+  .hero {
+    min-height: 100svh;
+  }
+}
+
 .hero-photo {
   position: absolute;
   inset: 0;
@@ -6726,9 +6738,8 @@ body {
 .ec-cat-nav {
   background: var(--ink3);
   border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 64px;
-  z-index: 90;
+  position: relative;
+  z-index: 1;
 }
 
 .ec-cat-inner {
@@ -7303,7 +7314,8 @@ body {
 
 @media (max-width: 600px) {
   .hero {
-    min-height: 85vh;
+    min-height: 100svh;
+    max-height: 100svh;
   }
 
   .hero-body {
@@ -8685,20 +8697,13 @@ body {
   99%,100%{ transform:translateY(0); opacity:1; }
 }
 
-/* ── Product card: quick-add + wishlist heart ───────────── */
+/* ── Product card: quick-add overlay (desktop hover only) ── */
 .prd-card { position:relative; }
-.prd-card .prd-quick-add {
-  position:absolute; bottom:0; left:0; right:0;
-  background:var(--red); color:#fff;
-  font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
-  padding:10px; border:none; cursor:pointer;
-  transform:translateY(100%); transition:transform .25s ease;
-  opacity:0;
-}
-.prd-card:hover .prd-quick-add { transform:translateY(0); opacity:1; }
-@media (max-width:768px) {
-  .prd-card .prd-quick-add { transform:translateY(0); opacity:1; }
-}
+
+/* Desktop hover overlay - uses existing .prd-ov system, no duplicate */
+/* prd-atc-mobile (line ~7513) is the correct always-visible mobile button */
+/* DO NOT add always-visible rules here - causes stuck hover bug on mobile */
+
 .prd-wish {
   position:absolute; top:10px; right:10px;
   width:32px; height:32px; border-radius:50%;
@@ -8710,16 +8715,20 @@ body {
 .prd-wish:hover { color:var(--red); background:rgba(8,8,16,.8); transform:scale(1.1); }
 .prd-wish.active i { color:var(--red); }
 
-/* ── Product image: uniform 3:4 aspect ratio ────────────── */
+/* ── Product image: uniform 3:4 aspect ratio + placeholder ──── */
 .prd-card .prd-img-wrap {
   aspect-ratio:3/4; overflow:hidden; position:relative;
 }
 .prd-card .prd-img-wrap img,
-.prd-card .prd-img-bg {
+.prd-card .prd-img-bg,
+.prd-card .prd-img-inner {
   width:100%; height:100%; object-fit:cover;
   transition:transform .4s ease;
+  /* Dark placeholder shown while image loads - prevents blank white flash */
+  background-color: var(--ink3);
 }
 .prd-card:hover .prd-img-bg,
+.prd-card:hover .prd-img-inner,
 .prd-card:hover .prd-img-wrap img { transform:scale(1.04); }
 
 /* ── Product badges ──────────────────────────────────────── */
