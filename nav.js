@@ -3,18 +3,14 @@
  * Shonowear — single source of truth for all pages
  */
 (function () {
-  // ── Apply saved theme immediately (before render) to prevent FOUC ──
+  // Theme is set in <head> inline script before CSS loads (prevents FOUC).
+  // This just ensures theme buttons reflect current state on load.
   (function earlyTheme() {
-    const t = localStorage.getItem('sw_theme');
-    // If never set, default to DARK — never inherit device light mode automatically
-    if (!t) {
-      localStorage.setItem('sw_theme', 'dark');
+    const t = localStorage.getItem('sw_theme') || 'dark';
+    // Ensure data-theme is always set (fallback if inline script somehow missed)
+    if (!document.documentElement.getAttribute('data-theme')) {
       document.documentElement.setAttribute('data-theme', 'dark');
-      return;
     }
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const isDark = t === 'dark' || (t === 'system' && prefersDark) || t === 'system';
-    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
   })();
   const page = document.currentScript?.getAttribute('data-page') || '';
   const bodyType = localStorage.getItem('bodyType') || localStorage.getItem('sw_bodyType');
