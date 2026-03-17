@@ -350,6 +350,21 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <!-- Google Analytics -->
   <!-- Meta Pixel -->
+  <!-- JSON-LD: Product structured data (populated by product.js) -->
+  <script type="application/ld+json" id="product-jsonld">
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "Shonowear Product",
+    "brand": { "@type": "Brand", "name": "Shonowear" },
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "INR",
+      "availability": "https://schema.org/InStock",
+      "seller": { "@type": "Organization", "name": "Shonowear" }
+    }
+  }
+  </script>
 </head>
 <body>
   <script src="nav.js" data-page="collection"></script>
@@ -508,6 +523,20 @@
             <div class="pd-feature"><i class="fas fa-undo"></i><div><strong>Easy returns</strong> within 7 days of delivery. No questions asked.</div></div>
             <div class="pd-feature"><i class="fas fa-exchange-alt"></i><div><strong>Size exchange</strong> available free of charge on your first exchange.</div></div>
           </div>
+          <!-- Pincode delivery estimator -->
+          <div style="margin-top:20px;padding:20px;background:var(--ink3);border:1px solid var(--border);border-radius:8px;">
+            <p style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">
+              <i class="fas fa-map-marker-alt" style="color:var(--red);margin-right:6px;"></i>Check Delivery
+            </p>
+            <div style="display:flex;gap:8px;">
+              <input type="text" id="delivery-pin-input" placeholder="Enter 6-digit pincode" maxlength="6"
+                style="flex:1;padding:10px 14px;background:var(--ink2);border:1px solid var(--border);
+                color:var(--white);font-size:13px;border-radius:6px;font-family:var(--font-m);
+                transition:border-color .2s;outline:none;"
+                oninput="checkDeliveryPin(this.value)">
+            </div>
+            <p id="delivery-pin-result" style="font-size:12px;color:var(--muted);margin-top:10px;min-height:18px;"></p>
+          </div>
         </div>
 
         <div class="pd-tab-content" id="tab-bodytypes">
@@ -647,6 +676,7 @@
   <button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top"><i class="fas fa-chevron-up"></i></button>
 
   <script src="data.js"></script>
+  <script src="js/utils.js"></script>
   <script src="shared-ui.js"></script>
   <script src="main.js"></script>
   <script src="wishlist.js"></script>
@@ -668,7 +698,90 @@
     <i class="fab fa-whatsapp"></i>
   </a>
 
+  <!-- Sticky mobile Buy Now bar -->
+  <div id="sticky-atc-bar" style="
+    display:none; position:fixed; bottom:0; left:0; right:0; z-index:700;
+    background:var(--ink2); border-top:1px solid var(--border);
+    padding:12px 16px; gap:10px;
+    box-shadow:0 -4px 20px rgba(0,0,0,.4);
+  ">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div id="sticky-product-name" style="flex:1;font-size:13px;font-weight:600;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"></div>
+      <div id="sticky-product-price" style="font-family:var(--font-d);font-size:1.1rem;color:var(--gold);flex-shrink:0;"></div>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:8px;">
+      <button onclick="pdAddToCart()" style="
+        flex:1;padding:12px;background:var(--ink3);border:1px solid var(--border);
+        color:var(--white);font-size:11px;font-weight:700;letter-spacing:1.5px;
+        text-transform:uppercase;cursor:pointer;transition:all .2s;
+      "><i class="fas fa-shopping-bag"></i> Add to Cart</button>
+      <button onclick="pdBuyNow()" style="
+        flex:1;padding:12px;background:var(--gold);border:1px solid var(--gold);
+        color:#080810;font-size:11px;font-weight:700;letter-spacing:1.5px;
+        text-transform:uppercase;cursor:pointer;transition:all .2s;
+      "><i class="fas fa-bolt"></i> Buy Now</button>
+    </div>
+  </div>
+
   <script>
+  // ── Sticky ATC bar: show when .pd-actions scrolls out of view ──
+  (function initStickyATC() {
+    const bar = document.getElementById('sticky-atc-bar');
+    if (!bar) return;
+    const isMobile = () => window.innerWidth < 768;
+
+    window.addEventListener('scroll', () => {
+      if (!isMobile()) { bar.style.display = 'none'; return; }
+      const atcBtn = document.getElementById('pd-add-btn');
+      if (!atcBtn) return;
+      const rect = atcBtn.getBoundingClientRect();
+      bar.style.display = rect.bottom < 0 ? 'block' : 'none';
+
+      // Populate sticky bar with current product info
+      const nameEl  = document.getElementById('pd-name');
+      const priceEl = document.getElementById('pd-price');
+      if (nameEl)  document.getElementById('sticky-product-name').textContent  = nameEl.textContent;
+      if (priceEl) document.getElementById('sticky-product-price').textContent = priceEl.textContent;
+    }, { passive: true });
+  })();
+
+  // ── Pincode delivery estimator ─────────────────────────────────
+  const _pinDebounce = (fn, ms) => { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; };
+  const checkDeliveryPin = _pinDebounce(async (pin) => {
+    const res = document.getElementById('delivery-pin-result');
+    const inp = document.getElementById('delivery-pin-input');
+    if (!res) return;
+    if (!/^\d{6}$/.test(pin)) { res.textContent = ''; return; }
+    res.innerHTML = '<i class="fas fa-circle-notch fa-spin" style="color:var(--red);"></i> Checking...';
+    inp.style.borderColor = 'var(--border)';
+    try {
+      const r    = await fetch(`https://api.postalpincode.in/pincode/${pin}`);
+      const data = await r.json();
+      if (data?.[0]?.Status === 'Success') {
+        const po = data[0].PostOffice?.[0];
+        const loc = po ? `${po.Division || po.District}, ${po.State}` : '';
+        // Estimate: metro cities get 3-5 days, others 5-7
+        const metro = ['Mumbai','Delhi','Bangalore','Hyderabad','Chennai','Kolkata','Pune','Ahmedabad'];
+        const isMetro = metro.some(m => loc.toLowerCase().includes(m.toLowerCase()));
+        const days = isMetro ? [2,4] : [4,7];
+        function addDays(d, n) {
+          const dt = new Date(d);
+          let added = 0;
+          while (added < n) { dt.setDate(dt.getDate()+1); if (dt.getDay() !== 0) added++; }
+          return dt.toLocaleDateString('en-IN',{day:'numeric',month:'short'});
+        }
+        const from = addDays(new Date(), days[0]);
+        const to   = addDays(new Date(), days[1]);
+        res.innerHTML = `<i class="fas fa-check-circle" style="color:#10b981;"></i> <strong style="color:var(--white);">${loc}</strong> — Delivery by <strong style="color:var(--gold);">${from}–${to}</strong>`;
+        inp.style.borderColor = '#10b981';
+      } else {
+        res.innerHTML = '<i class="fas fa-exclamation-circle" style="color:var(--red);"></i> Pincode not serviceable';
+        inp.style.borderColor = 'var(--red)';
+      }
+    } catch {
+      res.textContent = 'Could not check. Try again.';
+    }
+  }, 600);
   </script>
 </body>
 </html>

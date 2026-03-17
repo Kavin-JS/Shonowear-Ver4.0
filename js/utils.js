@@ -192,3 +192,78 @@ window.loadJSON        = loadJSON;
 window.debounce        = debounce;
 window.getParam        = getParam;
 window.showToast       = showToast;
+
+/* ── Pincode API helper ───────────────────────────────────── */
+
+/**
+ * Fetch city and state from Indian pincode using free API
+ * @param {string} pincode - 6-digit pincode
+ * @returns {Promise<{city:string, state:string}|null>}
+ */
+async function fetchPincodeData(pincode) {
+  if (!/^\d{6}$/.test(pincode)) return null;
+  try {
+    const res = await fetch(`https://api.postalpincode.in/pincode/${pincode}`);
+    const data = await res.json();
+    if (data?.[0]?.Status === 'Success') {
+      const po = data[0].PostOffice?.[0];
+      return po ? { city: po.Division || po.District, state: po.State } : null;
+    }
+    return null;
+  } catch { return null; }
+}
+
+/* ── Date formatting ─────────────────────────────────────── */
+
+/**
+ * Format a date as "15 Mar 2026" or relative ("2 days ago")
+ */
+function formatDate(date, relative = false) {
+  const d = new Date(date);
+  if (relative) {
+    const diff = (Date.now() - d.getTime()) / 1000;
+    if (diff < 60)      return 'just now';
+    if (diff < 3600)    return `${Math.floor(diff / 60)}m ago`;
+    if (diff < 86400)   return `${Math.floor(diff / 3600)}h ago`;
+    if (diff < 2592000) return `${Math.floor(diff / 86400)}d ago`;
+  }
+  return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+}
+
+/**
+ * Estimate delivery date (weekdays only, skip Sun)
+ * @param {number} daysMin - min delivery days
+ * @param {number} daysMax - max delivery days
+ * @returns {string} formatted range string
+ */
+function estimateDelivery(daysMin = 3, daysMax = 7) {
+  function addBusinessDays(date, days) {
+    const d = new Date(date);
+    let added = 0;
+    while (added < days) {
+      d.setDate(d.getDate() + 1);
+      if (d.getDay() !== 0) added++; // skip Sunday
+    }
+    return d;
+  }
+  const minDate = addBusinessDays(new Date(), daysMin);
+  const maxDate = addBusinessDays(new Date(), daysMax);
+  const fmt = (d) => d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+  return `${fmt(minDate)} – ${fmt(maxDate)}`;
+}
+
+/* ── Enhanced debounce with leading option ───────────────── */
+
+function debounceLeading(fn, ms = 200) {
+  let t, leading = true;
+  return (...args) => {
+    if (leading) { fn(...args); leading = false; }
+    clearTimeout(t);
+    t = setTimeout(() => { leading = true; }, ms);
+  };
+}
+
+window.fetchPincodeData = fetchPincodeData;
+window.formatDate       = formatDate;
+window.estimateDelivery = estimateDelivery;
+window.debounceLeading  = debounceLeading;

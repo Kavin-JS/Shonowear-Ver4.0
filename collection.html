@@ -546,6 +546,8 @@
   <a href="https://wa.me/91YOUR_NUMBER?text=Hi%20Shonowear!" target="_blank" rel="noopener" class="wa-float"><i class="fab fa-whatsapp"></i></a>
 
   <script src="data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="shared-ui.js"></script>
   <script src="wishlist.js"></script>
   <script src="main.js"></script>
   <script>
@@ -701,23 +703,123 @@
       if (noRes) noRes.style.display = 'block';
       if (grid)  grid.innerHTML = '';
       document.getElementById('load-more').style.display = 'none';
+      _detachSentinel();
       return;
     }
     if (noRes) noRes.style.display = 'none';
 
-    // Render first page
+    // Render first page with skeleton shimmer
     displayedCount = Math.min(PAGE_SIZE, list.length);
     window._filteredProducts = list;
     if (grid && typeof renderProductCard === 'function') {
+      // Brief skeleton flash (only when filters change, not on initial load)
+      if (window._collInitDone) {
+        grid.style.opacity = '0.4';
+        grid.style.transition = 'opacity .15s';
+        setTimeout(() => { grid.style.opacity = '1'; }, 160);
+      }
       grid.innerHTML = list.slice(0, displayedCount).map(p => renderProductCard(p)).join('');
+      window._collInitDone = true;
+
+      // Stagger entrance
+      grid.querySelectorAll('.prd-card').forEach((c, i) => {
+        c.style.cssText = `opacity:0;transform:translateY(14px);transition:opacity .3s ease ${i*.04}s,transform .3s ease ${i*.04}s`;
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          c.style.opacity = '1'; c.style.transform = 'translateY(0)';
+        }));
+      });
     }
 
-    // Load more
+    // Push URL state
+    _pushCollURL();
+
+    // Infinite scroll sentinel
     const lm = document.getElementById('load-more');
-    lm.style.display = list.length > PAGE_SIZE ? 'block' : 'none';
+    if (list.length > PAGE_SIZE) {
+      lm.style.display = 'none'; // hide old button; sentinel handles it
+      _attachSentinel(list);
+    } else {
+      lm.style.display = 'none';
+      _detachSentinel();
+    }
+  }
+
+  /* ── URL state push ─────────────────────────────────── */
+  function _pushCollURL() {
+    const p = new URLSearchParams();
+    if (activeFilters.category) p.set('category', activeFilters.category);
+    if (activeFilters.type)     p.set('type',     activeFilters.type);
+    if (activeFilters.style)    p.set('style',    activeFilters.style);
+    if (activeFilters.anime)    p.set('anime',    activeFilters.anime);
+    if (activeFilters.bodyType) p.set('bodyType', activeFilters.bodyType);
+    if (activeFilters.search)   p.set('q',        activeFilters.search);
+    if (activeFilters.maxPrice < 5000) p.set('maxPrice', activeFilters.maxPrice);
+    const sortEl = document.getElementById('sort-filter');
+    if (sortEl && sortEl.value !== 'newest') p.set('sort', sortEl.value);
+    const url = window.location.pathname + (p.toString() ? '?' + p.toString() : '');
+    history.replaceState({ filters: { ...activeFilters } }, '', url);
+  }
+
+  /* ── Infinite scroll ────────────────────────────────── */
+  let _sentinel = null, _io = null, _loadingMore = false;
+
+  function _attachSentinel(list) {
+    _detachSentinel();
+    const grid = document.getElementById('products-grid');
+    if (!grid) return;
+    _sentinel = document.createElement('div');
+    _sentinel.style.cssText = 'height:1px;width:100%;grid-column:1/-1;';
+    grid.appendChild(_sentinel);
+
+    _io = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && !_loadingMore) {
+        _loadingMore = true;
+        // Spinner
+        const spin = document.createElement('div');
+        spin.id = 'coll-spinner';
+        spin.style.cssText = 'grid-column:1/-1;text-align:center;padding:20px;';
+        spin.innerHTML = '<i class="fas fa-circle-notch fa-spin" style="font-size:22px;color:var(--red);"></i>';
+        grid.appendChild(spin);
+
+        setTimeout(() => {
+          spin.remove();
+          const l = window._filteredProducts || [];
+          const nextEnd = Math.min(displayedCount + PAGE_SIZE, l.length);
+          if (typeof renderProductCard === 'function') {
+            const frag = document.createDocumentFragment();
+            l.slice(displayedCount, nextEnd).forEach(p => {
+              const div = document.createElement('div');
+              div.innerHTML = renderProductCard(p);
+              frag.appendChild(div.firstElementChild);
+            });
+            // Re-attach sentinel before new cards so IO keeps firing
+            if (_sentinel && _sentinel.parentElement) grid.removeChild(_sentinel);
+            grid.appendChild(frag);
+          }
+          displayedCount = nextEnd;
+          // Update count display
+          const rc = document.getElementById('result-count');
+          if (rc) rc.innerHTML = `Showing <strong>${displayedCount}</strong> of <strong>${l.length}</strong> products`;
+          _loadingMore = false;
+          if (displayedCount < l.length) {
+            grid.appendChild(_sentinel);
+          } else {
+            _detachSentinel();
+          }
+        }, 450);
+      }
+    }, { rootMargin: '300px' });
+    _io.observe(_sentinel);
+  }
+
+  function _detachSentinel() {
+    if (_io) { _io.disconnect(); _io = null; }
+    if (_sentinel && _sentinel.parentElement) _sentinel.parentElement.removeChild(_sentinel);
+    _sentinel = null;
   }
 
   function loadMore() {
+    // Legacy button fallback (hidden but keep function)
     const list = window._filteredProducts || [];
     const grid = document.getElementById('products-grid');
     if (!grid || !list.length) return;
@@ -728,6 +830,22 @@
     if (displayedCount >= list.length) {
       document.getElementById('load-more').style.display = 'none';
     }
+  }
+
+  /* ── Mobile filter: bottom sheet upgrade ───────────── */
+  function openMobFilter() {
+    const panel = document.querySelector('.coll-mob-filter-panel');
+    const ov    = document.querySelector('.coll-mob-filter-overlay');
+    if (panel) {
+      panel.style.cssText += 'left:0!important;right:0!important;width:100%!important;top:auto!important;bottom:0!important;height:80vh!important;overflow-y:auto!important;border-radius:16px 16px 0 0!important;transform:translateY(0)!important;transition:transform .35s cubic-bezier(.22,1,.36,1)!important;';
+    }
+    if (ov) ov.classList.add('open');
+  }
+  function closeMobFilter() {
+    const panel = document.querySelector('.coll-mob-filter-panel');
+    const ov    = document.querySelector('.coll-mob-filter-overlay');
+    if (panel) panel.style.transform = 'translateY(100%)';
+    if (ov) ov.classList.remove('open');
   }
 
   /* ── Active filter chips ────────────────────────────── */

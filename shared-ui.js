@@ -242,3 +242,106 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => { bar.style.width = '100%'; bar.style.opacity = '0'; }, 300);
   });
 })();
+
+/* ══════════════════════════════════════════════════════
+   5. SKELETON LOADER SYSTEM
+   ══════════════════════════════════════════════════════ */
+
+(function injectSkeletonStyles() {
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes shimmer {
+      0% { background-position: -600px 0; }
+      100% { background-position: 600px 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .skeleton { animation: none !important; background: var(--ink3) !important; }
+    }
+    .skeleton {
+      background: linear-gradient(90deg, var(--ink3) 25%, var(--surface) 50%, var(--ink3) 75%);
+      background-size: 600px 100%;
+      animation: shimmer 1.4s infinite linear;
+      border-radius: 4px;
+    }
+    .sk-text  { height: 14px; margin-bottom: 8px; border-radius: 3px; }
+    .sk-circle { border-radius: 50%; }
+    .sk-rect  { border-radius: 6px; }
+    .sk-card  {
+      background: var(--ink2); border: 1px solid var(--border);
+      border-radius: 8px; overflow: hidden; padding: 0;
+    }
+    .sk-card .sk-img { height: 240px; width: 100%; }
+    .sk-card .sk-body { padding: 14px; }
+    .sk-card .sk-title { height: 14px; width: 70%; margin-bottom: 8px; }
+    .sk-card .sk-price { height: 18px; width: 40%; }
+  `;
+  document.head.appendChild(style);
+})();
+
+/**
+ * Generate skeleton product card HTML
+ * @param {number} count - number of skeletons to generate
+ * @returns {string} HTML string
+ */
+function skeletonCards(count = 6) {
+  return Array.from({ length: count }, () => `
+    <div class="sk-card">
+      <div class="skeleton sk-img sk-rect"></div>
+      <div class="sk-body">
+        <div class="skeleton sk-text sk-title"></div>
+        <div class="skeleton sk-text" style="width:50%;height:12px;margin-bottom:12px;"></div>
+        <div class="skeleton sk-price sk-rect"></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+/**
+ * Show skeleton loaders in a grid, then swap to real content
+ * @param {string} gridSelector - CSS selector for the grid
+ * @param {Function} renderFn - function to call after skeleton duration
+ * @param {number} duration - ms to show skeletons (default 300)
+ */
+function withSkeleton(gridSelector, renderFn, duration = 300) {
+  const grid = document.querySelector(gridSelector);
+  if (!grid) return renderFn();
+  grid.innerHTML = skeletonCards(6);
+  setTimeout(renderFn, duration);
+}
+
+window.skeletonCards = skeletonCards;
+window.withSkeleton  = withSkeleton;
+
+
+/* ══════════════════════════════════════════════════════
+   6. SCROLL-TO-TOP (Enhanced)
+   ══════════════════════════════════════════════════════ */
+
+(function enhanceScrollTop() {
+  // Inject button if not already in HTML
+  if (!document.getElementById('scroll-top')) {
+    const btn = document.createElement('button');
+    btn.id = 'scroll-top';
+    btn.setAttribute('aria-label', 'Scroll to top');
+    btn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    btn.style.cssText = `
+      position:fixed; bottom:28px; right:24px; z-index:800;
+      width:40px; height:40px; border-radius:50%;
+      background:var(--red); color:#fff; border:none;
+      display:flex; align-items:center; justify-content:center;
+      font-size:14px; cursor:pointer;
+      box-shadow:0 4px 16px rgba(232,21,58,.4);
+      opacity:0; transform:translateY(8px); pointer-events:none;
+      transition:opacity .25s, transform .25s;
+    `;
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    document.body.appendChild(btn);
+
+    window.addEventListener('scroll', () => {
+      const show = window.scrollY > 400;
+      btn.style.opacity = show ? '1' : '0';
+      btn.style.transform = show ? 'translateY(0)' : 'translateY(8px)';
+      btn.style.pointerEvents = show ? 'all' : 'none';
+    }, { passive: true });
+  }
+})();

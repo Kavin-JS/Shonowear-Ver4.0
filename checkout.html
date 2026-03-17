@@ -489,6 +489,7 @@
 
   <div id="toast" class="toast"></div>
   <script src="data.js"></script>
+  <script src="js/utils.js"></script>
   <script src="main.js"></script>
   <script>
   let discount = 0;
@@ -584,21 +585,131 @@
     el.value = v;
   }
 
-  // Validation
+  // ── Real-time inline validation ───────────────────────────────
+  const FIELD_RULES = {
+    'co-name':    { test: v => v.trim().length >= 2,          msg: 'Please enter your full name' },
+    'co-phone':   { test: v => /^[6-9]\d{9}$/.test(v.replace(/[\s\-+]/g,'')), msg: 'Enter a valid 10-digit Indian mobile number' },
+    'co-email':   { test: v => !v || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v), msg: 'Enter a valid email address', optional: true },
+    'co-address': { test: v => v.trim().length >= 5,          msg: 'Enter your full street address' },
+    'co-city':    { test: v => v.trim().length >= 2,          msg: 'Enter your city' },
+    'co-pin':     { test: v => /^\d{6}$/.test(v.trim()),      msg: 'Enter a valid 6-digit pincode' },
+    'co-upi-id':  { test: v => !v || /^[\w.\-]{2,}@[\w]{2,}$/.test(v), msg: 'Enter a valid UPI ID (e.g. name@upi)', optional: true },
+    'co-card-num':{ test: v => !v || v.replace(/\s/g,'').length === 16, msg: 'Enter a valid 16-digit card number', optional: true },
+    'co-card-exp':{ test: v => !v || /^\d{2}\s*\/\s*\d{2}$/.test(v), msg: 'Format: MM / YY', optional: true },
+    'co-card-cvv':{ test: v => !v || /^\d{3,4}$/.test(v),    msg: '3 or 4 digit CVV', optional: true },
+  };
+
+  function setFieldState(id, state, message) {
+    // state: 'valid' | 'invalid' | 'idle'
+    const input = document.getElementById(id);
+    if (!input) return;
+    let msgEl = input.parentElement.querySelector('.field-msg');
+    if (!msgEl) {
+      msgEl = document.createElement('p');
+      msgEl.className = 'field-msg';
+      input.parentElement.appendChild(msgEl);
+    }
+    input.classList.remove('valid','invalid','error');
+    msgEl.className = 'field-msg';
+    if (state === 'valid') {
+      input.classList.add('valid');
+      msgEl.className = 'field-msg ok';
+      msgEl.innerHTML = '<i class="fas fa-check-circle"></i> ' + (message || 'Looks good');
+    } else if (state === 'invalid') {
+      input.classList.add('invalid','error');
+      msgEl.className = 'field-msg err';
+      msgEl.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + (message || 'Invalid');
+    } else {
+      msgEl.innerHTML = '';
+    }
+  }
+
+  function attachFieldValidation() {
+    Object.entries(FIELD_RULES).forEach(([id, rule]) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener('blur', () => {
+        const v = el.value;
+        if (!v && rule.optional) { setFieldState(id, 'idle'); return; }
+        if (!v && !rule.optional) { setFieldState(id, 'invalid', rule.msg); return; }
+        setFieldState(id, rule.test(v) ? 'valid' : 'invalid', rule.msg);
+      });
+      el.addEventListener('input', () => {
+        if (el.classList.contains('invalid') || el.classList.contains('valid')) {
+          const v = el.value;
+          if (!v && rule.optional) { setFieldState(id, 'idle'); return; }
+          setFieldState(id, (!v && !rule.optional) ? 'invalid' : rule.test(v) ? 'valid' : 'invalid', rule.msg);
+        }
+      });
+    });
+
+    // Pincode: auto-fetch city/state
+    const pinEl = document.getElementById('co-pin');
+    if (pinEl) {
+      pinEl.addEventListener('input', debounce(async () => {
+        const pin = pinEl.value.trim();
+        if (!/^\d{6}$/.test(pin)) return;
+        setFieldState('co-pin', 'idle');
+        pinEl.placeholder = 'Fetching...';
+        try {
+          const res = await fetch(`https://api.postalpincode.in/pincode/${pin}`);
+          const data = await res.json();
+          if (data?.[0]?.Status === 'Success') {
+            const po = data[0].PostOffice?.[0];
+            if (po) {
+              const cityEl  = document.getElementById('co-city');
+              const stateEl = document.getElementById('co-state');
+              if (cityEl  && !cityEl.value)  { cityEl.value = po.Division || po.District; setFieldState('co-city', 'valid'); }
+              if (stateEl && !stateEl.value) {
+                // Try to match state option
+                const opts = [...stateEl.options];
+                const match = opts.find(o => o.value.toLowerCase() === po.State.toLowerCase());
+                if (match) { stateEl.value = match.value; }
+              }
+              setFieldState('co-pin', 'valid', po.District + ', ' + po.State);
+            }
+          } else {
+            setFieldState('co-pin', 'invalid', 'Pincode not found');
+          }
+        } catch { setFieldState('co-pin', 'idle'); }
+        pinEl.placeholder = '400001';
+      }, 600));
+    }
+
+    // Select fields
+    ['co-state'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener('change', () => {
+        setFieldState(id, el.value ? 'valid' : 'invalid', 'Please select your state');
+      });
+    });
+  }
+
   function validate() {
     let ok = true;
     const required = ['co-name','co-phone','co-address','co-city','co-pin'];
     required.forEach(id => {
       const el = document.getElementById(id);
       if (!el) return;
-      if (!el.value.trim()) { el.classList.add('error'); ok = false; }
-      else el.classList.remove('error');
+      const rule = FIELD_RULES[id];
+      const v = el.value;
+      if (!v.trim() || (rule && !rule.test(v))) {
+        setFieldState(id, 'invalid', rule?.msg);
+        ok = false;
+      } else {
+        setFieldState(id, 'valid');
+      }
     });
     const state = document.getElementById('co-state');
-    if (state && !state.value) { state.classList.add('error'); ok = false; }
-    else if (state) state.classList.remove('error');
+    if (state && !state.value) {
+      setFieldState('co-state', 'invalid', 'Please select your state');
+      ok = false;
+    }
     return ok;
   }
+
+  document.addEventListener('DOMContentLoaded', attachFieldValidation);
 
   // Place order
   function placeOrder() {

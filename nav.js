@@ -17,8 +17,10 @@
   const NAV_HTML = `
   <div class="announce-bar" id="announce-bar">
     <div class="ab-inner">
-      <span>🔥 <strong>New Collection Live</strong> &nbsp;·&nbsp; Free shipping above ₹999 &nbsp;·&nbsp; Use code <strong>ANIME10</strong> for 10% off</span>
-      <button class="ab-close" onclick="this.parentElement.parentElement.style.display='none';sessionStorage.setItem('sw_announce_closed','1')" aria-label="Close">✕</button>
+      <div class="ab-ticker" id="ab-ticker">
+        <span class="ab-ticker-item">🔥 <strong>New Collection Live</strong> &nbsp;·&nbsp; Free shipping above ₹999</span>
+      </div>
+      <button class="ab-close" onclick="this.parentElement.parentElement.style.display='none';sessionStorage.setItem('sw_announce_closed','1')" aria-label="Close announcement">✕</button>
     </div>
   </div>
 
@@ -361,6 +363,48 @@
       closeMob();
       const results = document.getElementById('nav-search-results');
       if (results) results.style.display = 'none';
+    }
+  });
+
+  // ── Rotating announcement ticker ────────────────────────
+  (function initTicker() {
+    const MESSAGES = [
+      '🔥 <strong>New Collection Live</strong> &nbsp;·&nbsp; Free shipping above ₹999',
+      '🎉 Use code <strong>ANIME10</strong> for 10% off your first order',
+      '⚡ <strong>350 GSM Premium Fabric</strong> &nbsp;·&nbsp; Built to last',
+      '📦 Express delivery available &nbsp;·&nbsp; Order before 6 PM',
+    ];
+    const ticker = document.getElementById('ab-ticker');
+    if (!ticker) return;
+    let idx = 0;
+    function rotateTicker() {
+      idx = (idx + 1) % MESSAGES.length;
+      ticker.style.opacity = '0';
+      ticker.style.transform = 'translateY(-8px)';
+      ticker.style.transition = 'opacity .3s, transform .3s';
+      setTimeout(() => {
+        ticker.innerHTML = `<span class="ab-ticker-item">${MESSAGES[idx]}</span>`;
+        ticker.style.opacity = '1';
+        ticker.style.transform = 'translateY(0)';
+      }, 320);
+    }
+    setInterval(rotateTicker, 4000);
+  })();
+
+  // ── Focus trap for sidebar (a11y) ───────────────────────
+  document.addEventListener('keydown', (e) => {
+    const menu = document.getElementById('mob-menu');
+    if (!menu || !menu.classList.contains('on')) return;
+    if (e.key !== 'Tab') return;
+    const focusable = [...menu.querySelectorAll(
+      'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    )].filter(el => !el.closest('[style*="display:none"]'));
+    if (!focusable.length) return;
+    const first = focusable[0], last = focusable[focusable.length - 1];
+    if (e.shiftKey) {
+      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+    } else {
+      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
     }
   });
 

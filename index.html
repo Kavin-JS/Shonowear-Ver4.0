@@ -18,14 +18,24 @@
   <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="manifest.json">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="https://kavin-js.github.io/Shonowear-Ver3.0/">
+  <link rel="canonical" href="https://kavin-js.github.io/Shonowear/">
 </head>
 <body>
   <script src="nav.js" data-page="home"></script>
 
+  <!-- Skip to content (a11y) -->
+  <a href="#trending" class="skip-link">Skip to main content</a>
+
   <!-- ═══ 1. HERO BANNER ═══════════════════════════════════════ -->
   <section class="hero" id="hero">
-    <div class="hero-photo"></div>
+    <picture class="hero-photo" aria-hidden="true">
+      <source type="image/webp" srcset="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=1600&auto=format&fit=crop&q=80&fm=webp">
+      <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=1600&auto=format&fit=crop&q=80"
+           alt="Shonowear anime streetwear collection hero"
+           loading="eager" fetchpriority="high"
+           width="1600" height="900"
+           style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
+    </picture>
     <div class="hero-vignette"></div>
     <div class="hero-grain"></div>
     <div class="hero-body">
@@ -120,6 +130,106 @@
       <div class="prd-grid" id="trending-grid"></div>
       <div class="sec-cta">
         <a href="collection.html" class="ec-btn-outline">Browse All 120 Products <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ UGC — COMMUNITY LOOKS ═══════════════════════════════ -->
+  <section class="section fade-in-section" id="ugc-grid" style="background:var(--ink3);border-top:1px solid var(--border);">
+    <div class="container">
+      <div class="sec-head centered">
+        <p class="sec-eyebrow">Community</p>
+        <h2 class="sec-title">Shop the Look</h2>
+        <p style="color:var(--muted);font-size:14px;margin-top:-8px;">Real fits from the Shonowear community</p>
+      </div>
+      <div class="ugc-grid">
+        <div class="ugc-item">
+          <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&auto=format&fit=crop&q=80" alt="Community look 1" loading="lazy" width="400" height="400">
+          <div class="ugc-overlay">
+            <span class="ugc-handle">@aniketh.fits</span>
+            <span class="ugc-likes"><i class="fas fa-heart" style="color:#e8153a;"></i> 2.4k</span>
+            <a href="product.html?id=p1" class="ugc-shop-btn">Shop Look</a>
+          </div>
+        </div>
+        <div class="ugc-item">
+          <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=400&auto=format&fit=crop&q=80" alt="Community look 2" loading="lazy" width="400" height="400">
+          <div class="ugc-overlay">
+            <span class="ugc-handle">@riya.streetwear</span>
+            <span class="ugc-likes"><i class="fas fa-heart" style="color:#e8153a;"></i> 1.9k</span>
+            <a href="collection.html?style=Cyberpunk" class="ugc-shop-btn">Shop Look</a>
+          </div>
+        </div>
+        <div class="ugc-item">
+          <img src="https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=400&auto=format&fit=crop&q=80" alt="Community look 3" loading="lazy" width="400" height="400">
+          <div class="ugc-overlay">
+            <span class="ugc-handle">@vishnu.ootd</span>
+            <span class="ugc-likes"><i class="fas fa-heart" style="color:#e8153a;"></i> 3.1k</span>
+            <a href="collection.html?type=hoodie" class="ugc-shop-btn">Shop Look</a>
+          </div>
+        </div>
+        <div class="ugc-item">
+          <img src="https://images.unsplash.com/photo-1520975954732-35dd22299614?w=400&auto=format&fit=crop&q=80" alt="Community look 4" loading="lazy" width="400" height="400">
+          <div class="ugc-overlay">
+            <span class="ugc-handle">@priya.anime</span>
+            <span class="ugc-likes"><i class="fas fa-heart" style="color:#e8153a;"></i> 1.2k</span>
+            <a href="collection.html?style=Tokyo+Street" class="ugc-shop-btn">Shop Look</a>
+          </div>
+        </div>
+        <div class="ugc-item">
+          <img src="https://images.unsplash.com/photo-1516257984-b1b4d707412e?w=400&auto=format&fit=crop&q=80" alt="Community look 5" loading="lazy" width="400" height="400">
+          <div class="ugc-overlay">
+            <span class="ugc-handle">@arjun.drops</span>
+            <span class="ugc-likes"><i class="fas fa-heart" style="color:#e8153a;"></i> 4.8k</span>
+            <a href="collection.html?type=oversized" class="ugc-shop-btn">Shop Look</a>
+          </div>
+        </div>
+        <div class="ugc-item">
+          <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400&auto=format&fit=crop&q=80" alt="Community look 6" loading="lazy" width="400" height="400">
+          <div class="ugc-overlay">
+            <span class="ugc-handle">@kavya.style</span>
+            <span class="ugc-likes"><i class="fas fa-heart" style="color:#e8153a;"></i> 2.7k</span>
+            <a href="collection.html?style=Minimal+Anime" class="ugc-shop-btn">Shop Look</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ HOW IT WORKS ═════════════════════════════════════════ -->
+  <section class="section fade-in-section" id="how-it-works" style="border-top:1px solid var(--border);">
+    <div class="container">
+      <div class="sec-head centered">
+        <p class="sec-eyebrow">The Process</p>
+        <h2 class="sec-title">How It Works</h2>
+      </div>
+      <div class="hiw-grid">
+        <div class="hiw-step fade-in-section">
+          <div class="hiw-icon"><i class="fas fa-compass"></i></div>
+          <div class="hiw-num">01</div>
+          <h3>Discover Your Style</h3>
+          <p>Browse curated anime-inspired drops by style, universe, or your body type profile.</p>
+        </div>
+        <div class="hiw-connector" aria-hidden="true"></div>
+        <div class="hiw-step fade-in-section">
+          <div class="hiw-icon"><i class="fas fa-ruler-combined"></i></div>
+          <div class="hiw-num">02</div>
+          <h3>Find Your Fit</h3>
+          <p>Use our body-type tool and size guide to get the perfect fit every time.</p>
+        </div>
+        <div class="hiw-connector" aria-hidden="true"></div>
+        <div class="hiw-step fade-in-section">
+          <div class="hiw-icon"><i class="fas fa-shopping-bag"></i></div>
+          <div class="hiw-num">03</div>
+          <h3>Order Securely</h3>
+          <p>Checkout with UPI, card, or COD. Your order is packed and dispatched in 24 hrs.</p>
+        </div>
+        <div class="hiw-connector" aria-hidden="true"></div>
+        <div class="hiw-step fade-in-section">
+          <div class="hiw-icon"><i class="fas fa-box-open"></i></div>
+          <div class="hiw-num">04</div>
+          <h3>Wear with Pride</h3>
+          <p>Premium 350 GSM fabric delivered in 3–7 days. Love it or we'll sort it out.</p>
+        </div>
       </div>
     </div>
   </section>

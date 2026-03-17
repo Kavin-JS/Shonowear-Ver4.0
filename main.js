@@ -40,14 +40,90 @@ function logout() {
   setTimeout(() => window.location.href = 'index.html', 1000);
 }
 
-function toast(msg, type = 'info') {
-  const el = document.getElementById('toast');
-  if (!el) return;
-  el.textContent = msg;
-  el.style.background = type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#e8153a';
-  el.classList.add('show');
-  setTimeout(() => el.classList.remove('show'), 3000);
-}
+/* ── Advanced Toast Queue System ────────────────────────────── */
+(function setupToastSystem() {
+  let container = null;
+  let toastIdCounter = 0;
+
+  function getContainer() {
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'toast-container';
+      container.style.cssText = `
+        position:fixed; bottom:24px; right:24px; z-index:9999;
+        display:flex; flex-direction:column-reverse; gap:10px;
+        pointer-events:none; max-width:340px;
+      `;
+      document.body.appendChild(container);
+    }
+    return container;
+  }
+
+  window.showToast = window.toast = function(options, typeArg = 'info', durationArg = 3500) {
+    // Support legacy: toast(msg, type) and new: showToast({ message, type, action, onAction, duration })
+    let msg, type, action, onAction, duration;
+    if (typeof options === 'string') {
+      msg = options; type = typeArg; duration = durationArg;
+    } else {
+      msg = options.message; type = options.type || 'info';
+      action = options.action; onAction = options.onAction;
+      duration = options.duration || 3500;
+    }
+
+    const colors = { success: '#10b981', error: '#ef4444', warning: '#f59e0b', info: '#6366f1' };
+    const icons  = { success: '✓', error: '✕', warning: '⚠', info: 'ℹ' };
+    const id = ++toastIdCounter;
+
+    const t = document.createElement('div');
+    t.dataset.id = id;
+    t.style.cssText = `
+      background:${colors[type] || colors.info}; color:#fff;
+      padding: ${action ? '12px 14px' : '12px 16px'};
+      border-radius:10px; font-size:13px; font-weight:500; line-height:1.4;
+      box-shadow:0 6px 24px rgba(0,0,0,.4);
+      display:flex; align-items:center; gap:10px;
+      pointer-events:all; cursor:default; position:relative; overflow:hidden;
+      transform:translateX(110%); transition:transform .3s cubic-bezier(.22,1,.36,1);
+      min-width:220px;
+    `;
+
+    t.innerHTML = `
+      <span style="font-size:15px;flex-shrink:0;">${icons[type] || icons.info}</span>
+      <span style="flex:1;">${msg}</span>
+      ${action ? `<button onclick="(${onAction.toString()})();this.closest('[data-id]').remove();"
+        style="background:rgba(255,255,255,.25);border:none;color:#fff;padding:4px 10px;border-radius:6px;
+        font-size:11px;font-weight:700;cursor:pointer;flex-shrink:0;">${action}</button>` : ''}
+      <div class="toast-bar" style="
+        position:absolute;bottom:0;left:0;height:3px;
+        background:rgba(255,255,255,.4);
+        animation:toast-progress ${duration}ms linear forwards;
+        width:100%;
+      "></div>
+    `;
+
+    // Add keyframes if not present
+    if (!document.getElementById('toast-kf')) {
+      const s = document.createElement('style');
+      s.id = 'toast-kf';
+      s.textContent = `@keyframes toast-progress{from{width:100%}to{width:0}}`;
+      document.head.appendChild(s);
+    }
+
+    const c = getContainer();
+    c.appendChild(t);
+    requestAnimationFrame(() => requestAnimationFrame(() => t.style.transform = 'translateX(0)'));
+
+    const timer = setTimeout(() => dismissToast(t), duration);
+    t.addEventListener('click', () => { clearTimeout(timer); dismissToast(t); });
+  };
+
+  function dismissToast(t) {
+    t.style.transform = 'translateX(110%)';
+    t.style.opacity = '0';
+    t.style.transition = 'transform .25s ease, opacity .25s ease';
+    setTimeout(() => t.remove(), 260);
+  }
+})();
 
 function showPop(ico, title, msg) {
   document.getElementById('pop-ico').textContent  = ico;
