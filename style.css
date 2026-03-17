@@ -8931,43 +8931,28 @@ body {
   cursor:pointer;
 }
 .ugc-item img {
-  width:100%; height:100%; object-fit:cover;
+  width:100%; height:100%; object-fit:cover; object-position:top center;
   transition:transform .4s ease;
   display:block;
 }
-.ugc-item:hover img { transform:scale(1.07); }
+.ugc-item:hover img { transform:scale(1.05); }
 
-/* Desktop: full overlay on hover */
+/* Always-visible bottom bar on all cards, all devices */
 .ugc-overlay {
-  position:absolute; inset:0;
-  background:rgba(8,8,16,.72);
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  opacity:0; transition:opacity .3s ease;
-  gap:8px;
-}
-.ugc-item:hover .ugc-overlay { opacity:1; }
-
-/* Mobile: always-visible bottom bar instead of full hover overlay */
-@media (hover:none) {
-  .ugc-overlay {
-    inset:auto 0 0 0;           /* only bottom bar */
-    background:linear-gradient(to top, rgba(8,8,16,.9) 0%, rgba(8,8,16,.0) 100%);
-    padding:12px 8px 10px;
-    justify-content:flex-end;
-    opacity:1 !important;       /* always visible */
-    gap:4px;
-  }
-  .ugc-item img { transform:none !important; }
+  position:absolute; left:0; right:0; bottom:0;
+  background:linear-gradient(to top, rgba(0,0,0,.88) 0%, rgba(0,0,0,.4) 55%, transparent 100%);
+  padding:36px 10px 12px;
+  display:flex; flex-direction:column; align-items:center;
+  gap:4px;
 }
 
-.ugc-handle { color:#fff; font-size:12px; font-weight:600; }
-.ugc-likes  { color:rgba(255,255,255,.7); font-size:11px; }
+.ugc-handle { color:#fff; font-size:11px; font-weight:700; letter-spacing:.5px; }
+.ugc-likes  { color:rgba(255,255,255,.75); font-size:11px; margin-bottom:3px; }
 .ugc-shop-btn {
   background:var(--red); color:#fff; border:none;
-  padding:6px 14px; font-size:10px; font-weight:700; letter-spacing:1.5px;
+  padding:5px 14px; font-size:10px; font-weight:700; letter-spacing:1.5px;
   text-transform:uppercase; cursor:pointer; border-radius:4px;
-  text-decoration:none;
-  margin-top:4px;
+  text-decoration:none; display:inline-block;
 }
 
 /* Accessibility: skip link */
