@@ -371,10 +371,11 @@
   // Rotating announcement ticker
   (function initTicker() {
     const MESSAGES = [
-      '🔥 <strong>New Collection Live</strong> &nbsp;·&nbsp; Free shipping above ₹999',
-      '🎉 Use code <strong>ANIME10</strong> for 10% off your first order',
-      '⚡ <strong>350 GSM Premium Fabric</strong> &nbsp;·&nbsp; Built to last',
-      '📦 Express delivery available &nbsp;·&nbsp; Order before 6 PM',
+      '🔥 <strong>SS25 Collection Live</strong> &nbsp;·&nbsp; Free shipping above ₹999',
+      '✦ Use code <strong>ANIME10</strong> — 10% off your first order',
+      '⚡ <strong>350 GSM Premium Fabric</strong> &nbsp;·&nbsp; 120+ anime designs',
+      '🚚 Same-day dispatch &nbsp;·&nbsp; Order before 5 PM',
+      '★ Rated 4.9 / 5 &nbsp;·&nbsp; 10,000+ happy customers',
     ];
     const ticker = document.getElementById('ab-ticker');
     if (!ticker) return;

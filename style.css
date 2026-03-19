@@ -2,27 +2,53 @@
 
 /* TOKENS */
 :root {
-  --ink: #08080f;
-  --ink2: #0e0e1a;
-  --ink3: #141424;
-  --surface: #1a1a2e;
-  --red: #e8153a;
-  --red2: #f52040;
-  --red-lo: rgba(232, 21, 58, .12);
+  /* Colours */
+  --ink:      #08080f;
+  --ink2:     #0e0e1a;
+  --ink3:     #141424;
+  --surface:  #1a1a2e;
+  --red:      #e8153a;
+  --red2:     #f52040;
+  --red-lo:   rgba(232, 21, 58, .12);
   --red-glow: rgba(232, 21, 58, .4);
-  --gold: #f0b429;
-  --gold-lo: rgba(240, 180, 41, .12);
-  --white: #f0ede6;
-  --off: #c8c4bc;
-  --muted: #6a6a88;
-  --border: rgba(255, 255, 255, .07);
+  --gold:     #f0b429;
+  --gold-lo:  rgba(240, 180, 41, .12);
+  --white:    #f0ede6;
+  --off:      #c8c4bc;
+  --muted:    #6a6a88;
+  --border:   rgba(255, 255, 255, .07);
   --border-r: rgba(232, 21, 58, .22);
+
+  /* Typography */
   --font-d: 'Bebas Neue', sans-serif;
   --font-b: 'Poppins', sans-serif;
+  --font-m: 'Inter', sans-serif;
   --font-s: 'DM Serif Display', serif;
-  --radius: 0px;
-  --section: 96px;
-  /* legacy aliases */
+
+  /* Spacing */
+  --section:  96px;
+  --card-pad: 14px;
+  --grid-gap: 20px;
+
+  /* Borders */
+  --radius:      0px;
+  --radius-card: 6px;
+  --radius-btn:  4px;
+
+  /* Motion — single source of truth */
+  --ease:     cubic-bezier(.22, 1, .36, 1);
+  --ease-in:  cubic-bezier(.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, .2, 1);
+  --t-fast:   150ms;
+  --t-base:   240ms;
+  --t-slow:   400ms;
+
+  /* Shadows */
+  --shadow-card:  0 2px 12px rgba(0,0,0,.3), 0 1px 3px rgba(0,0,0,.2);
+  --shadow-card-hover: 0 8px 32px rgba(0,0,0,.5), 0 2px 8px rgba(0,0,0,.3);
+  --shadow-red:   0 6px 24px rgba(232,21,58,.3);
+
+  /* Legacy aliases */
   --bg: var(--ink);
   --bg2: var(--ink2);
   --bg3: var(--ink3);
@@ -45,7 +71,7 @@ html {
 body {
   background: var(--ink);
   color: var(--white);
-  font-family: var(--font-b);
+  font-family: var(--font-m);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   animation: pageFadeIn .4s ease both
@@ -153,8 +179,8 @@ textarea.error {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 40px;
-  gap: 16px
+  margin-bottom: 44px;
+  gap: 16px;
 }
 
 .sec-head.centered {
@@ -3863,12 +3889,16 @@ body {
   overflow: hidden;
   position: relative;
   cursor: pointer;
-  transition: border-color .25s, transform .2s;
+  box-shadow: var(--shadow-card);
+  transition: border-color var(--t-base) var(--ease-out),
+              transform var(--t-base) var(--ease-out),
+              box-shadow var(--t-base) var(--ease-out);
 }
 
 .prd-card:hover {
   border-color: var(--border-r);
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
 }
 
 /* Stronger product image treatment */
@@ -6350,7 +6380,7 @@ body {
   letter-spacing: 2px;
   text-transform: uppercase;
   border: 2px solid var(--red);
-  transition: background .2s, border-color .2s, transform .15s, box-shadow .2s;
+  transition: background var(--t-base) var(--ease-out), border-color var(--t-base) var(--ease-out), transform var(--t-fast) var(--ease-out), box-shadow var(--t-base) var(--ease-out);
 }
 
 .cta-primary:hover {
@@ -6520,7 +6550,7 @@ body {
   letter-spacing: 2px;
   text-transform: uppercase;
   border: 2px solid var(--red);
-  transition: background .2s, border-color .2s, transform .15s, box-shadow .2s;
+  transition: background var(--t-base) var(--ease-out), border-color var(--t-base) var(--ease-out), transform var(--t-fast) var(--ease-out), box-shadow var(--t-base) var(--ease-out);
 }
 
 .ec-btn-primary:hover {
@@ -7055,15 +7085,21 @@ body {
 .ec-review-card {
   background: var(--ink3);
   border: 1px solid var(--border);
-  padding: 20px;
+  border-radius: var(--radius-card);
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  transition: border-color .2s;
+  gap: 12px;
+  box-shadow: var(--shadow-card);
+  transition: border-color var(--t-base) var(--ease-out),
+              transform var(--t-base) var(--ease-out),
+              box-shadow var(--t-base) var(--ease-out);
 }
 
 .ec-review-card:hover {
   border-color: var(--border-r);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .ec-review-stars {
@@ -7073,10 +7109,11 @@ body {
 }
 
 .ec-review-text {
-  font-size: 13px;
+  font-family: var(--font-m);
+  font-size: 14px;
   color: var(--off);
-  line-height: 1.7;
-  font-weight: 300;
+  line-height: 1.75;
+  font-weight: 400;
   font-style: italic;
   flex: 1;
 }
@@ -7496,41 +7533,44 @@ body {
   font-weight: 400;
 }
 
-/* Sharper info section */
 .prd-info {
-  padding: 12px 12px 14px;
+  padding: var(--card-pad);
+  font-family: var(--font-m);
 }
 
 .prd-name {
   font-size: 13px;
   font-weight: 500;
   color: var(--white);
-  line-height: 1.35;
-  margin-bottom: 4px;
+  line-height: 1.4;
+  margin-bottom: 6px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  letter-spacing: -.01em;
 }
 
 .prd-price {
   font-family: var(--font-d);
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   color: var(--white);
   letter-spacing: 0.5px;
+  line-height: 1;
 }
 
 .prd-price-orig {
   font-size: 11px;
   color: var(--muted);
   text-decoration: line-through;
+  font-family: var(--font-m);
 }
 
 .prd-price-row {
   display: flex;
   align-items: baseline;
   gap: 8px;
-  margin-top: 4px;
+  margin-top: 5px;
 }
 
 /* Persistent Add to Cart button on mobile */
@@ -8896,7 +8936,14 @@ body {
 
 /* Category hover scale */
 .ec-cat-card {
-  transition:transform .3s ease;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform var(--t-base) var(--ease-out),
+              box-shadow var(--t-base) var(--ease-out);
+}
+.ec-cat-card:hover {
+  box-shadow: var(--shadow-card-hover);
 }
 .ec-cat-card:hover {
   transform:scale(1.03);
@@ -9048,4 +9095,291 @@ body {
 }
 .hiw-step p {
   font-size:12px; color:var(--muted); line-height:1.6;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   V6.0 — POLISH & REFINEMENT
+   ═══════════════════════════════════════════════════════════ */
+
+/* Global typography upgrade */
+h1, h2, h3, h4, h5, h6,
+.sec-title,
+.hero-title,
+.nav-logo {
+  font-family: var(--font-b);
+}
+
+body, p, span, div, input, textarea, select, button {
+  font-family: var(--font-m);
+}
+
+/* Force Poppins on display elements */
+.font-display { font-family: var(--font-d); }
+
+/* Section title — clear hierarchy */
+.sec-title {
+  font-family: var(--font-b);
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -.02em;
+  color: var(--white);
+  line-height: 1.15;
+}
+
+.sec-eyebrow {
+  font-family: var(--font-m);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--red);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.sec-sub {
+  font-family: var(--font-m);
+  font-size: 15px;
+  color: var(--muted);
+  font-weight: 400;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+
+/* ── PRODUCT CARD V6 ────────────────────────────────────── */
+
+/* Label badges: Trending / Best Seller / Limited */
+.prd-label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 3;
+  font-family: var(--font-m);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 3px;
+  pointer-events: none;
+}
+.prd-label-trending { background: #6366f1; color: #fff; }
+.prd-label-bestseller { background: var(--gold); color: #000; }
+.prd-label-limited { background: var(--red); color: #fff; }
+
+/* Price — gold for main price, stronger emphasis */
+.prd-price {
+  color: var(--gold) !important;
+  font-family: var(--font-d) !important;
+}
+
+/* Card info font */
+.prd-info {
+  font-family: var(--font-m);
+}
+.prd-name {
+  font-family: var(--font-m);
+  font-size: 13px;
+  font-weight: 500;
+}
+.prd-anime {
+  font-family: var(--font-m);
+}
+.prd-stars {
+  color: var(--gold);
+  letter-spacing: 1px;
+}
+.prd-review-count {
+  font-family: var(--font-m);
+  color: var(--muted);
+  font-size: 10px;
+}
+
+/* ── BUTTON SYSTEM V6 — 3 canonical variants ─────────────── */
+
+/* Primary: filled red */
+.btn-primary,
+.cta-primary,
+.btn-r,
+.co-place-btn,
+.checkout-btn {
+  font-family: var(--font-m) !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px;
+  transition:
+    background var(--t-base) var(--ease-out),
+    transform var(--t-fast) var(--ease-out),
+    box-shadow var(--t-base) var(--ease-out) !important;
+}
+
+/* Ghost: outlined */
+.btn-ghost,
+.cta-ghost,
+.ec-btn-outline {
+  font-family: var(--font-m) !important;
+  font-weight: 600 !important;
+  transition:
+    border-color var(--t-base) var(--ease-out),
+    background var(--t-base) var(--ease-out),
+    transform var(--t-fast) var(--ease-out) !important;
+}
+
+/* Text: link-style */
+.btn-text,
+.sec-link {
+  font-family: var(--font-m) !important;
+  font-weight: 700 !important;
+  transition: gap var(--t-base) var(--ease-out) !important;
+}
+
+/* ── SECTION SPACING — breathable layout ────────────────── */
+.section {
+  padding: var(--section) 0;
+}
+
+.sec-head {
+  margin-bottom: 36px;
+}
+
+/* ── TRUST STRIP V6 ─────────────────────────────────────── */
+.ec-trust-strip {
+  font-family: var(--font-m);
+}
+
+.ec-trust-item {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .3px;
+}
+
+/* ── CARD GRID — consistent gaps ────────────────────────── */
+.prd-grid {
+  gap: var(--grid-gap);
+}
+
+/* ── REVIEW CARDS V6 ─────────────────────────────────────── */
+.ec-review-card {
+  font-family: var(--font-m);
+  transition: transform var(--t-base) var(--ease-out),
+              box-shadow var(--t-base) var(--ease-out);
+}
+.ec-review-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
+}
+.ec-review-text {
+  font-size: 14px;
+  line-height: 1.7;
+  font-style: italic;
+  color: var(--off);
+}
+
+/* ── HOVER EFFECTS — consistent easing ──────────────────── */
+.ec-cat-card,
+.sc-card,
+.ec-feat-card,
+.outfit-card,
+.hiw-step {
+  transition: transform var(--t-base) var(--ease-out),
+              box-shadow var(--t-base) var(--ease-out),
+              border-color var(--t-base) var(--ease-out) !important;
+}
+
+/* ── FADE SECTIONS — smoother entrance ───────────────────── */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .6s var(--ease-out), transform .6s var(--ease-out);
+}
+.fade-in-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── NAV LINKS — Inter for body nav text ────────────────── */
+.nav-links a,
+.mob-link,
+.ec-cat-item,
+.nav-search-bar input {
+  font-family: var(--font-m);
+}
+
+/* ── FOOTER — Inter ─────────────────────────────────────── */
+.footer,
+.footer-col a,
+.footer-col p {
+  font-family: var(--font-m);
+}
+
+/* ── FORM INPUTS — Inter ────────────────────────────────── */
+input, textarea, select {
+  font-family: var(--font-m) !important;
+}
+
+/* ── TICKER — tighter ───────────────────────────────────── */
+.ticker {
+  font-family: var(--font-m);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+/* ── SCROLLBAR — subtler ────────────────────────────────── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--ink2); }
+::-webkit-scrollbar-thumb {
+  background: rgba(232,21,58,.4);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--red); }
+
+/* ── PROMO BANNER — cleaner numbers ─────────────────────── */
+.promo-stat-num {
+  font-family: var(--font-d);
+  font-size: 2.2rem;
+}
+.promo-stat-label {
+  font-family: var(--font-m);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+}
+
+/* ── ANNOUNCEMENT BAR — Inter ──────────────────────────── */
+.announce-bar,
+.ab-ticker-item {
+  font-family: var(--font-m);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+/* ── HOW IT WORKS STEP — Inter body ─────────────────────── */
+.hiw-step h3 { font-family: var(--font-b); }
+.hiw-step p  { font-family: var(--font-m); }
+
+/* ── CATEGORY CARDS — tighter text ──────────────────────── */
+.ec-cat-card-body h3 { font-family: var(--font-b); }
+.ec-cat-count        { font-family: var(--font-m); }
+
+/* ── RESPONSIVE POLISH ──────────────────────────────────── */
+@media (max-width: 768px) {
+  :root {
+    --section: 64px;
+    --card-pad: 12px;
+    --grid-gap: 12px;
+  }
+  .sec-title {
+    font-size: clamp(1.3rem, 5vw, 1.8rem);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --section: 48px;
+    --card-pad: 10px;
+    --grid-gap: 10px;
+  }
 }

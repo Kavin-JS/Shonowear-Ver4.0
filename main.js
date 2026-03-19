@@ -193,6 +193,19 @@ function renderProductCard(product) {
   const reviews = 12 + (num * 7 % 88);
   const stars   = Math.round(rating);
   const starStr = '\u2605'.repeat(stars) + '\u2606'.repeat(5 - stars);
+
+  // Status label: Limited > Best Seller > Trending (one per card)
+  const labelType = product.isLimited ? 'limited'
+    : product.isBestseller            ? 'bestseller'
+    : product.isNew                   ? null
+    : num % 7 === 0                   ? 'limited'
+    : num % 3 === 0                   ? 'bestseller'
+    : num % 2 === 0                   ? 'trending'
+    : null;
+  const labelText = { limited: 'Limited', bestseller: 'Best Seller', trending: 'Trending' };
+  const labelHtml = labelType
+    ? `<span class="prd-label prd-label-${labelType}">${labelText[labelType]}</span>` : '';
+
   return `
     <div class="prd-card" data-id="${product.id}" data-type="${product.type||''}" data-anime="${product.anime||''}" onclick="window.location='product.html?id=${product.id}'" style="cursor:pointer;">
       <div class="prd-img">
@@ -202,7 +215,8 @@ function renderProductCard(product) {
           ${product.isNew ? '<span class="prd-badge prd-badge-new">NEW</span>' : ''}
           ${disc >= 10 ? `<span class="prd-badge prd-badge-sale">${disc}% OFF</span>` : ''}
         </div>
-        <button class="prd-wish" data-pid="${product.id}" title="Save to wishlist" onclick="event.stopPropagation();toggleWishCard(this,'${product.id}','${safeName}',${product.price},'${product.type}')">
+        ${labelHtml}
+        <button class="prd-wish" data-pid="${product.id}" aria-label="Save to wishlist" onclick="event.stopPropagation();toggleWishCard(this,'${product.id}','${safeName}',${product.price},'${product.type}')">
           <i class="${heartCls}" style="${heartColor}"></i>
         </button>
       </div>

@@ -139,7 +139,7 @@
       background: var(--ink2); border: 1px solid var(--border);
       color: var(--muted); font-family: var(--font-b);
       font-size: 12px; font-weight: 600; letter-spacing: 1px;
-      cursor: pointer; transition: all .2s;
+      cursor: pointer; transition: border-color 200ms ease, color 200ms ease, background 200ms ease;
       display: flex; align-items: center; justify-content: center;
     }
     .pd-size:hover { border-color: var(--white); color: var(--white); }
@@ -161,6 +161,7 @@
       width: 52px; height: 44px; background: var(--ink2);
       border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
       color: var(--white); font-size: 14px; font-weight: 600;
+      font-family: var(--font-m);
       display: flex; align-items: center; justify-content: center;
     }
 
@@ -171,7 +172,7 @@
       font-family: var(--font-b); font-size: 13px; font-weight: 700;
       letter-spacing: 2px; text-transform: uppercase; border: none;
       cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
-      transition: background .25s, transform .2s;
+      transition: background 240ms ease, transform 150ms ease, box-shadow 240ms ease;
       position: relative; overflow: hidden;
     }
     .pd-add-btn::before {
@@ -179,7 +180,7 @@
       background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
       transform: skewX(-15deg); transition: left .5s;
     }
-    .pd-add-btn:hover { background: var(--red2); transform: translateY(-2px); }
+    .pd-add-btn:hover { background: var(--red2); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(232,21,58,.35); }
     .pd-add-btn:hover::before { left: 160%; }
     .pd-wish-btn {
       width: 100%; padding: 16px; background: transparent; color: var(--white);
