@@ -16,6 +16,47 @@
   const bodyType = localStorage.getItem('bodyType') || localStorage.getItem('sw_bodyType');
   const active = (p) => p === page ? ' class="active"' : '';
 
+  // After nav is injected, set dynamic active states based on URL params
+  function setNavActiveStates() {
+    if (page !== 'collection') return;
+    const params = new URLSearchParams(window.location.search);
+    const type   = params.get('type')   || '';
+    const cat    = params.get('category') || '';
+    const style  = params.get('style')  || '';
+
+    // Clear all active states first
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+
+    // Match by type param
+    const typeMap = {
+      hoodie:    '[href*="type=hoodie"]',
+      tee:       '[href*="type=tee"]',
+      oversized: '[href*="type=oversized"]',
+      jacket:    '[href*="type=jacket"]',
+      phone:     '[href*="type=phone"]',
+      figurine:  '[href*="type=figurine"]',
+    };
+    if (type && typeMap[type]) {
+      document.querySelector('.nav-links ' + typeMap[type])?.classList.add('active');
+    } else if (cat === 'Apparel') {
+      // Men or Women — highlight correct top link based on gender param
+      const gender = params.get('gender') || '';
+      const selector = gender === 'women'
+        ? '.nav-links [href*="gender=women"]'
+        : '.nav-links [href*="gender=men"]';
+      document.querySelector(selector)?.classList.add('active');
+    } else if (!type && !cat && !style) {
+      // Plain collection.html — highlight Collections
+      document.querySelector('.nav-links [href="collection.html"]')?.classList.add('active');
+    }
+  }
+  // Run after DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setNavActiveStates);
+  } else {
+    setTimeout(setNavActiveStates, 0);
+  }
+
   const NAV_HTML = `
   <div class="announce-bar" id="announce-bar">
     <div class="ab-inner">
@@ -36,7 +77,7 @@
       <div class="nav-center">
         <ul class="nav-links" id="navbar-links">
           <li class="nav-has-drop">
-            <a href="collection.html?category=Apparel"${active('collection')}>Men <i class="fas fa-chevron-down" style="font-size:8px;margin-left:3px;"></i></a>
+            <a href="collection.html?category=Apparel&gender=men">Men <i class="fas fa-chevron-down" style="font-size:8px;margin-left:3px;"></i></a>
             <div class="nav-dropdown">
               <div class="nav-drop-col">
                 <p class="nav-drop-head">Categories</p>
@@ -60,7 +101,7 @@
             </div>
           </li>
           <li class="nav-has-drop">
-            <a href="collection.html?category=Apparel">Women <i class="fas fa-chevron-down" style="font-size:8px;margin-left:3px;"></i></a>
+            <a href="collection.html?category=Apparel&gender=women">Women <i class="fas fa-chevron-down" style="font-size:8px;margin-left:3px;"></i></a>
             <div class="nav-dropdown">
               <div class="nav-drop-col">
                 <p class="nav-drop-head">Categories</p>
@@ -79,7 +120,7 @@
           <li><a href="collection.html?type=oversized">Oversized</a></li>
           <li><a href="collection.html?type=tee">Graphic Tees</a></li>
           <li><a href="collection.html?type=hoodie">Hoodies</a></li>
-          <li><a href="collection.html"${active('collection')}>Collections</a></li>
+          <li><a href="collection.html">Collections</a></li>
           <li><a href="new-arrivals.html"${active('new-arrivals')}>New Arrivals</a></li>
         </ul>
 
@@ -141,6 +182,7 @@
       <div class="mob-divider"></div>
 
       <p class="mob-section-label">Men</p>
+      <a href="collection.html?category=Apparel&gender=men" class="mob-link mob-link-sub"><i class="fas fa-th-large"></i> All Men's</a>
       <a href="collection.html?type=hoodie" class="mob-link mob-link-sub"><i class="fas fa-tshirt"></i> Hoodies</a>
       <a href="collection.html?type=tee" class="mob-link mob-link-sub"><i class="fas fa-tshirt"></i> Graphic Tees</a>
       <a href="collection.html?type=oversized" class="mob-link mob-link-sub"><i class="fas fa-tshirt"></i> Oversized</a>
@@ -148,6 +190,7 @@
       <div class="mob-divider"></div>
 
       <p class="mob-section-label">Women</p>
+      <a href="collection.html?category=Apparel&gender=women" class="mob-link mob-link-sub"><i class="fas fa-th-large"></i> All Women's</a>
       <a href="collection.html?type=hoodie" class="mob-link mob-link-sub"><i class="fas fa-tshirt"></i> Hoodies</a>
       <a href="collection.html?type=tee" class="mob-link mob-link-sub"><i class="fas fa-tshirt"></i> Graphic Tees</a>
       <a href="collection.html?type=oversized" class="mob-link mob-link-sub"><i class="fas fa-tshirt"></i> Oversized</a>

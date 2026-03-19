@@ -606,6 +606,7 @@
     if (bt)    { activeFilters.bodyType = bt; activePill('bt-pills', bt); }
 
     // Update page title for style/type pages
+    const gender = params.get('gender') || '';
     if (style) {
       const s = decodeURIComponent(style);
       document.getElementById('coll-page-title').textContent = s.toUpperCase();
@@ -615,6 +616,10 @@
       const label = labels[type] || type;
       document.getElementById('coll-page-title').textContent = label.toUpperCase();
       document.getElementById('coll-bc-label').textContent = label;
+    } else if (gender) {
+      const gLabel = gender === 'women' ? 'Women' : 'Men';
+      document.getElementById('coll-page-title').textContent = gLabel.toUpperCase();
+      document.getElementById('coll-bc-label').textContent = gLabel;
     } else if (cat) {
       document.getElementById('coll-page-title').textContent = cat.toUpperCase();
       document.getElementById('coll-bc-label').textContent = cat;
@@ -759,7 +764,7 @@
     const sortEl = document.getElementById('sort-filter');
     if (sortEl && sortEl.value !== 'newest') p.set('sort', sortEl.value);
     const url = window.location.pathname + (p.toString() ? '?' + p.toString() : '');
-    history.replaceState({ filters: { ...activeFilters } }, '', url);
+    history.pushState({ filters: { ...activeFilters } }, '', url);
   }
 
   /* ── Infinite scroll ────────────────────────────────── */
@@ -813,6 +818,21 @@
     }, { rootMargin: '300px' });
     _io.observe(_sentinel);
   }
+
+  /* ── Back/forward navigation restores filter state ── */
+  window.addEventListener('popstate', (e) => {
+    if (e.state && e.state.filters) {
+      Object.assign(activeFilters, e.state.filters);
+      // Sync pills to restored state
+      activePill('cat-pills',   activeFilters.category);
+      activePill('type-pills',  activeFilters.type);
+      activePill('style-pills', activeFilters.style);
+      activePill('anime-pills', activeFilters.anime);
+      const si = document.getElementById('search-input');
+      if (si) si.value = activeFilters.search || '';
+      applyFilters();
+    }
+  });
 
   function _detachSentinel() {
     if (_io) { _io.disconnect(); _io = null; }

@@ -10709,3 +10709,77 @@ input, textarea, select {
     font-size: .9rem;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   V9.0 — ROUTING & BRAND REFINEMENT
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Nav: active state for dropdown sub-links ────────────── */
+/* When a type page is active, the sub-link in the dropdown shows highlight */
+.nav-dropdown a.active {
+  color: var(--red) !important;
+  font-weight: 600;
+}
+.nav-dropdown a.active::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background: var(--red);
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* Top-level nav link active — red underline */
+.nav-links > li > a.active {
+  color: var(--white);
+}
+.nav-links > li > a.active::after {
+  transform: scaleX(1) !important;
+}
+
+/* ── Category cards: ec-cat-shop text refinement ────────────── */
+.ec-cat-shop {
+  font-family: var(--font-m);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.6);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  transition: gap var(--t-base) var(--ease-out), color var(--t-base) ease;
+}
+.ec-cat-card:hover .ec-cat-shop {
+  gap: 10px;
+  color: #fff;
+}
+
+/* ── Style cards: description text ──────────────────────── */
+.sc-label p {
+  font-style: italic;
+  color: rgba(255,255,255,.55);
+}
+
+/* ── Collection page: breadcrumb active state ────────────── */
+.coll-bc-label {
+  color: var(--white);
+  font-weight: 600;
+}
+
+/* ── Collection page: page title styling ─────────────────── */
+#coll-page-title {
+  font-family: var(--font-d);
+  letter-spacing: 2px;
+}
+
+/* ── Nav: active underline transition ────────────────────── */
+.nav-links a {
+  transition: color var(--t-base) ease;
+}
+.nav-links a::after {
+  transition: transform var(--t-base) var(--ease-out);
+}
