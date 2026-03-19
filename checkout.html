@@ -125,24 +125,39 @@
 
     /* Place order button */
     .co-place-btn {
-      width: 100%; padding: 18px;
+      width: 100%; padding: 19px;
       background: var(--red); color: #fff;
-      font-family: 'Poppins', sans-serif; font-size: 13px;
-      font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      font-family: var(--font-m, 'Inter', sans-serif); font-size: 15px;
+      font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
       border: none; cursor: pointer;
       display: flex; align-items: center; justify-content: center; gap: 10px;
-      transition: background .2s, transform .15s;
+      border-radius: 4px;
+      box-shadow: 0 4px 16px rgba(232,21,58,.3);
+      transition: background 240ms ease, transform 150ms ease, box-shadow 240ms ease;
     }
-    .co-place-btn:hover { background: #f52040; transform: translateY(-1px); }
+    .co-place-btn:hover {
+      background: #f52040; transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(232,21,58,.45);
+    }
     .co-place-btn:active { transform: translateY(0); }
     .co-place-btn.loading { opacity: .7; pointer-events: none; }
 
+    .co-place-trust {
+      display: flex; justify-content: center; gap: 20px;
+      margin-top: 14px; margin-bottom: 6px; flex-wrap: wrap;
+    }
+    .co-place-trust span {
+      font-family: var(--font-m, 'Inter', sans-serif);
+      font-size: 11px; color: var(--muted);
+      display: flex; align-items: center; gap: 5px;
+    }
+
     .co-security-note {
       display: flex; align-items: center; justify-content: center; gap: 6px;
-      font-size: 11px; color: var(--muted); margin-top: 14px;
-      text-align: center;
+      font-size: 11px; color: var(--muted); margin-top: 8px;
+      text-align: center; font-family: var(--font-m, 'Inter', sans-serif);
     }
-    .co-security-note i { color: var(--gold); }
+    .co-security-note i { color: #10b981; }
 
     /* ── Right: order summary ──────────────────── */
     .co-summary {
@@ -434,11 +449,16 @@
 
         <!-- Place order -->
         <button class="co-place-btn" id="co-place-btn" onclick="placeOrder()">
-          <i class="fas fa-lock"></i> Place Order
+          <i class="fas fa-lock"></i> Place Order Securely
         </button>
+        <div class="co-place-trust">
+          <span><i class="fas fa-shield-alt" style="color:#10b981;"></i> SSL Encrypted</span>
+          <span><i class="fas fa-undo" style="color:#10b981;"></i> Free Returns</span>
+          <span><i class="fas fa-truck" style="color:#10b981;"></i> Ships in 24h</span>
+        </div>
         <p class="co-security-note">
-          <i class="fas fa-shield-alt"></i>
-          Your payment information is encrypted and secure
+          <i class="fas fa-lock"></i>
+          Your payment is 100% secure. We never store card details.
         </p>
       </div>
 

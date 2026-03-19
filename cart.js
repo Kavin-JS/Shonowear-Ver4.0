@@ -101,6 +101,24 @@ function updateSummary(cart) {
   // Delivery estimate
   if (el('delivery-est') && typeof estimateDelivery === 'function')
     el('delivery-est').textContent = 'Est. delivery: ' + estimateDelivery(3, 7);
+
+  // Free shipping progress bar
+  const FREE_THRESHOLD = 999;
+  const bar  = el('sp-bar-fill');
+  const msg  = el('sp-msg');
+  if (bar && msg) {
+    const pct = Math.min(100, Math.round((subtotal / FREE_THRESHOLD) * 100));
+    bar.style.width = pct + '%';
+    bar.style.background = 'linear-gradient(90deg, #10b981, #34d399)';
+    if (pct >= 100) {
+      msg.innerHTML = '<i class="fas fa-check-circle" style="color:#10b981;"></i> You\'ve unlocked <strong>FREE shipping!</strong> 🎉';
+      msg.style.color = '#10b981';
+    } else {
+      const needed = (FREE_THRESHOLD - subtotal).toLocaleString('en-IN');
+      msg.innerHTML = `<i class="fas fa-truck" style="color:#10b981;margin-right:4px;"></i> Add <strong>₹${needed}</strong> more for <strong style="color:#10b981;">FREE shipping</strong>`;
+      msg.style.color = 'var(--muted)';
+    }
+  }
 }
 
 function changeQty(idx, delta) {

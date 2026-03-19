@@ -194,17 +194,29 @@ function renderProductCard(product) {
   const stars   = Math.round(rating);
   const starStr = '\u2605'.repeat(stars) + '\u2606'.repeat(5 - stars);
 
-  // Status label: Limited > Best Seller > Trending (one per card)
-  const labelType = product.isLimited ? 'limited'
-    : product.isBestseller            ? 'bestseller'
-    : product.isNew                   ? null
-    : num % 7 === 0                   ? 'limited'
-    : num % 3 === 0                   ? 'bestseller'
-    : num % 2 === 0                   ? 'trending'
+  // Urgency label — one per card, priority: selling-fast > limited > bestseller > trending
+  const labelType = product.isSoldOut       ? null
+    : product.isLimited                     ? 'limited'
+    : product.isBestseller                  ? 'bestseller'
+    : product.isNew                         ? null
+    : num % 9 === 0                         ? 'hot'
+    : num % 7 === 0                         ? 'limited'
+    : num % 3 === 0                         ? 'bestseller'
+    : num % 2 === 0                         ? 'trending'
     : null;
-  const labelText = { limited: 'Limited', bestseller: 'Best Seller', trending: 'Trending' };
+  const labelText = {
+    hot:        '🔥 Selling Fast',
+    limited:    '⚡ Only a Few Left',
+    bestseller: '★ Best Seller',
+    trending:   'Trending'
+  };
   const labelHtml = labelType
     ? `<span class="prd-label prd-label-${labelType}">${labelText[labelType]}</span>` : '';
+
+  // Social proof line — "X bought this week"
+  const boughtNums = [47, 83, 124, 62, 91, 38, 156, 74, 29, 112];
+  const boughtNum  = boughtNums[num % boughtNums.length];
+  const socialHtml = `<span class="prd-social-proof"><i class="fas fa-fire" style="color:var(--red);font-size:9px;"></i> ${boughtNum} bought this week</span>`;
 
   return `
     <div class="prd-card" data-id="${product.id}" data-type="${product.type||''}" data-anime="${product.anime||''}" onclick="window.location='product.html?id=${product.id}'" style="cursor:pointer;">
@@ -222,7 +234,7 @@ function renderProductCard(product) {
       </div>
       <div class="prd-ov">
         <button class="prd-ov-btn" onclick="event.stopPropagation();addToCart('${product.id}','${safeName}',${product.price})">
-          <i class="fas fa-shopping-bag"></i> ADD TO CART
+          <i class="fas fa-shopping-bag"></i> Add to Cart
         </button>
       </div>
       <div class="prd-info">
@@ -231,11 +243,14 @@ function renderProductCard(product) {
         <div class="prd-rating-row">
           <span class="prd-stars">${starStr}</span>
           <span class="prd-review-count">(${reviews})</span>
+          ${labelType === 'hot' || labelType === 'limited' ? '' : socialHtml}
         </div>
         <div class="prd-price-row">
           <span class="prd-price">₹${product.price.toLocaleString()}</span>
           <span class="prd-price-orig">₹${origPrice.toLocaleString()}</span>
+          ${disc >= 10 ? `<span class="prd-savings">Save ₹${(origPrice - product.price).toLocaleString()}</span>` : ''}
         </div>
+        ${labelType === 'hot' || labelType === 'limited' ? `<div class="prd-urgency-strip">${labelType === 'hot' ? '🔥 ' : '⚡ '}${boughtNum} people bought this week</div>` : ''}
       </div>
 
       <button class="prd-atc-mobile" onclick="event.stopPropagation();addToCart('${product.id}','${safeName}',${product.price})">

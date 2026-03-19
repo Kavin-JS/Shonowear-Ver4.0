@@ -83,6 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
   checkWishState(product.id);
   updateWishBadge();
   renderCompleteTheLook(product);
+  // Urgency signals — needs currentProduct set first
+  if (typeof window.initUrgencySignals === 'function') window.initUrgencySignals();
 
   // Wire image zoom lightbox
   const galleryImgs = GALLERY_IMAGES[product.type] || GALLERY_IMAGES.tee;

@@ -65,6 +65,7 @@
       display: flex; justify-content: space-between;
       font-size: 14px; font-weight: 500; padding: 10px 0;
       border-bottom: 1px solid var(--border); color: var(--off);
+      font-family: var(--font-m);
     }
     .summary-row.total {
       border-bottom: none; margin-top: 8px;
@@ -73,13 +74,27 @@
     }
     .summary-row.total span:last-child { color: var(--gold); }
     .checkout-btn {
-      width: 100%; padding: 16px; background: var(--red); color: #fff;
-      font-family: var(--font-b); font-size: 13px; font-weight: 700;
+      width: 100%; padding: 17px; background: var(--red); color: #fff;
+      font-family: var(--font-m); font-size: 14px; font-weight: 700;
       letter-spacing: 2px; text-transform: uppercase; border: none;
-      margin-top: 20px; transition: background .2s, transform .2s;
+      margin-top: 20px;
+      transition: background 240ms ease, transform 150ms ease, box-shadow 240ms ease;
       display: flex; align-items: center; justify-content: center; gap: 10px;
+      box-shadow: 0 4px 16px rgba(232,21,58,.25);
+      border-radius: var(--radius-btn);
     }
-    .checkout-btn:hover { background: var(--red2); transform: translateY(-2px); }
+    .checkout-btn:hover {
+      background: var(--red2); transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(232,21,58,.4);
+    }
+    /* Shipping progress */
+    .shipping-progress { margin-bottom:20px; padding:14px 16px; background:var(--ink3); border:1px solid var(--border); border-radius:6px; }
+    .sp-bar-track { height:5px; background:rgba(255,255,255,.08); border-radius:99px; overflow:hidden; margin-bottom:8px; }
+    .sp-bar-fill { height:100%; width:0%; border-radius:99px; background:var(--red); transition:width .6s ease, background .4s ease; }
+    .sp-msg { font-family:var(--font-m); font-size:12px; color:var(--muted); line-height:1.4; }
+    .sp-msg strong { color:var(--white); font-weight:700; }
+    /* Checkout reassurance */
+    .cart-checkout-reassurance { font-family:var(--font-m); font-size:11px; color:var(--muted); text-align:center; margin:10px 0 14px; }
 
     .promo-row { display: flex; gap: 8px; margin-bottom: 16px; }
     .promo-input {
@@ -127,10 +142,11 @@
             <div id="cart-items"></div>
             <div class="cart-empty" id="empty-cart" style="display:none;">
               <i class="fas fa-shopping-bag"></i>
-              <p>Your cart is empty.</p>
-              <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:8px;">
-                <a href="collection.html?sort=newest" class="btn-r">NEW ARRIVALS</a>
-                <a href="collection.html" class="ec-btn-outline" style="padding:12px 24px;">BROWSE ALL</a>
+              <p>Your cart is empty</p>
+              <span class="cart-empty-sub">Looks like you haven't added anything yet.</span>
+              <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+                <a href="collection.html?sort=newest" class="btn-r">Shop New Arrivals</a>
+                <a href="collection.html" class="ec-btn-outline" style="padding:12px 24px;">Browse All</a>
               </div>
             </div>
 
@@ -146,6 +162,13 @@
           <div class="cart-summary-wrap">
             <div class="cart-summary" id="cart-summary" style="display:none;">
               <h4 style="font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:20px;">Order Summary</h4>
+
+              <!-- Free shipping progress bar -->
+              <div class="shipping-progress" id="shipping-progress">
+                <div class="sp-bar-track"><div class="sp-bar-fill" id="sp-bar-fill"></div></div>
+                <p class="sp-msg" id="sp-msg"></p>
+              </div>
+
               <div class="summary-row"><span>Subtotal</span><span id="subtotal">₹0</span></div>
               <div class="summary-row" id="discount-row" style="display:none;"></div>
               <div class="summary-row" id="shipping-row"><span>Shipping</span><span style="color:var(--gold)">FREE</span></div>
@@ -160,6 +183,7 @@
               <p class="promo-note coupon-msg" id="promo-note"></p>
 
               <button class="checkout-btn" onclick="checkout()"><i class="fas fa-lock"></i> Proceed to Checkout</button>
+              <p class="cart-checkout-reassurance"><i class="fas fa-shield-alt"></i> 100% secure &nbsp;·&nbsp; Easy 7-day returns &nbsp;·&nbsp; COD available</p>
               <div class="trust-badges">
                 <div class="trust-badge"><i class="fas fa-shield-alt"></i> Secure Checkout</div>
                 <div class="trust-badge"><i class="fas fa-credit-card"></i> UPI / Cards</div>
