@@ -199,15 +199,14 @@ function renderProductCard(product) {
     : product.isLimited                     ? 'limited'
     : product.isBestseller                  ? 'bestseller'
     : product.isNew                         ? null
-    : num % 9 === 0                         ? 'hot'
-    : num % 7 === 0                         ? 'limited'
-    : num % 3 === 0                         ? 'bestseller'
-    : num % 2 === 0                         ? 'trending'
+    : num % 11 === 0                        ? 'hot'
+    : num % 8 === 0                         ? 'limited'
+    : num % 5 === 0                         ? 'bestseller'
     : null;
   const labelText = {
-    hot:        '🔥 Selling Fast',
-    limited:    '⚡ Only a Few Left',
-    bestseller: '★ Best Seller',
+    hot:        'Selling Fast',
+    limited:    'Low Stock',
+    bestseller: 'Best Seller',
     trending:   'Trending'
   };
   const labelHtml = labelType
@@ -216,7 +215,7 @@ function renderProductCard(product) {
   // Social proof line — "X bought this week"
   const boughtNums = [47, 83, 124, 62, 91, 38, 156, 74, 29, 112];
   const boughtNum  = boughtNums[num % boughtNums.length];
-  const socialHtml = `<span class="prd-social-proof"><i class="fas fa-fire" style="color:var(--red);font-size:9px;"></i> ${boughtNum} bought this week</span>`;
+  const socialHtml = `<span class="prd-social-proof">${boughtNum} sold this week</span>`;
 
   return `
     <div class="prd-card" data-id="${product.id}" data-type="${product.type||''}" data-anime="${product.anime||''}" onclick="window.location='product.html?id=${product.id}'" style="cursor:pointer;">
@@ -243,14 +242,14 @@ function renderProductCard(product) {
         <div class="prd-rating-row">
           <span class="prd-stars">${starStr}</span>
           <span class="prd-review-count">(${reviews})</span>
-          ${labelType === 'hot' || labelType === 'limited' ? '' : socialHtml}
+          ${labelType || num % 3 === 0 ? '' : socialHtml}
         </div>
         <div class="prd-price-row">
           <span class="prd-price">₹${product.price.toLocaleString()}</span>
           <span class="prd-price-orig">₹${origPrice.toLocaleString()}</span>
           ${disc >= 10 ? `<span class="prd-savings">Save ₹${(origPrice - product.price).toLocaleString()}</span>` : ''}
         </div>
-        ${labelType === 'hot' || labelType === 'limited' ? `<div class="prd-urgency-strip">${labelType === 'hot' ? '🔥 ' : '⚡ '}${boughtNum} people bought this week</div>` : ''}
+
       </div>
 
       <button class="prd-atc-mobile" onclick="event.stopPropagation();addToCart('${product.id}','${safeName}',${product.price})">

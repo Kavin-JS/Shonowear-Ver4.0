@@ -462,14 +462,9 @@
         </div>
 
         <!-- Social proof + urgency signals -->
-        <div class="pd-live-signals" id="pd-live-signals">
-          <span class="pd-viewers"><i class="fas fa-circle" style="color:#10b981;font-size:7px;animation:viewerPulse 2s ease infinite;"></i> <span id="pd-viewer-count">12</span> people viewing this now</span>
-          <span class="pd-dot-sep">·</span>
-          <span class="pd-dispatch-timer"><i class="fas fa-clock"></i> Order in <strong id="pd-dispatch-hrs">4h 23m</strong> for today's dispatch</span>
-        </div>
         <div class="pd-stock-signal" id="pd-stock-signal">
           <i class="fas fa-exclamation-triangle"></i>
-          <span>Only <strong id="pd-stock-count">7</strong> left at this price</span>
+          <span>Only <strong id="pd-stock-count">7</strong> left in stock</span>
         </div>
 
         <!-- Actions -->
@@ -807,21 +802,8 @@
     }
   }, 600);
 
-  // Urgency signals: viewer count + dispatch countdown
+  // Stock signal — deterministic from product id, shown only when low
   window.initUrgencySignals = function() {
-    // Viewer count — randomised per product, drifts ±2 every few seconds
-    const baseViewers = 8 + (Math.floor(Math.random() * 12));
-    let viewers = baseViewers;
-    const viewEl = document.getElementById('pd-viewer-count');
-    if (viewEl) {
-      viewEl.textContent = viewers;
-      setInterval(() => {
-        viewers = Math.max(3, viewers + (Math.random() > 0.45 ? 1 : -1));
-        viewEl.textContent = viewers;
-      }, 4500);
-    }
-
-    // Stock count — deterministic from product id so it's stable per page
     const stockEl = document.getElementById('pd-stock-count');
     const stockSignal = document.getElementById('pd-stock-signal');
     if (stockEl && currentProduct) {
@@ -829,25 +811,7 @@
       const stocks = [5, 8, 4, 12, 6, 3, 9, 7, 11, 5];
       const count = stocks[num % stocks.length];
       stockEl.textContent = count;
-      // Only show signal when stock is genuinely low
       if (stockSignal) stockSignal.style.display = count <= 8 ? 'flex' : 'none';
-    }
-
-    // Dispatch countdown — counts down to 5 PM today
-    const timerEl = document.getElementById('pd-dispatch-hrs');
-    if (timerEl) {
-      function updateTimer() {
-        const now = new Date();
-        const cutoff = new Date();
-        cutoff.setHours(17, 0, 0, 0);
-        if (now >= cutoff) cutoff.setDate(cutoff.getDate() + 1);
-        const diff = cutoff - now;
-        const h = Math.floor(diff / 3600000);
-        const m = Math.floor((diff % 3600000) / 60000);
-        timerEl.textContent = `${h}h ${m}m`;
-      }
-      updateTimer();
-      setInterval(updateTimer, 60000);
     }
   };
   </script>
