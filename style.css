@@ -1275,11 +1275,11 @@ textarea.error {
 }
 
 .coll-img-over {
-  background-image: url('https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=700&auto=format&fit=crop&q=75')
+  background-image: url('https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=700&auto=format&fit=crop&q=75')
 }
 
 .coll-img-jacket {
-  background-image: url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=700&auto=format&fit=crop&q=75')
+  background-image: url('https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=700&auto=format&fit=crop&q=75')
 }
 
 .coll-img-fig {
@@ -1589,7 +1589,7 @@ textarea.error {
 }
 
 .lb-img-4 {
-  background-image: url('https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=700&auto=format&fit=crop&q=80')
+  background-image: url('https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=700&auto=format&fit=crop&q=80')
 }
 
 .lb-img-5 {
@@ -2622,7 +2622,7 @@ textarea.error {
 
 .drop-img-sm1 {
   flex: 1;
-  background-image: url('https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=300&auto=format&fit=crop&q=80')
+  background-image: url('https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=300&auto=format&fit=crop&q=85')
 }
 
 .drop-img-sm2 {
@@ -5113,7 +5113,7 @@ html {
 
 /* Minimal Anime — clean white graphic tee */
 .sc-minimal {
-  background-image: url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&auto=format&fit=crop&q=80');
+  background-image: url('https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&auto=format&fit=crop&q=85');
   background-size: cover;
   background-position: center top;
 }
@@ -11154,8 +11154,8 @@ input, textarea, select {
   background-position: center center;
 }
 .sc-minimal {
-  background-image: url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=700&auto=format&fit=crop&q=85');
-  background-position: center 20%;
+  background-image: url('https://images.unsplash.com/photo-1517841905240-472988babdf9?w=700&auto=format&fit=crop&q=85');
+  background-position: center 15%;
 }
 .sc-shibuya {
   background-image: url('https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=700&auto=format&fit=crop&q=85');
@@ -11430,4 +11430,203 @@ input, textarea, select {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
   pointer-events: none;
   opacity: .45;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   V14.0 — VISUAL OWNERSHIP SYSTEM
+   The brand mark, the cinematic hero, the image direction rules.
+   These are the elements that make the brand recognisable
+   without seeing the logo.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── THE BRAND MARK ──────────────────────────────────────────
+   A single 2px red line on the left edge of every product card.
+   It is:
+   — present on all cards in all grid contexts
+   — consistent height (60% of card, vertically centred)
+   — the same red as the logo "WEAR" text
+   This is Shonowear's visual signature. One pixel of red
+   in a field of dark is enough to be recognised.
+   ──────────────────────────────────────────────────────────── */
+.prd-card {
+  position: relative;
+}
+.prd-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 20%;
+  height: 60%;
+  width: 2px;
+  background: var(--red);
+  opacity: 0;
+  z-index: 4;
+  transition: opacity var(--t-base) var(--ease-out);
+  border-radius: 0 1px 1px 0;
+}
+.prd-card:hover::before {
+  opacity: 1;
+}
+
+/* ── HERO: CINEMATIC LETTERBOX ───────────────────────────────
+   Thin black bars at top and bottom of the hero.
+   This is the single most recognisable cinematic framing device.
+   Aspect ratio suggests a film still.
+   Width: 100%. Height: 3.5rem each side.
+   ──────────────────────────────────────────────────────────── */
+.hero::before,
+.hero::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3.5rem;
+  background: var(--ink);
+  z-index: 3;
+  pointer-events: none;
+}
+.hero::before { top: 0; }
+.hero::after  { bottom: 0; }
+
+/* ── HERO: STRONGER LEFT-PULL VIGNETTE ───────────────────────
+   The text side (left) is darker. The image side (right) breathes.
+   This creates directional tension — the image pulls right,
+   the text holds left. Classic fashion editorial composition.
+   ──────────────────────────────────────────────────────────── */
+.hero-vignette {
+  background: linear-gradient(
+    100deg,
+    rgba(8, 8, 15, .95) 0%,
+    rgba(8, 8, 15, .75) 30%,
+    rgba(8, 8, 15, .35) 60%,
+    rgba(8, 8, 15, .05) 100%
+  ) !important;
+}
+
+/* ── HERO: CONSISTENT IMAGE DIRECTION ───────────────────────
+   Upper-body focus. The model should read from 30% down from top.
+   On the dark hero, the face/garment sits in the lighter right area.
+   ──────────────────────────────────────────────────────────── */
+.hero-photo {
+  background-position: center 25% !important;
+}
+
+/* ── STYLE CARD BRAND MARK ───────────────────────────────────
+   The same red line appears on style card hover.
+   Consistent signature across product grid and style worlds.
+   ──────────────────────────────────────────────────────────── */
+.sc-card {
+  position: relative;
+}
+.sc-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--red);
+  opacity: 0;
+  z-index: 5;
+  transition: opacity var(--t-slow) var(--ease-out);
+}
+.sc-card:hover::before {
+  opacity: 1;
+}
+
+/* ── CATEGORY CARD BRAND MARK ────────────────────────────────
+   Bottom-left corner: a thin red line that grows on hover.
+   Consistent with card system but adapted for full-bleed cards.
+   ──────────────────────────────────────────────────────────── */
+.ec-cat-card {
+  position: relative;
+}
+.ec-cat-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--red);
+  z-index: 4;
+  transition: width var(--t-slow) var(--ease-out);
+}
+.ec-cat-card:hover::after {
+  width: 40%;
+}
+
+/* ── IMAGE DIRECTION: crop=faces for portrait images ─────────
+   Unsplash `crop=faces` focuses the crop algorithm on face detection.
+   Applied via URL params in the image pools (see main.js/product.js).
+   For background-image divs, we enforce top-position framing.
+   ──────────────────────────────────────────────────────────── */
+.prd-img-inner,
+.ec-cat-img,
+.oc-img,
+.ec-feat-img {
+  background-position: center top;
+}
+
+/* Override for jacket/figurine — these are better centered */
+/* (Applied via data attributes where needed) */
+
+/* ── PRODUCT GRID: BREATHING SPACE ──────────────────────────
+   A slight gap increase between cards.
+   The brand mark (red line) needs air to be seen.
+   ──────────────────────────────────────────────────────────── */
+.prd-grid {
+  gap: 18px;
+}
+
+/* ── UGC: COMMUNITY FRAMING ──────────────────────────────────
+   UGC images use faces crop — the person is the subject.
+   ──────────────────────────────────────────────────────────── */
+.ugc-item img {
+  object-position: top center;
+}
+
+/* ── PRODUCT PAGE: IMAGE FRAMING ─────────────────────────────
+   Product page main image: upper-body framing.
+   Thumb images: slightly more zoomed for detail.
+   ──────────────────────────────────────────────────────────── */
+.pd-main-img img {
+  object-fit: cover;
+  object-position: center 15%;
+}
+.pd-thumb img {
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* ── MANIFESTO STRIP BRAND MARK ─────────────────────────────
+   The manifesto strip gets a top border in the brand red.
+   This is the same red as the product card mark — visual echo.
+   ──────────────────────────────────────────────────────────── */
+.manifesto-strip {
+  border-top: 3px solid rgba(232, 21, 58, .6);
+}
+
+/* ── MOBILE: brand mark visible on touch ────────────────────
+   On hover:none devices, show the brand mark always (not hover-only).
+   ──────────────────────────────────────────────────────────── */
+@media (hover: none) {
+  .prd-card::before {
+    opacity: .6;
+    height: 40%;
+    top: 30%;
+  }
+  /* Hero letterbox: reduce height on mobile */
+  .hero::before,
+  .hero::after {
+    height: 2rem;
+  }
+}
+
+/* ── RESPONSIVE: hero letterbox adjusts ─────────────────────── */
+@media (max-width: 768px) {
+  .hero::before,
+  .hero::after {
+    height: 2.5rem;
+  }
 }
