@@ -414,11 +414,11 @@
   // Rotating announcement ticker
   (function initTicker() {
     const MESSAGES = [
-      '🔥 <strong>SS25 Collection Live</strong> &nbsp;·&nbsp; Free shipping above ₹999',
-      '✦ Use code <strong>ANIME10</strong> — 10% off your first order',
-      '⚡ <strong>350 GSM Premium Fabric</strong> &nbsp;·&nbsp; 120+ anime designs',
-      '🚚 Same-day dispatch &nbsp;·&nbsp; Order before 5 PM',
-      '★ Rated 4.9 / 5 &nbsp;·&nbsp; 10,000+ happy customers',
+      'SS25 Collection — Live Now &nbsp;·&nbsp; Free shipping above ₹999',
+      'Use code <strong>ANIME10</strong> for 10% off your first order',
+      '350 GSM premium fabric &nbsp;·&nbsp; Built to last, not just to look good',
+      'Wear your world &nbsp;·&nbsp; 120+ designs across 10 anime universes',
+      'Rated 4.9 / 5 &nbsp;·&nbsp; Loved by 10,000+ fans across India',
     ];
     const ticker = document.getElementById('ab-ticker');
     if (!ticker) return;

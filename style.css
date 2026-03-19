@@ -10783,3 +10783,153 @@ input, textarea, select {
 .nav-links a::after {
   transition: transform var(--t-base) var(--ease-out);
 }
+
+/* ═══════════════════════════════════════════════════════════
+   V10.0 — IDENTITY & STORYTELLING
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Collection page: identity intro line ────────────────── */
+.coll-intro {
+  font-family: var(--font-m);
+  font-size: clamp(.95rem, 1.8vw, 1.1rem);
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(255, 255, 255, .5);
+  margin-top: 10px;
+  line-height: 1.6;
+  letter-spacing: .01em;
+  max-width: 520px;
+  animation: introFade .6s var(--ease-out) both;
+}
+
+@keyframes introFade {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Collection page: header spacing when intro shows ────── */
+.coll-header {
+  padding: 32px 40px 28px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.coll-header-left h1 {
+  font-family: var(--font-d);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: 3px;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+/* Default sub — hide when intro is shown */
+#coll-page-sub {
+  font-family: var(--font-m);
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 400;
+  margin-top: 6px;
+}
+
+/* ── Product page: identity line above description ───────── */
+.pd-identity-line {
+  display: block;
+  font-family: var(--font-m);
+  font-size: 13px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--red);
+  opacity: .85;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  line-height: 1.6;
+  letter-spacing: .01em;
+}
+
+/* ── Product card: prd-anime tag — type label ─────────────── */
+.prd-anime {
+  font-family: var(--font-m);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: .8;
+}
+
+/* ── Product card: name — slightly larger, more presence ─── */
+.prd-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -.01em;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+/* ── Collection page: result count — quieter ─────────────── */
+#result-count {
+  font-family: var(--font-m);
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 400;
+}
+#result-count strong {
+  color: var(--white);
+  font-weight: 600;
+}
+
+/* ── Ticker: brand voice — no emoji, clean ───────────────── */
+.ab-ticker-item {
+  font-family: var(--font-m);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .5px;
+  color: rgba(255,255,255,.75);
+}
+.ab-ticker-item strong {
+  font-weight: 700;
+  color: #fff;
+}
+
+/* ── Announcement bar: slightly slimmer ─────────────────── */
+.announce-bar {
+  font-size: 11px;
+  letter-spacing: .3px;
+}
+
+/* ── Filter sidebar: quieter section labels ──────────────── */
+.coll-fg-head h4 {
+  font-family: var(--font-m);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── Product card: slight image dark gradient on hover ───── */
+.prd-img-inner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8,8,15,.4) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity var(--t-base) ease;
+  pointer-events: none;
+}
+.prd-card:hover .prd-img-inner::after {
+  opacity: 1;
+}
+
+/* ── Mobile: collection intro smaller ────────────────────── */
+@media (max-width: 768px) {
+  .coll-header { padding: 24px 20px 20px; }
+  .coll-intro { font-size: .9rem; }
+}

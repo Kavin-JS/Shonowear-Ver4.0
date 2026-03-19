@@ -222,7 +222,23 @@ function renderProduct(p) {
   renderSizes(p);
 
   // Description
-  document.getElementById('pd-desc').textContent = p.desc || 'Premium quality anime-inspired streetwear. Built for culture, designed for comfort.';
+  // Identity context line — one sharp line per type, shown before description
+  const IDENTITY = {
+    hoodie:    'For late nights, loud music, and knowing exactly who you are.',
+    tee:       'Because some things are better shown than explained.',
+    oversized: 'Sized for comfort. Worn as a statement.',
+    jacket:    'The piece that changes the whole outfit. And the whole mood.',
+    phone:     'Your most-seen accessory. Make it mean something.',
+    figurine:  'For the shelf, the desk, the part of the room that's entirely yours.',
+  };
+  const identityLine = IDENTITY[p.type] || '';
+  const descEl = document.getElementById('pd-desc');
+  if (descEl) {
+    const fullDesc = p.desc || 'Premium quality anime-inspired streetwear. Built for culture, designed for comfort.';
+    descEl.innerHTML = identityLine
+      ? `<span class="pd-identity-line">${identityLine}</span>${fullDesc}`
+      : fullDesc;
+  }
 
   // Body type suitability
   renderBodyTypeSuitability(p);

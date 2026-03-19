@@ -237,7 +237,11 @@ function renderProductCard(product) {
         </button>
       </div>
       <div class="prd-info">
-        <div class="prd-tag-row"><span class="prd-anime">${product.anime||product.tag||''}</span></div>
+        <div class="prd-tag-row"><span class="prd-anime">${(function(t){
+          const map = {hoodie:'Heavyweight Hoodie', tee:'Graphic Tee', oversized:'Oversized Tee',
+            jacket:'Street Jacket', phone:'Phone Case', figurine:'Collectible Figure'};
+          return map[t] || (product.anime || product.tag || '');
+        })(product.type)}</span></div>
         <div class="prd-name">${product.name}</div>
         <div class="prd-rating-row">
           <span class="prd-stars">${starStr}</span>
