@@ -10933,3 +10933,172 @@ input, textarea, select {
   .coll-header { padding: 24px 20px 20px; }
   .coll-intro { font-size: .9rem; }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   V11.0 — BRAND UNIVERSE & NARRATIVE
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Manifesto strip refinements ─────────────────────────── */
+.manifesto-strip {
+  background: var(--red);
+  padding: 72px 0;
+}
+
+.manifesto-inner h2 {
+  font-family: var(--font-d);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  letter-spacing: 6px;
+  color: #fff;
+  line-height: .95;
+  margin-bottom: 24px;
+}
+
+.manifesto-inner > p {
+  font-family: var(--font-m);
+  font-size: clamp(.9rem, 1.8vw, 1.05rem);
+  font-weight: 300;
+  color: rgba(255, 255, 255, .82);
+  line-height: 1.8;
+  max-width: 560px;
+  margin: 0 auto 32px;
+}
+
+.manifesto-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 16px;
+  border: 1px solid rgba(255, 255, 255, .35);
+  border-radius: 99px;
+  font-family: var(--font-m);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .9);
+}
+
+/* ── Style cards: deeper world feel ─────────────────────── */
+.sc-label p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, .6);
+  max-width: 220px;
+}
+
+.sc-card {
+  transition: transform var(--t-slow) var(--ease-out);
+}
+.sc-card:hover {
+  transform: scale(1.01);
+}
+
+/* Deeper overlays per style — each world has its own darkness */
+.sc-tokyo  { background-position: center top; }
+.sc-cyber  { background-position: center center; }
+.sc-minimal{ background-position: center 30%; }
+.sc-shibuya{ background-position: center 40%; }
+
+/* ── Product grid: visual rhythm ─────────────────────────── */
+/* Every 7th card gets slight size emphasis — breaks catalog feel */
+.prd-grid .prd-card:nth-child(7n) .prd-img {
+  aspect-ratio: 3/4;
+}
+
+/* ── Promo banner: reframed as welcome ───────────────────── */
+.promo-badge {
+  font-family: var(--font-m);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.3);
+  padding: 4px 12px;
+  border-radius: 99px;
+  display: inline-block;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+/* ── Footer brand paragraph ──────────────────────────────── */
+.footer-brand p {
+  font-family: var(--font-m);
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 260px;
+  margin-top: 14px;
+  font-weight: 300;
+}
+
+/* ── Newsletter: identity framing ────────────────────────── */
+.ec-nl-text h2,
+.ec-newsletter h2 {
+  font-family: var(--font-b);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -.02em;
+  color: var(--white);
+}
+
+.ec-nl-text em,
+.ec-newsletter em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+/* ── Trust strip: edge in the copy ───────────────────────── */
+.ec-trust-item span {
+  font-family: var(--font-m);
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* ── About page: story section pull quote style ──────────── */
+.story-text h2 {
+  font-family: var(--font-b);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -.02em;
+  margin-bottom: 20px;
+}
+
+.story-text h2 em {
+  font-style: italic;
+  color: var(--red);
+}
+
+.story-text > p {
+  font-family: var(--font-m);
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--off);
+  margin-bottom: 16px;
+  font-weight: 300;
+}
+
+/* ── UGC section title ───────────────────────────────────── */
+/* 'Worn in the Wild' title gets more visual weight */
+#ugc-grid .sec-title {
+  letter-spacing: -.02em;
+}
+
+/* ── Hero label: brand phrase persistent ─────────────────── */
+.hero-label {
+  font-family: var(--font-m);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+/* ── Manifesto mobile ────────────────────────────────────── */
+@media (max-width: 768px) {
+  .manifesto-strip { padding: 48px 0; }
+  .manifesto-inner h2 { letter-spacing: 3px; }
+  .manifesto-pills { gap: 8px; }
+  .manifesto-pill { font-size: 9px; padding: 5px 12px; }
+}

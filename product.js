@@ -224,13 +224,13 @@ function renderProduct(p) {
   // Description
   // Identity context line — one sharp line per type, shown before description
   const IDENTITY = {
-    hoodie:    'For late nights, loud music, and knowing exactly who you are.',
-    tee:       'Because some things are better shown than explained.',
-    oversized: 'Sized for comfort. Worn as a statement.',
-    jacket:    'The piece that changes the whole outfit. And the whole mood.',
-    phone:     'Your most-seen accessory. Make it mean something.',
-    figurine:  'For the shelf, the desk, the part of the room that's entirely yours.',
-  };
+    hoodie:    'The piece you reach for without thinking. Heavy, warm, yours.',
+    tee:       'One image. One series. One thing the right person will immediately recognise.',
+    oversized: 'Not just a bigger size. A different relationship with how you take up space.',
+    jacket:    'Everything else goes under it. This is what the world sees first.',
+    phone:     'You check it 80 times a day. It should mean something.',
+    figurine:  'The character that stayed with you. Now it lives in your space.',
+  }
   const identityLine = IDENTITY[p.type] || '';
   const descEl = document.getElementById('pd-desc');
   if (descEl) {
