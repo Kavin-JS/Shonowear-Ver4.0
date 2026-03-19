@@ -139,36 +139,59 @@ document.getElementById('nav-toggle')?.addEventListener('click', openMob);
 document.addEventListener('DOMContentLoaded', () => { updateNav(); });
 
 /* ── Product images ─────────────────────────────────────────── */
+// Visual signature: consistent crop + quality across all product imagery
+const SIG = '&q=90&crop=top'; // appended to every product image URL
 const PRODUCT_IMAGES = {
   hoodie: [
-    'https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=500&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1509942774463-acf339cf87d5?w=500&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500&auto=format&fit=crop&q=80',
+    // Mix: worn dark, worn light, product, lifestyle, back detail, studio
+    'https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1509942774463-acf339cf87d5?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1496440737103-cd596325d314?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1614495839887-21a0e6a5d7f2?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1578768079052-aa76e52ff9ea?w=500&auto=format&fit=crop' + SIG,
   ],
   tee: [
-    'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=500&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=500&auto=format&fit=crop&q=80',
-  ],
-  phone: [
-    'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=500&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=500&auto=format&fit=crop&q=80',
-  ],
-  figurine: [
-    'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1608889476561-6242cfdbf622?w=500&auto=format&fit=crop&q=80',
-  ],
-  jacket: [
-    'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1551537482-f2075a1d41f2?w=500&auto=format&fit=crop&q=80',
+    // Mix: lifestyle worn, flat lay, studio, street, detail, layered
+    'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&auto=format&fit=crop' + SIG,
   ],
   oversized: [
-    'https://images.unsplash.com/photo-1603252109303-2751441dd157?w=500&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500&auto=format&fit=crop&q=80',
+    // Oversized: structural, relaxed, street, detail
+    'https://images.unsplash.com/photo-1603252109303-2751441dd157?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=500&auto=format&fit=crop' + SIG,
+  ],
+  jacket: [
+    // Jackets: worn standing, back view, detail, street
+    'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1551537482-f2075a1d41f2?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1520975954732-35dd22299614?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1509942774463-acf339cf87d5?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop' + SIG,
+  ],
+  phone: [
+    'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1608889476561-6242cfdbf622?w=500&auto=format&fit=crop' + SIG,
+  ],
+  figurine: [
+    'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1608889476561-6242cfdbf622?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop' + SIG,
   ],
 };
 

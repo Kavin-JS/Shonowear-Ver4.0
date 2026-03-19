@@ -11102,3 +11102,179 @@ input, textarea, select {
   .manifesto-pills { gap: 8px; }
   .manifesto-pill { font-size: 9px; padding: 5px 12px; }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   V12.0 — VISUAL IDENTITY SYSTEM
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── VISUAL SIGNATURE — applied to every product image ──────
+   Slight desaturation + contrast lift = editorial fashion tone.
+   Makes every image feel part of the same visual world.
+   ──────────────────────────────────────────────────────────── */
+.prd-img-inner {
+  filter: contrast(1.05) saturate(0.88);
+  transition: transform var(--t-slow) var(--ease-out),
+              filter var(--t-slow) var(--ease-out);
+}
+.prd-card:hover .prd-img-inner {
+  filter: contrast(1.08) saturate(0.92);
+}
+
+/* Product page gallery — same signature, slightly richer */
+.pd-main-img img,
+.pd-thumb img {
+  filter: contrast(1.04) saturate(0.9);
+}
+
+/* ── STYLE CARD WORLDS — each a distinct color mood ─────────
+   CSS filter applied to the .sc-img div (background-image layer)
+   so the overlay gradient still reads correctly on top.
+   ──────────────────────────────────────────────────────────── */
+
+/* Tokyo Street — high contrast, desaturated, dark */
+.sc-tokyo {
+  filter: contrast(1.15) saturate(0.65) brightness(0.88);
+}
+
+/* Cyberpunk — cool blue shift, high contrast */
+.sc-cyber {
+  filter: contrast(1.2) saturate(1.1) hue-rotate(195deg) brightness(0.82);
+}
+
+/* Minimal Anime — very clean, near-monochrome, slightly bright */
+.sc-minimal {
+  filter: contrast(0.95) saturate(0.45) brightness(1.08);
+}
+
+/* Shibuya Casual — warm, natural, slight golden lift */
+.sc-shibuya {
+  filter: contrast(1.02) saturate(0.82) brightness(0.95) sepia(0.12);
+}
+
+/* Replace style card images with world-appropriate photos ── */
+.sc-tokyo {
+  background-image: url('https://images.unsplash.com/photo-1509942774463-acf339cf87d5?w=700&auto=format&fit=crop&q=85');
+  background-position: center 20%;
+}
+.sc-cyber {
+  background-image: url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=700&auto=format&fit=crop&q=85');
+  background-position: center center;
+}
+.sc-minimal {
+  background-image: url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=700&auto=format&fit=crop&q=85');
+  background-position: center 20%;
+}
+.sc-shibuya {
+  background-image: url('https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=700&auto=format&fit=crop&q=85');
+  background-position: center top;
+}
+
+/* ── GRAIN TEXTURE ON PRODUCT CARDS ─────────────────────────
+   Same SVG noise as hero, much more subtle.
+   Creates visual cohesion between hero and product grid.
+   ──────────────────────────────────────────────────────────── */
+.prd-img::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: .5;
+}
+
+/* ── GRID VISUAL RHYTHM ──────────────────────────────────────
+   Cards are not all equal weight. 3 patterns create rhythm:
+   — Standard 4:5 (most cards)
+   — Tall 3:4 (every 5th — draws eye, breaks the catalog feel)
+   — Wide 5:5 (every 9th — square, full bleed feel)
+   ──────────────────────────────────────────────────────────── */
+
+/* Remove the previous single nth-child rule */
+.prd-grid .prd-card:nth-child(7n) .prd-img {
+  aspect-ratio: 4/5; /* reset the V11 rule */
+}
+
+/* New rhythm pattern */
+.prd-grid .prd-card:nth-child(5n) .prd-img {
+  aspect-ratio: 3/4;
+}
+.prd-grid .prd-card:nth-child(9n) .prd-img {
+  aspect-ratio: 1/1;
+}
+
+/* Stagger entrance animation on grid load — visual rhythm in time */
+.prd-grid .prd-card:nth-child(2n)  { transition-delay: .04s; }
+.prd-grid .prd-card:nth-child(3n)  { transition-delay: .08s; }
+.prd-grid .prd-card:nth-child(4n)  { transition-delay: .12s; }
+
+/* ── FEATURED SECTION IMAGES ─────────────────────────────────
+   Apply same visual signature to featured collection cards.
+   ──────────────────────────────────────────────────────────── */
+.ec-feat-img {
+  filter: contrast(1.06) saturate(0.85);
+  transition: filter var(--t-slow) ease;
+}
+.ec-feat-card:hover .ec-feat-img {
+  filter: contrast(1.1) saturate(0.9);
+}
+
+/* ── OUTFIT CARD IMAGES ───────────────────────────────────── */
+.oc-img {
+  filter: contrast(1.04) saturate(0.88);
+}
+
+/* ── UGC GRID IMAGES ─────────────────────────────────────── */
+.ugc-item img {
+  filter: contrast(1.05) saturate(0.85);
+  transition: filter var(--t-base) ease,
+              transform .4s ease;
+}
+.ugc-item:hover img {
+  filter: contrast(1.08) saturate(0.9);
+}
+
+/* ── CATEGORY CARDS ──────────────────────────────────────── */
+.ec-cat-img {
+  filter: contrast(1.06) saturate(0.82);
+  transition: filter var(--t-slow) ease;
+}
+.ec-cat-card:hover .ec-cat-img {
+  filter: contrast(1.1) saturate(0.9);
+}
+
+/* ── HERO IMAGE — upgrade vignette at edges, not center ─────
+   The product photo should feel bright at center, dark at edges.
+   ──────────────────────────────────────────────────────────── */
+.hero-photo {
+  filter: contrast(1.04) saturate(0.92);
+}
+
+/* ── COLLECTION PAGE — filter on product image backgrounds ──
+   Consistent visual signature on the collection grid too.
+   ──────────────────────────────────────────────────────────── */
+.prd-img-inner[style*="background-image"] {
+  filter: contrast(1.05) saturate(0.88);
+}
+
+/* ── PRODUCT IMAGE ASPECT: taller on product page ───────────
+   4:5 is standard fashion ratio — tall, elegant, garment-focused.
+   ──────────────────────────────────────────────────────────── */
+.pd-main-img {
+  aspect-ratio: 4/5;
+}
+
+/* ── LOOKBOOK IMAGES ────────────────────────────────────────
+   Same visual signature.
+   ──────────────────────────────────────────────────────────── */
+.lb-img-1, .lb-img-2, .lb-img-3,
+.lb-img-4, .lb-img-5, .lb-img-6 {
+  filter: contrast(1.06) saturate(0.82);
+}
+
+/* ── Mobile: visual signature maintained ────────────────────── */
+@media (max-width: 768px) {
+  .prd-grid .prd-card:nth-child(5n) .prd-img { aspect-ratio: 4/5; }
+  .prd-grid .prd-card:nth-child(9n) .prd-img { aspect-ratio: 4/5; }
+  /* Simplify rhythm on mobile — consistent is better than varied */
+}
