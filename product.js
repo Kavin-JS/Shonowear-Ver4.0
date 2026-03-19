@@ -42,7 +42,7 @@ const GALLERY_IMAGES = {
     'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&auto=format&fit=crop' + G,  // worn front graphic
     'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&auto=format&fit=crop' + G,  // clean studio
     'https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800&auto=format&fit=crop' + G,  // worn street
-    'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=800&auto=format&fit=crop' + G,  // detail shot
+    'https://images.unsplash.com/photo-1554568218-0f1715e72254?w=800&auto=format&fit=crop' + G,  // worn street detail
     'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=800&auto=format&fit=crop' + G,    // lifestyle
   ],
   oversized: [
@@ -69,7 +69,7 @@ const GALLERY_IMAGES = {
     'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&auto=format&fit=crop' + G,
     'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&auto=format&fit=crop' + G,
     'https://images.unsplash.com/photo-1608889476561-6242cfdbf622?w=800&auto=format&fit=crop' + G,
-    'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop' + G,
+    'https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=800&auto=format&fit=crop' + G,
   ],
 };
 

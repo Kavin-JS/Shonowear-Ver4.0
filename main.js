@@ -150,7 +150,7 @@ const PRODUCT_IMAGES = {
     'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500&auto=format&fit=crop' + SIG,
     'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=500&auto=format&fit=crop' + SIG,
     'https://images.unsplash.com/photo-1496440737103-cd596325d314?w=500&auto=format&fit=crop' + SIG,
-    'https://images.unsplash.com/photo-1614495839887-21a0e6a5d7f2?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=500&auto=format&fit=crop' + SIG,  // hoodie worn street
     'https://images.unsplash.com/photo-1578768079052-aa76e52ff9ea?w=500&auto=format&fit=crop' + SIG,
   ],
   tee: [
@@ -158,7 +158,7 @@ const PRODUCT_IMAGES = {
     'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop' + SIG,
     'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&auto=format&fit=crop' + SIG,
     'https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=500&auto=format&fit=crop' + SIG,
-    'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1554568218-0f1715e72254?w=500&auto=format&fit=crop' + SIG,  // worn tee street
     'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=500&auto=format&fit=crop' + SIG,
     'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop' + SIG,
     'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500&auto=format&fit=crop' + SIG,
@@ -191,7 +191,7 @@ const PRODUCT_IMAGES = {
     'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop' + SIG,
     'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&auto=format&fit=crop' + SIG,
     'https://images.unsplash.com/photo-1608889476561-6242cfdbf622?w=500&auto=format&fit=crop' + SIG,
-    'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop' + SIG,
+    'https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=500&auto=format&fit=crop' + SIG,  // figure dark display
   ],
 };
 

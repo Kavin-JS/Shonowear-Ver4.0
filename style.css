@@ -1323,11 +1323,7 @@ textarea.error {
   height: 100%;
   background-size: cover;
   background-position: center top;
-  transition: transform .55s cubic-bezier(.4, 0, .2, 1)
-}
-
-.prd-card:hover .prd-img-inner {
-  transform: scale(1.07)
+  /* Visual signature + hover scale defined in V12 block */
 }
 
 .prd-badge {
@@ -5097,7 +5093,7 @@ html {
 }
 
 .sc-card:hover .sc-img {
-  transform: scale(1.07);
+  transform: scale(1.03); /* subtle — world cards are large */
 }
 
 /* Placeholder color blocks for style collections (replace with real images) */
@@ -6898,7 +6894,8 @@ body {
 }
 
 .ec-cat-card:hover .ec-cat-img {
-  transform: scale(1.07);
+  transform: scale(1.04);
+  /* Definitive scale defined again in V13 block */
 }
 
 .ec-cat-card-overlay {
@@ -8853,13 +8850,9 @@ body {
 .prd-card .prd-img-bg,
 .prd-card .prd-img-inner {
   width:100%; height:100%; object-fit:cover;
-  transition:transform .4s ease;
-  /* Dark placeholder shown while image loads - prevents blank white flash */
-  background-color: var(--ink3);
+  background-color: var(--ink3); /* placeholder while loading */
 }
-.prd-card:hover .prd-img-bg,
-.prd-card:hover .prd-img-inner,
-.prd-card:hover .prd-img-wrap img { transform:scale(1.04); }
+/* hover scale defined in V12 visual signature block */
 
 /* Product badges */
 .badge-new    { background:#10b981; color:#fff; }
@@ -11277,4 +11270,164 @@ input, textarea, select {
   .prd-grid .prd-card:nth-child(5n) .prd-img { aspect-ratio: 4/5; }
   .prd-grid .prd-card:nth-child(9n) .prd-img { aspect-ratio: 4/5; }
   /* Simplify rhythm on mobile — consistent is better than varied */
+}
+
+/* ═══════════════════════════════════════════════════════════
+   V13.0 — DEFINITIVE VISUAL IDENTITY SYSTEM
+   Single source of truth for all image treatments.
+   Rule: one filter grade, one scale, one transition.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── THE SIGNATURE ───────────────────────────────────────────
+   Every product image, every context:
+   contrast +5%  →  fabrics read as defined, not soft
+   saturate -12% →  slight desaturation = editorial tone
+   This is the single visual treatment that unifies the brand.
+   It applies whether images are lifestyle, studio, or street.
+   ──────────────────────────────────────────────────────────── */
+.prd-img-inner {
+  filter: contrast(1.05) saturate(0.88);
+  transform: scale(1);
+  transition:
+    transform .5s cubic-bezier(.25, 0, .1, 1),
+    filter .5s cubic-bezier(.25, 0, .1, 1);
+  will-change: transform, filter;
+}
+
+.prd-card:hover .prd-img-inner {
+  transform: scale(1.05);
+  filter: contrast(1.08) saturate(0.92);
+}
+
+/* ── IMAGE DIRECTION — framing rules ────────────────────────
+   All background-image product divs: top-crop for upper body focus.
+   This is the consistent framing instruction across the grid.
+   ──────────────────────────────────────────────────────────── */
+.prd-img,
+.prd-img-inner {
+  background-position: center top;
+}
+
+/* ── PRODUCT PAGE: highest fidelity ─────────────────────────
+   On the product detail page the user is evaluating — 
+   full resolution, same grade, no further processing.
+   ──────────────────────────────────────────────────────────── */
+.pd-main-img img {
+  filter: contrast(1.04) saturate(0.9);
+  transition: filter .4s ease;
+}
+.pd-main-img img:hover {
+  filter: contrast(1.06) saturate(0.93);
+}
+.pd-thumb img {
+  filter: contrast(1.03) saturate(0.88);
+}
+.pd-thumb.active img,
+.pd-thumb:hover img {
+  filter: contrast(1.06) saturate(0.92);
+}
+
+/* ── HERO IMAGE IDENTITY ─────────────────────────────────────
+   Dark, cinematic, slightly desaturated.
+   The hero is the brand's opening frame — bold composition,
+   offset body, deep shadows.
+   ──────────────────────────────────────────────────────────── */
+.hero-photo {
+  filter: contrast(1.06) saturate(0.88) brightness(0.96);
+}
+
+/* ── CATEGORY CARDS — full-bleed identity shots ─────────────
+   These are entry points. Each must feel like a world preview.
+   ──────────────────────────────────────────────────────────── */
+.ec-cat-img {
+  filter: contrast(1.08) saturate(0.82);
+  background-position: center top;
+  transition: filter .5s ease, transform .5s cubic-bezier(.25,0,.1,1);
+}
+.ec-cat-card:hover .ec-cat-img {
+  filter: contrast(1.12) saturate(0.88);
+  transform: scale(1.04);
+}
+
+/* ── UGC GRID — community feel, warmer grade ─────────────────
+   The community section is the warmest part of the site.
+   Slightly less desaturation to feel more authentic/raw.
+   ──────────────────────────────────────────────────────────── */
+.ugc-item img {
+  filter: contrast(1.03) saturate(0.92);
+  transition: filter .4s ease, transform .4s ease;
+}
+.ugc-item:hover img {
+  filter: contrast(1.06) saturate(0.96);
+  transform: scale(1.04);
+}
+
+/* ── STYLE CARD WORLDS — per-world color language ────────────
+   These are the most distinctive visual elements on the site.
+   Each world has its own color language. Do not change these
+   without updating the corresponding style card copy.
+   ──────────────────────────────────────────────────────────── */
+
+/* Tokyo Street: cold, high contrast, heavily desaturated dark cinema */
+.sc-tokyo .sc-img { filter: contrast(1.15) saturate(0.62) brightness(0.86); }
+
+/* Cyberpunk: electric blue shift, high contrast underground */
+.sc-cyber .sc-img { filter: contrast(1.22) saturate(1.08) hue-rotate(195deg) brightness(0.80); }
+
+/* Minimal Anime: near-monochrome, airy, studio-clean */
+.sc-minimal .sc-img { filter: contrast(0.94) saturate(0.42) brightness(1.10); }
+
+/* Shibuya Casual: warm film tone, gentle and lived-in */
+.sc-shibuya .sc-img { filter: contrast(1.02) saturate(0.80) brightness(0.96) sepia(0.14); }
+
+/* Fallback: apply filter to sc-img element (for background-image divs) */
+.sc-tokyo  { filter: contrast(1.15) saturate(0.62) brightness(0.86); }
+.sc-cyber  { filter: contrast(1.22) saturate(1.08) hue-rotate(195deg) brightness(0.80); }
+.sc-minimal{ filter: contrast(0.94) saturate(0.42) brightness(1.10); }
+.sc-shibuya{ filter: contrast(1.02) saturate(0.80) brightness(0.96) sepia(0.14); }
+
+/* ── FEATURED & OUTFIT CARDS ─────────────────────────────── */
+.ec-feat-img {
+  filter: contrast(1.06) saturate(0.85);
+  transition: filter .5s ease;
+}
+.ec-feat-card:hover .ec-feat-img { filter: contrast(1.10) saturate(0.90); }
+
+.oc-img {
+  filter: contrast(1.04) saturate(0.88);
+  background-position: center top;
+}
+
+/* ── LOOKBOOK ────────────────────────────────────────────── */
+.lb-img-1, .lb-img-2, .lb-img-3,
+.lb-img-4, .lb-img-5, .lb-img-6 {
+  filter: contrast(1.06) saturate(0.82);
+}
+
+/* ── GRID RHYTHM — defined, intentional, documented ──────────
+   The grid is not a uniform catalog. Three card proportions
+   create visual rhythm: standard, tall, square.
+   Pattern repeats every ~45 cards (LCM of 5 and 9).
+   Mobile: uniform 4:5 — consistency beats rhythm on small screens.
+   ──────────────────────────────────────────────────────────── */
+.prd-grid .prd-card:nth-child(5n) .prd-img  { aspect-ratio: 3/4; }
+.prd-grid .prd-card:nth-child(9n) .prd-img  { aspect-ratio: 1/1; }
+
+@media (max-width: 768px) {
+  .prd-grid .prd-card:nth-child(5n) .prd-img,
+  .prd-grid .prd-card:nth-child(9n) .prd-img { aspect-ratio: 4/5; }
+}
+
+/* ── GRAIN — cohesion between hero and grid ──────────────────
+   Very subtle — present enough to be felt, not seen.
+   Same SVG noise function as the hero grain layer.
+   ──────────────────────────────────────────────────────────── */
+.prd-img::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: .45;
 }
